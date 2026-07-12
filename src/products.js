@@ -23,31 +23,25 @@ export async function initProducts() {
   if (loaded) return cachedProducts
 
   const local = getLocalProducts()
-  if (local.length > 0) {
-    cachedProducts = local.map(p => normalizeProduct(p, p.id))
-    loaded = true
-    return cachedProducts
+
+  if (isFirebaseAvailable) {
+    try {
+      const q = query(collection(db, 'products'), orderBy('createdAt', 'desc'))
+      const snap = await getDocs(q)
+      if (!snap.empty) {
+        cachedProducts = snap.docs.map(d => normalizeProduct(d.data(), d.id))
+      } else {
+        cachedProducts = local.length ? local.map(p => normalizeProduct(p, p.id)) : fallbackProducts
+      }
+      loaded = true
+      return cachedProducts
+    } catch { /* fall through to local/fallback */ }
   }
 
-  if (!isFirebaseAvailable) {
-    cachedProducts = fallbackProducts
-    loaded = true
-    return cachedProducts
-  }
-
-  try {
-    const q = query(collection(db, 'products'), orderBy('createdAt', 'desc'))
-    const snap = await getDocs(q)
-    if (!snap.empty) {
-      cachedProducts = snap.docs.map(d => normalizeProduct(d.data(), d.id))
-    } else {
-      cachedProducts = fallbackProducts
-    }
-    loaded = true
-  } catch {
-    cachedProducts = local.length ? local.map(p => normalizeProduct(p, p.id)) : fallbackProducts
-    loaded = true
-  }
+  cachedProducts = local.length > 0
+    ? local.map(p => normalizeProduct(p, p.id))
+    : fallbackProducts
+  loaded = true
   return cachedProducts
 }
 

@@ -1147,24 +1147,6 @@
         categories = await getCategories()
         allOrders = await fetchOrders()
 
-        const hasProductsHero = banners.some(b => b.type === 'products-hero')
-        if (!hasProductsHero) {
-          const defaults = [
-            './src/assets/Bag1.png',
-            './src/assets/Bag2.png',
-            './src/assets/Bag3.png',
-            './src/assets/Bag4.png',
-            './src/assets/Bag5.png',
-            './src/assets/Bag6.png',
-            './src/assets/Bag7.png',
-            './src/assets/Bag8.png'
-          ]
-          for (const img of defaults) {
-            await addBanner({ type: 'products-hero', image: img, label: '' })
-          }
-          banners = await getBanners()
-        }
-
         const settings = await getSettings()
         if (settings) populateSettings(settings)
 
