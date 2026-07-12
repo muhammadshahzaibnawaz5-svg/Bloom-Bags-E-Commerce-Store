@@ -378,7 +378,7 @@
           </div>
           <div class="hero-panel">
             <div class="slideshow-wrap">
-              <img id="hero-slide" src="./src/assets/Bag1.png" alt="Featured bag" onerror="this.style.display='none'" />
+              <img id="hero-slide" alt="Featured bag" />
             </div>
             <div id="hero-dots" style="display:flex;justify-content:center;gap:10px;margin-top:14px;"></div>
           </div>
@@ -785,10 +785,12 @@
     let currentSlide = 0
     const heroSlide = document.getElementById('hero-slide')
     const dotsContainer = document.getElementById('hero-dots')
+    heroSlide.style.display = ''
     function showSlide(index) {
       heroSlide.style.opacity = '0'
       setTimeout(() => {
         heroSlide.src = heroImages[index]
+        heroSlide.style.display = ''
         heroSlide.style.opacity = '1'
       }, 400)
       dotsContainer.querySelectorAll('.hero-dot').forEach((dot, i) => {
