@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gift Cards — Blome</title>
+  <meta name="description" content="Give the gift of Blome with a digital gift card. Perfect for the handbag lover in your life. Delivered instantly via email with a personalized message." />
+  <meta name="keywords" content="Blome gift card, luxury handbag gift, digital gift card handbags, gift for her leather bag" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://blomebags.com/gift-cards.html" />
+  <meta property="og:title" content="Gift Cards — Blome" />
+  <meta property="og:description" content="Give the gift of Blome with a digital gift card. Perfect for the handbag lover in your life. Delivered instantly via email with a personalized message." />
+  <meta property="og:url" content="https://blomebags.com/gift-cards.html" />
+  <meta property="og:image" content="https://blomebags.com/src/assets/Blome_Bag_logo-removebg-preview.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Blome" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Gift Cards — Blome" />
+  <meta name="twitter:description" content="Give the gift of Blome with a digital gift card. Perfect for the handbag lover in your life. Delivered instantly via email with a personalized message." />
+  <meta name="twitter:image" content="https://blomebags.com/src/assets/Blome_Bag_logo-removebg-preview.png" />
+  <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+  <link rel="alternate icon" href="/favicon/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/src/style.css" />
+  <style>
+    [data-anim] { opacity: 0; transform: translateY(22px); }
+    [data-anim].anim-fade-up { opacity: 1; transform: translateY(0); }
+
+    .gc-card {
+      background: white;
+      border: 1px solid var(--warm-gray);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.05);
+    }
+    .gc-card-header {
+      padding: 24px 24px 16px;
+      border-bottom: 1px solid var(--warm-gray);
+    }
+    .gc-card-body {
+      padding: 20px 24px 24px;
+    }
+
+    .amount-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .amount-btn {
+      padding: 14px 8px;
+      border: 1.5px solid var(--warm-gray);
+      border-radius: 12px;
+      background: white;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .amount-btn:hover {
+      border-color: var(--charcoal);
+      background: var(--ivory);
+    }
+    .amount-btn.selected {
+      border-color: var(--charcoal);
+      background: var(--charcoal);
+      color: white;
+    }
+    .amount-btn.custom {
+      font-size: 0.85rem;
+      font-family: var(--font-body);
+      font-weight: 600;
+      grid-column: span 3;
+    }
+    .amount-btn.custom.selected {
+      border-style: solid;
+    }
+
+    .gc-field {
+      margin-bottom: 16px;
+    }
+    .gc-label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 5px;
+    }
+    .gc-input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--warm-gray);
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      color: var(--charcoal);
+      background: var(--ivory);
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .gc-input:focus {
+      border-color: var(--charcoal);
+      background: white;
+    }
+    .gc-input::placeholder { color: #b0aba6; }
+    .gc-textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--warm-gray);
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      color: var(--charcoal);
+      background: var(--ivory);
+      outline: none;
+      resize: vertical;
+      min-height: 80px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .gc-textarea:focus { border-color: var(--charcoal); background: white; }
+
+    .gc-preview {
+      background: linear-gradient(135deg, var(--charcoal) 0%, #2a2a2a 100%);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .gc-preview::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,168,83,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .gc-preview::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -40px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,226,122,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .gc-preview-amount {
+      font-family: Brigila, var(--font-display), serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .gc-preview-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      opacity: 0.8;
+    }
+    .gc-preview-message {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+      margin-top: 12px;
+      font-style: italic;
+      max-width: 240px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+    }
+
+    .balance-check {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .balance-check .gc-input { flex: 1; min-width: 160px; }
+
+    @media (max-width: 767px) {
+      .gc-card-header { padding: 18px 18px 14px; }
+      .gc-card-body { padding: 16px 18px; }
+      .amount-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .amount-btn { padding: 12px 8px; font-size: 1rem; }
+      .amount-btn.custom { grid-column: span 2; }
+      .gc-input { padding: 10px 12px; font-size: 0.82rem; }
+      .gc-label { font-size: 0.72rem; }
+      .gc-textarea { padding: 10px 12px; font-size: 0.82rem; }
+      .balance-check .gc-input { min-width: 120px; }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .gc-card-header { padding: 20px 20px 14px; }
+      .gc-card-body { padding: 18px 20px; }
+      .amount-grid { gap: 8px; }
+    }
+
+    @media (max-width: 374px) {
+      .gc-hero h1 { font-size: clamp(1.5rem, 7vw, 2rem); }
+      .gc-hero p { font-size: 0.82rem; }
+      .gc-card-header { padding: 14px 14px 12px; }
+      .gc-card-body { padding: 12px 14px; }
+      .amount-grid { gap: 6px; }
+      .amount-btn { padding: 10px 6px; font-size: 0.88rem; }
+      .gc-input { padding: 8px 10px; font-size: 0.78rem; }
+      .gc-textarea { padding: 8px 10px; font-size: 0.78rem; min-height: 70px; }
+      .gc-label { font-size: 0.68rem; }
+      .balance-check { flex-direction: column; }
+      .balance-check .gc-input { min-width: 0; }
+    }
+
+    @media (min-width: 1536px) {
+      .gc-card-header { padding: 28px 28px 18px; }
+      .gc-card-body { padding: 24px 28px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+  <div id="toast" class="toast"></div>
+
+  <header id="navbar" class="fixed top-0 left-0 w-full z-50">
+    <div class="announce-bar">
+      ✦&nbsp; <strong>Free shipping</strong>&nbsp;on orders over $200 &nbsp;·&nbsp; <strong>30-day</strong>&nbsp;easy returns &nbsp;·&nbsp; Complimentary <strong>gift wrapping</strong>&nbsp; ✦
+    </div>
+    <div class="nav-glass" id="nav-main">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between" style="height:var(--nav-h);">
+          <a href="/" style="display:flex;align-items:center;text-decoration:none;">
+            <img src="./src/assets/Blome_Bag_logo-removebg-preview.png" alt="Blome Bag" style="height:60px;width:auto;flex-shrink:0;" />
+          </a>
+          <nav class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">Home</a>
+            <div class="nav-dropdown-group">
+              <a href="/product-listing.html" class="nav-link" aria-haspopup="true">Products</a>
+              <div class="nav-dropdown" role="menu">
+                <a href="/product-listing.html?category=Tote" class="nav-dropdown-link" role="menuitem">Totes</a>
+                <a href="/product-listing.html?category=Crossbody" class="nav-dropdown-link" role="menuitem">Crossbody</a>
+                <a href="/product-listing.html?category=Clutch" class="nav-dropdown-link" role="menuitem">Clutches</a>
+                <a href="/product-listing.html?category=Shoulder" class="nav-dropdown-link" role="menuitem">Shoulder</a>
+                <a href="/product-listing.html?category=Bucket" class="nav-dropdown-link" role="menuitem">Bucket</a>
+                <div class="nav-dropdown-divider" role="separator"></div>
+                <a href="/about.html" class="nav-dropdown-link" role="menuitem">About Us</a>
+                <a href="/product-listing.html" class="nav-dropdown-link" role="menuitem">View All</a>
+              </div>
+            </div>
+            <a href="/contact.html" class="nav-link">Contact Us</a>
+          </nav>
+          <div class="flex items-center gap-10">
+            <a href="/cart.html" class="nav-icon-btn relative" aria-label="Cart">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+              <span class="cart-badge" id="cart-count">0</span>
+            </a>
+            <button class="nav-icon-btn md:hidden" id="menu-btn" aria-label="Toggle menu">
+              <svg id="icon-open" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+              </svg>
+              <svg id="icon-close" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden" style="background:white;border-bottom:1px solid var(--warm-gray);padding:0.75rem 1.5rem 1.25rem;">
+      <a href="/" class="mobile-nav-link">Home</a>
+      <a href="/product-listing.html" class="mobile-nav-link">Products</a>
+      <div class="mobile-sub-links">
+        <a href="/product-listing.html?category=Tote" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">Totes</a>
+        <a href="/product-listing.html?category=Crossbody" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">Crossbody</a>
+        <a href="/product-listing.html?category=Clutch" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">Clutches</a>
+        <a href="/product-listing.html?category=Shoulder" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">Shoulder</a>
+        <a href="/product-listing.html?category=Bucket" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">Bucket</a>
+        <a href="/about.html" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">About Us</a>
+      </div>
+      <a href="/contact.html" class="mobile-nav-link">Contact Us</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <section style="position:relative;background:linear-gradient(165deg, #F0EBE4 0%, var(--ivory) 40%, #FCFAF7 100%);border-top:1px solid var(--warm-gray);overflow:hidden;min-height:clamp(200px,34vh,340px);display:flex;align-items:center;" data-anim>
+      <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden;" aria-hidden="true">
+        <div style="position:absolute;top:-120px;right:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle, rgba(212,168,83,0.08) 0%, transparent 70%);"></div>
+        <div style="position:absolute;bottom:-60px;left:-40px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle, rgba(200,226,122,0.10) 0%, transparent 70%);"></div>
+        <div style="position:absolute;top:50%;right:12%;width:1px;height:120px;background:linear-gradient(to bottom, var(--gold), transparent);opacity:0.25;"></div>
+        <div style="position:absolute;bottom:20%;left:55%;width:60px;height:1px;background:var(--gold);opacity:0.20;"></div>
+      </div>
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full" style="padding:clamp(2.5rem,5vh,4rem) 0;">
+        <div style="max-width:640px;">
+          <span style="display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:0.60rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;" data-anim>
+            <span style="display:inline-block;width:28px;height:2px;background:var(--gold);border-radius:1px;"></span>
+            Gift Cards
+          </span>
+          <h1 style="font-family:Brigila,var(--font-display),serif;font-size:clamp(2rem,5vw,3.6rem);font-weight:500;color:var(--charcoal);line-height:0.95;letter-spacing:-0.01em;margin-bottom:0.6rem;" data-anim>
+            Give the Gift of Blome
+          </h1>
+          <div style="width:48px;height:2.5px;background:var(--gold);border-radius:2px;margin-bottom:0.8rem;" aria-hidden="true" data-anim></div>
+          <p style="font-family:var(--font-body);font-size:clamp(0.88rem,1.1vw,0.95rem);color:var(--muted);line-height:1.7;max-width:500px;" data-anim>
+            The perfect present for every occasion. Choose an amount, add a personal message, and send instantly.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding:2.5rem 0 4rem;">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14 items-start">
+
+          <div class="gc-card" data-anim>
+            <div class="gc-card-header">
+              <h2 style="font-family:var(--font-display);font-size:1.2rem;font-weight:800;color:var(--charcoal);">Purchase a Gift Card</h2>
+              <p style="font-size:0.82rem;color:var(--muted);margin-top:4px;">Select an amount and personalize.</p>
+            </div>
+            <div class="gc-card-body">
+              <form id="gc-form" novalidate>
+                <div class="gc-field">
+                  <label class="gc-label">Choose Amount</label>
+                  <div class="amount-grid" role="radiogroup" aria-label="Gift card amount">
+                    <button type="button" class="amount-btn" data-value="25" role="radio" aria-checked="false">$25</button>
+                    <button type="button" class="amount-btn" data-value="50" role="radio" aria-checked="false">$50</button>
+                    <button type="button" class="amount-btn selected" data-value="100" role="radio" aria-checked="true">$100</button>
+                    <button type="button" class="amount-btn" data-value="150" role="radio" aria-checked="false">$150</button>
+                    <button type="button" class="amount-btn" data-value="200" role="radio" aria-checked="false">$200</button>
+                    <button type="button" class="amount-btn" data-value="500" role="radio" aria-checked="false">$500</button>
+                    <button type="button" class="amount-btn custom" id="gc-custom-btn" data-value="custom" role="radio" aria-checked="false">Custom Amount</button>
+                  </div>
+                  <div id="gc-custom-field" style="display:none;margin-top:10px;">
+                    <input class="gc-input" id="gc-custom-input" type="number" min="10" max="1000" step="1" placeholder="Enter amount ($10–$1,000)" aria-label="Custom gift card amount" />
+                  </div>
+                </div>
+
+                <div class="gc-field">
+                  <label class="gc-label" for="gc-from">From</label>
+                  <input class="gc-input" id="gc-from" type="text" placeholder="Your name" required />
+                </div>
+                <div class="gc-field">
+                  <label class="gc-label" for="gc-to">To</label>
+                  <input class="gc-input" id="gc-to" type="text" placeholder="Recipient's name" required />
+                </div>
+                <div class="gc-field">
+                  <label class="gc-label" for="gc-email">Recipient Email</label>
+                  <input class="gc-input" id="gc-email" type="email" placeholder="recipient@example.com" required />
+                </div>
+                <div class="gc-field">
+                  <label class="gc-label" for="gc-message">Personal Message <span style="font-weight:400;color:var(--muted);">(optional)</span></label>
+                  <textarea class="gc-textarea" id="gc-message" maxlength="300" placeholder="Write a short note…"></textarea>
+                  <p style="font-size:0.72rem;color:var(--muted);margin-top:4px;"><span id="gc-char-count">0</span>/300 characters</p>
+                </div>
+
+                <button type="submit" class="btn-lime" style="width:100%;padding:14px;font-size:0.9rem;text-align:center;">Add to Cart — <span id="gc-preview-price">$100.00</span></button>
+              </form>
+            </div>
+          </div>
+
+          <div>
+            <div class="gc-preview" data-anim>
+              <p class="gc-preview-amount" id="gc-preview-display">$100</p>
+              <p class="gc-preview-label">Blome Gift Card</p>
+              <p class="gc-preview-message" id="gc-preview-msg">A little something special for you.</p>
+            </div>
+
+            <div class="gc-card" style="margin-top:1.5rem;" data-anim>
+              <div class="gc-card-header">
+                <h2 style="font-family:var(--font-display);font-size:1.1rem;font-weight:800;color:var(--charcoal);">Check Balance</h2>
+                <p style="font-size:0.82rem;color:var(--muted);margin-top:4px;">Enter your gift card code to see your remaining balance.</p>
+              </div>
+              <div class="gc-card-body">
+                <div class="gc-field">
+                  <label class="gc-label" for="gc-code">Gift Card Code</label>
+                  <div class="balance-check">
+                    <input class="gc-input" id="gc-code" type="text" placeholder="e.g. BLM-XXXX-XXXX" aria-label="Gift card code" />
+                    <button class="btn-outline btn-sm" id="gc-check-btn" type="button" style="padding:11px 24px;border-radius:10px;white-space:nowrap;">Check</button>
+                  </div>
+                  <p id="gc-balance-result" style="font-size:0.85rem;margin-top:8px;display:none;"></p>
+                </div>
+                <p style="font-size:0.72rem;color:var(--muted);padding-top:12px;border-top:1px solid var(--warm-gray);">Gift cards never expire and can be used online and in-store.</p>
+              </div>
+            </div>
+
+            <div style="margin-top:1.5rem;padding:20px 24px;background:white;border:1px solid var(--warm-gray);border-radius:16px;" data-anim>
+              <h3 style="font-family:var(--font-display);font-size:0.95rem;font-weight:700;color:var(--charcoal);margin-bottom:8px;">Terms &amp; Conditions</h3>
+              <ul style="list-style:none;">
+                <li style="font-size:0.78rem;color:var(--muted);line-height:1.7;padding-left:1rem;position:relative;margin-bottom:2px;">&bull; Gift cards are delivered via email within minutes of purchase.</li>
+                <li style="font-size:0.78rem;color:var(--muted);line-height:1.7;padding-left:1rem;position:relative;margin-bottom:2px;">&bull; Cannot be redeemed for cash unless required by law.</li>
+                <li style="font-size:0.78rem;color:var(--muted);line-height:1.7;padding-left:1rem;position:relative;margin-bottom:2px;">&bull; Not replaceable if lost or stolen. Treat like cash.</li>
+                <li style="font-size:0.78rem;color:var(--muted);line-height:1.7;padding-left:1rem;position:relative;margin-bottom:2px;">&bull; May be used in combination with other payment methods.</li>
+                <li style="font-size:0.78rem;color:var(--muted);line-height:1.7;padding-left:1rem;position:relative;">&bull; Gift card purchases do not earn loyalty points.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="background:white;border-top:1px solid var(--warm-gray);">
+    <div class="max-w-7xl mx-auto" style="padding:3rem clamp(1.5rem, 5vw, 4rem);">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-12 mb-12">
+        <div class="col-span-2 md:col-span-1">
+          <div class="flex items-center mb-4">
+            <img src="./src/assets/Blome_Bag_logo-removebg-preview.png" alt="Blome Bag" style="height:60px;width:auto;flex-shrink:0;" />
+          </div>
+          <p style="font-family:var(--font-body);font-size:0.85rem;color:var(--muted);line-height:1.72;max-width:210px;">Premium leather handbags crafted for the modern woman. Timeless elegance, exceptional quality.</p>
+          <div class="flex gap-2.5 mt-5">
+            <a href="#" class="social-btn" aria-label="Instagram"><svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17" cy="7" r="1.5" fill="var(--charcoal)"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Pinterest"><svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24"><path d="M8 12.5a4.5 4.5 0 109 0 4.5 4.5 0 00-9 0z"/><path d="M12 2a10 10 0 00-3.3 19.4c-.1-.9-.2-2.3 0-3.3l1.6-7"/><path d="M14 13.5l-1-5.5"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Facebook"><svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">Shop</p>
+          <ul style="list-style:none;">
+            <li><a href="/product-listing.html" class="footer-link">All Bags</a></li>
+            <li><a href="/product-listing.html?category=Tote" class="footer-link">Totes</a></li>
+            <li><a href="/product-listing.html?category=Crossbody" class="footer-link">Crossbody</a></li>
+            <li><a href="/product-listing.html?category=Clutch" class="footer-link">Clutches</a></li>
+            <li><a href="/product-listing.html?category=Sale" class="footer-link">Sale</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Support</p>
+          <ul style="list-style:none;">
+            <li><a href="/contact.html" class="footer-link">Contact Us</a></li>
+            <li><a href="/shipping-returns.html" class="footer-link">Shipping &amp; Returns</a></li>
+            <li><a href="/account.html" class="footer-link">My Account</a></li>
+            <li><a href="/gift-cards.html" class="footer-link">Gift Cards</a></li>
+            <li><a href="/loyalty.html" class="footer-link">Loyalty Program</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Company</p>
+          <ul style="list-style:none;">
+            <li><a href="/about.html" class="footer-link">About Us</a></li>
+            <li><a href="/contact.html" class="footer-link">Contact</a></li>
+            <li><a href="/shipping-returns.html#privacy" class="footer-link">Privacy Policy</a></li>
+            <li><a href="/shipping-returns.html#terms" class="footer-link">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" style="border-top:1px solid var(--warm-gray);">
+        <div class="flex items-center gap-4">
+          <p style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">&copy; 2025 Blome. All rights reserved.</p>
+          <div class="flex items-center gap-2" aria-label="Accepted payment methods">
+            <span style="font-size:0.7rem;font-weight:800;color:#0d2a7a;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;">VISA</span>
+            <span style="font-size:0.7rem;font-weight:800;color:transparent;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;position:relative;min-width:40px;display:inline-flex;align-items:center;justify-content:center;">MC</span>
+            <span style="font-size:0.7rem;font-weight:800;color:#fff;background:#1474bc;border:1px solid #1474bc;border-radius:4px;padding:2px 6px;">AMEX</span>
+            <span style="font-size:0.7rem;font-weight:800;color:#063d8f;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;">PayPal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav-main').classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
+    let menuOpen = false;
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('hidden', !menuOpen);
+      if (iconOpen) iconOpen.style.display = menuOpen ? 'none' : 'block';
+      if (iconClose) iconClose.style.display = menuOpen ? 'block' : 'none';
+    });
+
+    function getCart() { try { return JSON.parse(localStorage.getItem('blome_cart') || '[]'); } catch { return []; } }
+    function saveCart(c) { localStorage.setItem('blome_cart', JSON.stringify(c)); }
+    function updateBadge() {
+      const n = getCart().reduce((s, i) => s + (i.qty || 1), 0);
+      const el = document.getElementById('cart-count');
+      if (el) el.textContent = n;
+    }
+    updateBadge();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('anim-fade-up'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('[data-anim]').forEach(el => observer.observe(el));
+
+    /* ─── Gift Card Amount Selection ─── */
+    const amountBtns = document.querySelectorAll('.amount-btn:not(#gc-custom-btn)');
+    const customBtn = document.getElementById('gc-custom-btn');
+    const customField = document.getElementById('gc-custom-field');
+    const customInput = document.getElementById('gc-custom-input');
+    const previewDisplay = document.getElementById('gc-preview-display');
+    const previewPrice = document.getElementById('gc-preview-price');
+    let selectedAmount = 100;
+
+    function selectAmount(value) {
+      amountBtns.forEach(b => { b.classList.remove('selected'); b.setAttribute('aria-checked', 'false'); });
+      customBtn.classList.remove('selected');
+      customBtn.setAttribute('aria-checked', 'false');
+      customField.style.display = 'none';
+
+      if (value === 'custom') {
+        customBtn.classList.add('selected');
+        customBtn.setAttribute('aria-checked', 'true');
+        customField.style.display = 'block';
+        const val = parseFloat(customInput.value) || 0;
+        if (val >= 10 && val <= 1000) {
+          selectedAmount = val;
+          updatePreview();
+        }
+      } else {
+        const btn = document.querySelector(`.amount-btn[data-value="${value}"]`);
+        if (btn) { btn.classList.add('selected'); btn.setAttribute('aria-checked', 'true'); }
+        selectedAmount = Number(value);
+        updatePreview();
+      }
+    }
+
+    amountBtns.forEach(btn => {
+      btn.addEventListener('click', () => selectAmount(btn.dataset.value));
+    });
+    customBtn.addEventListener('click', () => selectAmount('custom'));
+    customInput.addEventListener('input', () => {
+      if (customBtn.classList.contains('selected')) {
+        const val = parseFloat(customInput.value) || 0;
+        if (val >= 10 && val <= 1000) {
+          selectedAmount = val;
+          updatePreview();
+        }
+      }
+    });
+
+    function updatePreview() {
+      const formatted = '$' + selectedAmount.toFixed(selectedAmount % 1 === 0 ? 0 : 2);
+      previewDisplay.textContent = formatted;
+      previewPrice.textContent = formatted;
+    }
+
+    /* ─── Message Preview ─── */
+    const msgField = document.getElementById('gc-message');
+    const charCount = document.getElementById('gc-char-count');
+    const previewMsg = document.getElementById('gc-preview-msg');
+    msgField.addEventListener('input', () => {
+      charCount.textContent = msgField.value.length;
+      previewMsg.textContent = msgField.value.trim() || 'A little something special for you.';
+    });
+
+    /* ─── Form Submit ─── */
+    document.getElementById('gc-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const from = document.getElementById('gc-from').value.trim();
+      const to = document.getElementById('gc-to').value.trim();
+      const email = document.getElementById('gc-email').value.trim();
+      if (!from || !to || !email) {
+        const toast = document.getElementById('toast');
+        toast.textContent = 'Please fill in all required fields.';
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2800);
+        return;
+      }
+      const cart = getCart();
+      cart.push({
+        id: 'gc-' + Date.now(),
+        name: 'Blome Gift Card',
+        price: selectedAmount,
+        qty: 1,
+        img: '',
+        from: from,
+        to: to,
+        email: email,
+        message: msgField.value.trim()
+      });
+      saveCart(cart);
+      updateBadge();
+      const toast = document.getElementById('toast');
+      toast.textContent = 'Gift card added to cart!';
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2800);
+      this.reset();
+      selectAmount(100);
+      charCount.textContent = '0';
+      previewMsg.textContent = 'A little something special for you.';
+    });
+
+    /* ─── Balance Check ─── */
+    document.getElementById('gc-check-btn').addEventListener('click', () => {
+      const code = document.getElementById('gc-code').value.trim();
+      const result = document.getElementById('gc-balance-result');
+      if (!code) {
+        result.textContent = 'Please enter a gift card code.';
+        result.style.display = 'block';
+        result.style.color = '#dc3545';
+        return;
+      }
+      if (!/^BLM-[\dA-Z]{4}-[\dA-Z]{4}$/i.test(code)) {
+        result.textContent = 'Invalid format. Expected BLM-XXXX-XXXX.';
+        result.style.display = 'block';
+        result.style.color = '#dc3545';
+        return;
+      }
+      const balance = (Math.random() * 200 + 25).toFixed(0);
+      result.innerHTML = 'Balance: <strong>$' + balance + '</strong>';
+      result.style.display = 'block';
+      result.style.color = 'var(--charcoal)';
+    });
+  </script>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmed — Blome</title>
+  <meta name="description" content="Your Blome order is confirmed. Thank you for your purchase. You will receive a shipping confirmation with tracking details once your handbag ships." />
+  <meta name="keywords" content="order confirmed Blome, purchase confirmation, Blome order success, handbag order placed" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://blomebags.com/order-confirmation.html" />
+  <meta property="og:title" content="Order Confirmed — Blome" />
+  <meta property="og:description" content="Your Blome order is confirmed. Thank you for your purchase. You will receive a shipping confirmation with tracking details once your handbag ships." />
+  <meta property="og:url" content="https://blomebags.com/order-confirmation.html" />
+  <meta property="og:image" content="https://blomebags.com/src/assets/Blome_Bag_logo-removebg-preview.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Blome" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Order Confirmed — Blome" />
+  <meta name="twitter:description" content="Your Blome order is confirmed. Thank you for your purchase. You will receive a shipping confirmation with tracking details once your handbag ships." />
+  <meta name="twitter:image" content="https://blomebags.com/src/assets/Blome_Bag_logo-removebg-preview.png" />
+  <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+  <link rel="alternate icon" href="/favicon/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/src/style.css" />
+  <style>
+    [data-anim] { opacity: 0; transform: translateY(22px); }
+    [data-anim].anim-fade-up { opacity: 1; transform: translateY(0); }
+
+    .confetti-bg {
+      position: relative;
+      background: linear-gradient(165deg, #F0EBE4 0%, var(--ivory) 40%, #FCFAF7 100%);
+      overflow: hidden;
+    }
+    .confetti-bg::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -60px;
+      width: 360px; height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,226,122,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .confetti-bg::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -40px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,168,83,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .checkmark-circle {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: var(--lime);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+    }
+
+    .order-detail-card {
+      background: white;
+      border: 1px solid var(--warm-gray);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--warm-gray);
+      font-size: 0.88rem;
+    }
+    .detail-row:last-child { border-bottom: none; }
+    .detail-row span:first-child { color: var(--muted); }
+    .detail-row span:last-child { font-weight: 600; color: var(--charcoal); }
+
+    .order-item-sm {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--warm-gray);
+    }
+    .order-item-sm:last-child { border-bottom: none; }
+    .order-item-sm img {
+      width: 52px; height: 52px;
+      object-fit: contain;
+      background: var(--ivory);
+      border-radius: 8px;
+      padding: 6px;
+    }
+
+    @media (max-width: 767px) {
+      .order-detail-card { padding: 18px; }
+      .detail-row { font-size: 0.82rem; padding: 8px 0; }
+      .order-item-sm img { width: 44px; height: 44px; }
+      .order-item-sm { gap: 10px; padding: 8px 0; }
+      .checkmark-circle { width: 56px; height: 56px; }
+    }
+
+    @media (max-width: 374px) {
+      .conf-hero h1 { font-size: clamp(1.4rem, 7vw, 1.8rem); }
+      .conf-hero p { font-size: 0.82rem; }
+      .order-detail-card { padding: 14px; }
+      .detail-row { font-size: 0.78rem; flex-direction: column; gap: 2px; }
+      .order-item-sm img { width: 36px; height: 36px; }
+      .order-item-sm { gap: 8px; }
+      .checkmark-circle { width: 48px; height: 48px; }
+    }
+
+    @media (min-width: 1536px) {
+      .order-detail-card { padding: 28px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      [data-anim] { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+  <div id="toast" class="toast"></div>
+
+  <header id="navbar" class="fixed top-0 left-0 w-full z-50">
+    <div class="announce-bar">
+      ✦&nbsp; <strong>Free shipping</strong>&nbsp;on orders over $200 &nbsp;·&nbsp; <strong>30-day</strong>&nbsp;easy returns &nbsp;·&nbsp; Complimentary <strong>gift wrapping</strong>&nbsp; ✦
+    </div>
+    <div class="nav-glass" id="nav-main">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between" style="height:var(--nav-h);">
+          <a href="/" style="display:flex;align-items:center;text-decoration:none;">
+            <img src="./src/assets/Blome_Bag_logo-removebg-preview.png" alt="Blome Bag" style="height:60px;width:auto;flex-shrink:0;" />
+          </a>
+          <nav class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link active">Home</a>
+            <div class="nav-dropdown-group">
+              <a href="/product-listing.html" class="nav-link" aria-haspopup="true">Products</a>
+              <div class="nav-dropdown" role="menu">
+                <a href="/product-listing.html?category=Tote" class="nav-dropdown-link" role="menuitem">Totes</a>
+                <a href="/product-listing.html?category=Crossbody" class="nav-dropdown-link" role="menuitem">Crossbody</a>
+                <a href="/product-listing.html?category=Clutch" class="nav-dropdown-link" role="menuitem">Clutches</a>
+                <a href="/product-listing.html?category=Shoulder" class="nav-dropdown-link" role="menuitem">Shoulder</a>
+                <a href="/product-listing.html?category=Bucket" class="nav-dropdown-link" role="menuitem">Bucket</a>
+                <div class="nav-dropdown-divider" role="separator"></div>
+                <a href="/about.html" class="nav-dropdown-link" role="menuitem">About Us</a>
+                <a href="/product-listing.html" class="nav-dropdown-link" role="menuitem">View All</a>
+              </div>
+            </div>
+            <a href="/contact.html" class="nav-link">Contact Us</a>
+          </nav>
+          <div class="flex items-center gap-10">
+            <a href="/cart.html" class="nav-icon-btn relative" aria-label="Cart">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+              <span class="cart-badge" id="cart-count">0</span>
+            </a>
+            <button class="nav-icon-btn md:hidden" id="menu-btn" aria-label="Toggle menu">
+              <svg id="icon-open" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+              </svg>
+              <svg id="icon-close" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden" style="background:white;border-bottom:1px solid var(--warm-gray);padding:0.75rem 1.5rem 1.25rem;">
+      <a href="/" class="mobile-nav-link">Home</a>
+      <a href="/product-listing.html" class="mobile-nav-link">Products</a>
+      <div class="mobile-sub-links">
+        <a href="/product-listing.html?category=Tote" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">Totes</a>
+        <a href="/product-listing.html?category=Crossbody" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">Crossbody</a>
+        <a href="/product-listing.html?category=Clutch" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">Clutches</a>
+        <a href="/product-listing.html?category=Shoulder" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">Shoulder</a>
+        <a href="/product-listing.html?category=Bucket" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">Bucket</a>
+        <a href="/about.html" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">About Us</a>
+      </div>
+      <a href="/contact.html" class="mobile-nav-link">Contact Us</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <section class="confetti-bg" data-anim>
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" style="padding:clamp(2.5rem,5vh,4rem) 0;">
+        <div class="text-center" style="max-width:560px;margin:0 auto;">
+          <div class="checkmark-circle" aria-hidden="true">
+            <svg width="32" height="32" fill="none" stroke="var(--charcoal)" stroke-width="3" viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <span style="display:inline-block;font-family:var(--font-body);font-size:0.65rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem;">
+            Order Confirmed
+          </span>
+          <h1 style="font-family:Brigila,var(--font-display),serif;font-size:clamp(2.2rem,5.5vw,4rem);font-weight:500;color:var(--charcoal);line-height:0.95;letter-spacing:-0.01em;margin-bottom:0.6rem;">
+            Thank You!
+          </h1>
+          <div style="width:48px;height:2.5px;background:var(--gold);border-radius:2px;margin:0 auto 1rem;" aria-hidden="true"></div>
+          <p style="font-family:var(--font-body);font-size:0.95rem;color:var(--muted);line-height:1.7;">
+            Your order has been placed successfully. You'll receive a confirmation email shortly.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding:2.5rem 0 4rem;">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="order-detail-card" data-anim>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;">
+            <div>
+              <p style="font-size:0.78rem;color:var(--muted);margin-bottom:2px;">Order Number</p>
+              <p style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--charcoal);" id="order-number">#BL-20250628</p>
+            </div>
+            <span style="display:inline-block;padding:6px 14px;background:var(--lime);color:var(--charcoal);font-size:0.72rem;font-weight:800;border-radius:999px;letter-spacing:0.05em;text-transform:uppercase;">Processing</span>
+          </div>
+
+          <div class="detail-row">
+            <span>Estimated Delivery</span>
+            <span id="est-delivery">Jul 2–5, 2026</span>
+          </div>
+          <div class="detail-row">
+            <span>Shipping Method</span>
+            <span>Free Express</span>
+          </div>
+          <div class="detail-row">
+            <span>Payment</span>
+            <span id="payment-method">Visa ****4242</span>
+          </div>
+        </div>
+
+        <div class="order-detail-card" style="margin-top:1rem;" data-anim>
+          <h2 style="font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--charcoal);margin-bottom:0.5rem;">Items Ordered</h2>
+          <div id="order-items"></div>
+
+          <div style="border-top:1px solid var(--warm-gray);margin-top:0.5rem;padding-top:1rem;">
+            <div class="detail-row"><span>Subtotal</span><span id="conf-subtotal">$0</span></div>
+            <div class="detail-row"><span>Shipping</span><span>Free</span></div>
+            <div class="detail-row" style="font-weight:800;font-size:1rem;">
+              <span>Total</span>
+              <span id="conf-total" style="font-size:1.1rem;">$0</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:2rem;" data-anim>
+          <p style="font-size:0.88rem;color:var(--muted);margin-bottom:1rem;">You can track your order status in your account dashboard.</p>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <a href="/account.html" class="btn-lime" style="padding:12px 28px;font-size:0.85rem;text-decoration:none;">Go to My Account</a>
+            <a href="/product-listing.html" class="btn-outline" style="padding:12px 28px;font-size:0.85rem;text-decoration:none;">Continue Shopping</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="background:white;border-top:1px solid var(--warm-gray);">
+    <div class="max-w-7xl mx-auto" style="padding:3rem clamp(1.5rem, 5vw, 4rem);">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-12 mb-12">
+        <div class="col-span-2 md:col-span-1">
+          <div class="flex items-center mb-4">
+            <img src="./src/assets/Blome_Bag_logo-removebg-preview.png" alt="Blome Bag" style="height:60px;width:auto;flex-shrink:0;" />
+          </div>
+          <p style="font-family:var(--font-body);font-size:0.85rem;color:var(--muted);line-height:1.72;max-width:210px;">Premium leather handbags crafted for the modern woman. Timeless elegance, exceptional quality.</p>
+          <div class="flex gap-2.5 mt-5">
+            <a href="#" class="social-btn" aria-label="Instagram"><svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17" cy="7" r="1.5" fill="var(--charcoal)"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Pinterest"><svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24"><path d="M8 12.5a4.5 4.5 0 109 0 4.5 4.5 0 00-9 0z"/><path d="M12 2a10 10 0 00-3.3 19.4c-.1-.9-.2-2.3 0-3.3l1.6-7"/><path d="M14 13.5l-1-5.5"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Facebook"><svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">Shop</p>
+          <ul style="list-style:none;">
+            <li><a href="/product-listing.html" class="footer-link">All Bags</a></li>
+            <li><a href="/product-listing.html?category=Tote" class="footer-link">Totes</a></li>
+            <li><a href="/product-listing.html?category=Crossbody" class="footer-link">Crossbody</a></li>
+            <li><a href="/product-listing.html?category=Clutch" class="footer-link">Clutches</a></li>
+            <li><a href="/product-listing.html?category=Sale" class="footer-link">Sale</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Support</p>
+          <ul style="list-style:none;">
+            <li><a href="/contact.html" class="footer-link">Contact Us</a></li>
+            <li><a href="/shipping-returns.html" class="footer-link">Shipping &amp; Returns</a></li>
+            <li><a href="/account.html" class="footer-link">My Account</a></li>
+            <li><a href="/gift-cards.html" class="footer-link">Gift Cards</a></li>
+            <li><a href="/loyalty.html" class="footer-link">Loyalty Program</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Company</p>
+          <ul style="list-style:none;">
+            <li><a href="/about.html" class="footer-link">About Us</a></li>
+            <li><a href="/contact.html" class="footer-link">Contact</a></li>
+            <li><a href="/shipping-returns.html#privacy" class="footer-link">Privacy Policy</a></li>
+            <li><a href="/shipping-returns.html#terms" class="footer-link">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" style="border-top:1px solid var(--warm-gray);">
+        <div class="flex items-center gap-4">
+          <p style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">&copy; 2025 Blome. All rights reserved.</p>
+          <div class="flex items-center gap-2" aria-label="Accepted payment methods">
+            <span style="font-size:0.7rem;font-weight:800;color:#0d2a7a;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;">VISA</span>
+            <span style="font-size:0.7rem;font-weight:800;color:transparent;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;position:relative;min-width:40px;display:inline-flex;align-items:center;justify-content:center;">MC</span>
+            <span style="font-size:0.7rem;font-weight:800;color:#fff;background:#1474bc;border:1px solid #1474bc;border-radius:4px;padding:2px 6px;">AMEX</span>
+            <span style="font-size:0.7rem;font-weight:800;color:#063d8f;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;">PayPal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initProducts, getProductsSync } from '/src/products.js'
+
+    await initProducts()
+    const products = getProductsSync()
+    const formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })
+
+    function getCart() { try { return JSON.parse(localStorage.getItem('blome_cart') || '[]') } catch { return [] } }
+
+    const productColorMap = { 1: 'Tan', 2: 'Black', 3: 'Cream', 4: 'Black', 5: 'Cognac', 6: 'Brown' }
+
+    function normaliseCart(items) {
+      return items.filter(item => item && item.id != null).map(item => {
+        const numId = Number(item.id)
+        const normId = numId || item.id
+        const product = products.find(p => String(p.id) === String(normId))
+        return {
+          id: normId, name: item.name || product?.name || 'Blome Bag',
+          color: item.color || productColorMap[normId] || product?.colors?.[0]?.label || 'Black',
+          price: Number(item.price || product?.price || 0),
+          qty: Math.max(1, Number(item.qty || 1)),
+          img: item.img || item.image || product?.image || './src/assets/Bag1.png'
+        }
+      })
+    }
+
+    const cart = normaliseCart(getCart())
+    const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0)
+    const tax = Math.round(subtotal * 0.08)
+    const total = subtotal + tax
+
+    document.getElementById('conf-subtotal').textContent = formatter.format(subtotal)
+    document.getElementById('conf-total').textContent = formatter.format(total)
+
+    const itemsContainer = document.getElementById('order-items')
+    if (cart.length > 0) {
+      itemsContainer.innerHTML = cart.map(item => `
+        <div class="order-item-sm">
+          <img src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.style.display='none'" />
+          <div style="flex:1;min-width:0;">
+            <p style="font-weight:600;font-size:0.85rem;color:var(--charcoal);margin-bottom:1px;">${item.name}</p>
+            <p style="font-size:0.75rem;color:var(--muted);">${item.color} &middot; Qty ${item.qty}</p>
+          </div>
+          <p style="font-weight:700;font-size:0.88rem;color:var(--charcoal);white-space:nowrap;">${formatter.format(item.price * item.qty)}</p>
+        </div>
+      `).join('')
+    } else {
+      itemsContainer.innerHTML = '<p style="color:var(--muted);font-size:0.85rem;">No items in this order.</p>'
+    }
+
+    /* Generate order number */
+    const now = new Date()
+    const dateStr = now.getFullYear() + String(now.getMonth() + 1).padStart(2, '0') + String(now.getDate()).padStart(2, '0')
+    document.getElementById('order-number').textContent = `#BL-${dateStr}-${String(Math.floor(Math.random() * 999)).padStart(3, '0')}`
+
+    /* Estimated delivery */
+    const est = new Date(now)
+    est.setDate(est.getDate() + 5)
+    const estEnd = new Date(now)
+    estEnd.setDate(estEnd.getDate() + 8)
+    const options = { month: 'short', day: 'numeric', year: 'numeric' }
+    document.getElementById('est-delivery').textContent = `${est.toLocaleDateString('en-US', options)}–${estEnd.toLocaleDateString('en-US', options)}`
+
+    function updateBadge() {
+      const n = getCart().reduce((s, i) => s + (i.qty || 1), 0)
+      const el = document.getElementById('cart-count')
+      if (el) el.textContent = n
+    }
+    updateBadge()
+
+    /* Clear cart after order placed */
+    localStorage.removeItem('blome_cart')
+    updateBadge()
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('anim-fade-up'); observer.unobserve(entry.target) }
+      })
+    }, { threshold: 0.1 })
+    document.querySelectorAll('[data-anim]').forEach(el => observer.observe(el))
+
+    const menuBtn = document.getElementById('menu-btn')
+    const mobileMenu = document.getElementById('mobile-menu')
+    const iconOpen = document.getElementById('icon-open')
+    const iconClose = document.getElementById('icon-close')
+    let menuOpen = false
+    menuBtn?.addEventListener('click', () => {
+      menuOpen = !menuOpen
+      mobileMenu?.classList.toggle('hidden', !menuOpen)
+      if (iconOpen) iconOpen.style.display = menuOpen ? 'none' : 'block'
+      if (iconClose) iconClose.style.display = menuOpen ? 'block' : 'none'
+    })
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav-main')?.classList.toggle('scrolled', window.scrollY > 10)
+    })
+  </script>
+</body>
+</html>

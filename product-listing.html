@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+  <link rel="alternate icon" href="/favicon/favicon.ico" />
+  <title>Products - Blome Bag</title>
+  <meta name="description" content="Explore the complete Blome collection of luxury leather handbags. From classic totes to structured satchels — each piece handcrafted by master artisans." />
+  <meta name="keywords" content="Blome handbag collection, luxury leather bags shop, premium handbags online, designer tote bags, leather satchel, buy luxury handbags online" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://blomebags.com/product-listing.html" />
+  <meta property="og:title" content="Products - Blome Bag" />
+  <meta property="og:description" content="Explore the complete Blome collection of luxury leather handbags. From classic totes to structured satchels — each piece handcrafted by master artisans." />
+  <meta property="og:url" content="https://blomebags.com/product-listing.html" />
+  <meta property="og:image" content="https://blomebags.com/src/assets/Blome_Bag_logo-removebg-preview.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Blome" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Products - Blome Bag" />
+  <meta name="twitter:description" content="Explore the complete Blome collection of luxury leather handbags. From classic totes to structured satchels — each piece handcrafted by master artisans." />
+  <meta name="twitter:image" content="https://blomebags.com/src/assets/Blome_Bag_logo-removebg-preview.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./src/style.css" />
+  <style>
+    :root {
+      --nav-h: 72px;
+      --announce-h: 34px;
+    }
+    .listing-hero {
+      background: white;
+      border-bottom: 1px solid var(--warm-gray);
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      background: var(--lime);
+      color: var(--charcoal);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      padding: .42rem .9rem;
+      text-transform: uppercase;
+    }
+    .hero-title {
+      font-family: Brigila, var(--font-display), serif;
+      font-size: clamp(2.25rem, 6vw, 5.25rem);
+      line-height: .95;
+      letter-spacing: 0;
+      margin-top: 1.2rem;
+    }
+    .hero-copy {
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 540px;
+      margin-top: 1rem;
+    }
+    .hero-panel {
+      background: white;
+      border-radius: 12px;
+      padding: 1rem;
+    }
+    .hero-panel .slideshow-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-panel .slideshow-wrap img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: contain;
+      filter: drop-shadow(0 18px 24px rgba(26,26,26,.08));
+      transition: opacity .5s ease;
+      display: block;
+    }
+    .hero-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 1.5px solid var(--charcoal);
+      background: transparent;
+      cursor: pointer;
+      transition: background .3s ease, transform .3s ease;
+      padding: 0;
+      flex-shrink: 0;
+    }
+    .hero-dot.active {
+      background: var(--charcoal);
+      transform: scale(1.35);
+    }
+    .toolbar {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: .8rem;
+      align-items: center;
+      background: white;
+      border: 1px solid var(--warm-gray);
+      border-radius: 8px;
+      padding: .85rem;
+    }
+    @media (min-width: 768px) {
+      .toolbar { grid-template-columns: 1fr auto auto; }
+    }
+    .search-field,
+    .select-field {
+      min-height: 44px;
+      width: 100%;
+      border: 1px solid var(--warm-gray);
+      border-radius: 999px;
+      background: var(--ivory);
+      color: var(--charcoal);
+      font-size: .9rem;
+      outline: none;
+    }
+    .search-field { padding: 0 1.1rem; }
+    .select-field {
+      appearance: none;
+      padding: 0 2.4rem 0 1rem;
+      cursor: pointer;
+    }
+    .select-wrap { position: relative; min-width: 160px; }
+    .select-wrap svg {
+      position: absolute;
+      right: .9rem;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .filter-chip {
+      height: 38px;
+      padding: 0 1rem;
+      border: 1px solid var(--warm-gray);
+      border-radius: 999px;
+      background: white;
+      color: var(--charcoal);
+      font-size: .82rem;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: background .2s ease, border-color .2s ease;
+    }
+    .filter-chip.active,
+    .filter-chip:hover {
+      background: var(--charcoal);
+      border-color: var(--charcoal);
+      color: white;
+    }
+    .listing-card {
+      background: white;
+      border: 1px solid var(--warm-gray);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .listing-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 45px rgba(26,26,26,.08);
+    }
+    .listing-card .img-wrap {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.4rem;
+    }
+    .listing-card img {
+      width: 100%;
+      max-height: 220px;
+      object-fit: contain;
+      transition: transform .35s ease;
+    }
+    .listing-card:hover img { transform: scale(1.04); }
+    .prod-badge {
+      position: absolute;
+      top: .9rem;
+      left: .9rem;
+      border-radius: 999px;
+      padding: .3rem .7rem;
+      font-size: .68rem;
+      font-weight: 800;
+      background: var(--lime);
+      color: var(--charcoal);
+    }
+    .prod-info {
+      display: flex;
+      justify-content: space-between;
+      gap: .8rem;
+      padding: 1rem;
+    }
+    .prod-name {
+      color: var(--charcoal);
+      font-weight: 800;
+      line-height: 1.25;
+      font-size: .95rem;
+    }
+    .prod-meta {
+      color: var(--muted);
+      font-size: .74rem;
+      margin-top: .22rem;
+    }
+    .prod-price {
+      color: var(--charcoal);
+      font-weight: 900;
+      margin-top: .48rem;
+    }
+    .collection-strip {
+      background: var(--charcoal);
+      color: white;
+    }
+    .collection-strip p { color: rgba(255,255,255,.68); }`n`n    @media (max-width: 767px) {
+      :root { --nav-h: 60px; --announce-h: 34px; }
+      .listing-hero .grid { gap: 1.5rem; }
+      .hero-title { font-size: clamp(1.8rem, 8vw, 2.5rem); margin-top: 0.75rem; }
+      .hero-copy { font-size: 0.85rem; }
+      .listing-card .img-wrap { min-height: 160px; padding: 0.75rem; }
+      .listing-card img { max-height: 140px; }
+      .toolbar { padding: 0.65rem; flex-direction: column; }
+      #listing-grid { gap: 0.75rem; }
+      .prod-info { padding: 0.65rem; flex-direction: column; align-items: flex-start; }
+      .prod-name { font-size: 0.82rem; }
+      .collection-strip .grid { gap: 1rem; }
+      .filter-chip { height: 34px; font-size: 0.75rem; padding: 0 0.85rem; }
+      .listing-hero { padding-top: 2rem; }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .listing-hero .grid { gap: 2rem; }
+      .hero-title { font-size: clamp(2rem, 5vw, 3.2rem); margin-top: 1rem; }
+      .listing-card .img-wrap { min-height: 180px; }
+      .listing-card img { max-height: 160px; }
+      #listing-grid { gap: 1rem; }
+      .toolbar { grid-template-columns: 1fr auto; gap: 0.6rem; }
+    }
+
+    @media (min-width: 1536px) {
+      .listing-hero .grid { gap: 3rem; }
+      .listing-card .img-wrap { min-height: 260px; }
+      .listing-card img { max-height: 240px; }
+      #listing-grid { gap: 1.5rem; }
+    }
+
+    @media (max-width: 374px) {
+      .listing-hero .grid { gap: 1rem; }
+      .hero-title { font-size: clamp(1.4rem, 7vw, 1.8rem); }
+      .hero-copy { font-size: 0.78rem; }
+      .toolbar { padding: 0.5rem; gap: 0.5rem; }
+      .listing-card .img-wrap { min-height: 130px; padding: 0.5rem; }
+      .listing-card img { max-height: 110px; }
+      .prod-price { font-size: 0.82rem; }
+      .collection-strip { padding: 1.5rem 5%; }
+    }
+    .listing-card .img-wrap:hover .qv-trigger {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    @media (max-width: 767px) {
+      #quick-view-overlay { align-items: flex-end; padding: 0; }
+      #quick-view-overlay > div { border-radius: 20px 20px 0 0; max-height: 85vh; padding: 1.5rem; }
+      #qv-content { grid-template-columns: 1fr; gap: 1rem; }
+      #qv-image-wrap { min-height: 200px; padding: 1.5rem; }
+      #qv-image { max-height: 160px; }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      #quick-view-overlay > div { padding: 1.5rem; }
+      #qv-content { gap: 1rem; }
+      #qv-image-wrap { min-height: 240px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+  <div id="toast" class="toast"></div>
+  <header id="navbar" class="fixed top-0 left-0 w-full z-50">
+    <div class="announce-bar">
+      * <strong>Free shipping</strong>&nbsp;on orders over $200 &nbsp;.&nbsp; <strong>30-day</strong>&nbsp;easy returns &nbsp;.&nbsp; Complimentary <strong>gift wrapping</strong> *
+    </div>
+    <div class="nav-glass" id="nav-main">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between" style="height:var(--nav-h);">
+          <a href="/" style="display:flex;align-items:center;text-decoration:none;">
+            <img src="./src/assets/Blome_Bag_logo-removebg-preview.png" alt="Blome Bag" style="height:60px;width:auto;flex-shrink:0;" />
+          </a>
+          <nav class="hidden md:flex items-center gap-8">
+            <a href="/index.html" class="nav-link">Home</a>
+            <div class="nav-dropdown-group">
+              <a href="/product-listing.html" class="nav-link active" aria-haspopup="true">Products</a>
+              <div class="nav-dropdown" role="menu">
+                <a href="/product-listing.html?category=Tote" class="nav-dropdown-link" role="menuitem">Totes</a>
+                <a href="/product-listing.html?category=Crossbody" class="nav-dropdown-link" role="menuitem">Crossbody</a>
+                <a href="/product-listing.html?category=Clutch" class="nav-dropdown-link" role="menuitem">Clutches</a>
+                <a href="/product-listing.html?category=Shoulder" class="nav-dropdown-link" role="menuitem">Shoulder</a>
+                <a href="/product-listing.html?category=Bucket" class="nav-dropdown-link" role="menuitem">Bucket</a>
+                <div class="nav-dropdown-divider" role="separator"></div>
+                <a href="/about.html" class="nav-dropdown-link" role="menuitem">About Us</a>
+                <a href="/product-listing.html" class="nav-dropdown-link" role="menuitem">View All</a>
+              </div>
+            </div>
+            <a href="/contact.html" class="nav-link">Contact Us</a>
+          </nav>
+          <div class="flex items-center gap-10">
+            <button class="nav-icon-btn hidden md:flex" id="header-search-btn" aria-label="Search products">
+              <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            </button>
+            <a href="/cart.html" class="nav-icon-btn relative flex" aria-label="Cart">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+              <span class="cart-badge" id="cart-count">0</span>
+            </a>
+            <div id="nav-user" class="nav-user">
+              <span id="nav-username" class="nav-user-name"></span>
+              <button id="nav-signout-btn" class="nav-signout-btn" type="button">Sign out</button>
+            </div>
+            <button class="nav-icon-btn flex md:hidden" id="menu-btn" aria-label="Toggle menu">
+              <svg id="menu-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="mobile-menu" class="hidden md:hidden" style="background:white;border-bottom:1px solid var(--warm-gray);padding:0.75rem 1.5rem 1.25rem;">
+        <a href="/index.html" class="mobile-nav-link">Home</a>
+        <a href="/product-listing.html" class="mobile-nav-link">Products</a>
+        <div class="mobile-sub-links">
+          <a href="/product-listing.html?category=Tote" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">Totes</a>
+          <a href="/product-listing.html?category=Crossbody" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">Crossbody</a>
+          <a href="/product-listing.html?category=Clutch" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">Clutches</a>
+          <a href="/product-listing.html?category=Shoulder" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">Shoulder</a>
+          <a href="/product-listing.html?category=Bucket" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">Bucket</a>
+          <a href="/about.html" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">About Us</a>
+        </div>
+        <a href="/contact.html" class="mobile-nav-link">Contact Us</a>
+        <div id="mobile-nav-user" class="mobile-user-row">
+          <span id="mobile-nav-username"></span>
+          <button id="mobile-nav-signout-btn" class="nav-signout-btn" type="button">Sign out</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="listing-hero bg-white">
+      <div class="max-w-7xl mx-auto" style="padding:3rem clamp(1.5rem, 5vw, 4rem);">
+          <div class="grid md:grid-cols-2 gap-8 lg:gap-14 items-center">
+          <div>
+            <span class="eyebrow">The Collection</span>
+            <h1 class="hero-title">Products</h1>
+            <p class="hero-copy">
+              Structured totes, compact crossbodies, polished clutches, and everyday silhouettes designed for clean style and practical use.
+            </p>
+            <div class="grid grid-cols-3 gap-3 mt-7 max-w-md">
+              <div>
+                <p class="text-2xl font-black">16</p>
+                <p class="text-xs text-muted">Signature bags</p>
+              </div>
+              <div>
+                <p class="text-2xl font-black">04</p>
+                <p class="text-xs text-muted">Categories</p>
+              </div>
+              <div>
+                <p class="text-2xl font-black">30</p>
+                <p class="text-xs text-muted">Day returns</p>
+              </div>
+            </div>
+          </div>
+          <div class="hero-panel">
+            <div class="slideshow-wrap">
+              <img id="hero-slide" src="./src/assets/Bag1.png" alt="Featured bag" onerror="this.style.display='none'" />
+            </div>
+            <div id="hero-dots" style="display:flex;justify-content:center;gap:10px;margin-top:14px;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section style="padding:2.5rem 5% 3.5rem;">
+      <div>
+      <div class="toolbar mb-5">
+        <input id="product-search" class="search-field" type="search" placeholder="Search products" autocomplete="off" />
+        <div class="select-wrap">
+          <select id="category-select" class="select-field" aria-label="Filter category">
+            <option value="all">All categories</option>
+            <option value="Tote">Totes</option>
+            <option value="Crossbody">Crossbody</option>
+            <option value="Clutch">Clutches</option>
+            <option value="Shoulder">Shoulder</option>
+            <option value="Bucket">Bucket</option>
+          </select>
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+        <div class="select-wrap">
+          <select id="sort-select" class="select-field" aria-label="Sort products">
+            <option value="featured">Featured</option>
+            <option value="low">Price: low to high</option>
+            <option value="high">Price: high to low</option>
+            <option value="name">Name A-Z</option>
+          </select>
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="flex gap-2 overflow-x-auto pb-4 mb-2" id="category-chips" aria-label="Product categories">
+        <button class="filter-chip active" data-category="all" type="button">All</button>
+        <button class="filter-chip" data-category="Tote" type="button">Totes</button>
+        <button class="filter-chip" data-category="Crossbody" type="button">Crossbody</button>
+        <button class="filter-chip" data-category="Clutch" type="button">Clutches</button>
+        <button class="filter-chip" data-category="New" type="button">New</button>
+        <button class="filter-chip" data-category="Best Seller" type="button">Best Sellers</button>
+      </div>
+      <div class="flex items-center justify-between mb-4">
+        <p class="text-sm text-muted" id="result-count">16 products</p>
+        <a href="/cart.html" class="text-sm font-bold text-charcoal underline underline-offset-4">View cart</a>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5" id="listing-grid"></div>
+      <p id="empty-state" class="hidden text-center text-muted py-12">No products match your filters.</p>
+      </div>
+    </section>
+    <section class="collection-strip">
+      <div class="max-w-7xl mx-auto grid md:grid-cols-[1fr_auto] gap-6 items-center" style="padding:2.75rem clamp(1.5rem, 5vw, 4rem);">
+        <div>
+          <h2 class="font-[Brigila] text-3xl lg:text-4xl">Carry less clutter. Keep more polish.</h2>
+          <p class="mt-2 max-w-xl">Every piece is selected for repeat wear, easy pairing, and a clean profile that works from weekday errands to evening plans.</p>
+        </div>
+        <a href="#listing-grid" class="btn-lime text-center">Shop Now</a>
+      </div>
+    </section>
+  <!-- ═══ QUICK VIEW MODAL ═══ -->
+  <div id="quick-view-overlay" style="position:fixed;inset:0;z-index:9999;background:rgba(28,28,28,0.7);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:1rem;" role="dialog" aria-modal="true" aria-label="Product quick view">
+    <div style="background:white;border-radius:20px;max-width:720px;width:100%;max-height:90vh;overflow-y:auto;position:relative;padding:2rem;box-shadow:0 32px 80px rgba(0,0,0,0.2);">
+      <button id="qv-close" style="position:absolute;top:1rem;right:1rem;width:36px;height:36px;border-radius:50%;border:1px solid var(--warm-gray);background:white;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;transition:background 0.2s;" aria-label="Close quick view">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <div id="qv-content" style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+        <div>
+          <div id="qv-image-wrap" style="background:var(--ivory);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:2rem;min-height:280px;">
+            <img id="qv-image" src="" alt="" style="width:100%;max-height:240px;object-fit:contain;" />
+          </div>
+        </div>
+        <div>
+          <span id="qv-badge" style="display:none;" class="badge-pill"></span>
+          <h2 id="qv-name" style="font-family:var(--font-display);font-size:1.4rem;font-weight:700;color:var(--charcoal);margin:0.5rem 0 0.3rem;"></h2>
+          <p id="qv-category" style="font-size:0.78rem;color:var(--muted);margin-bottom:0.5rem;"></p>
+          <p id="qv-price" style="font-size:1.3rem;font-weight:800;color:var(--charcoal);margin-bottom:0.75rem;"></p>
+          <p id="qv-desc" style="font-size:0.85rem;color:var(--muted);line-height:1.6;margin-bottom:1.2rem;"></p>
+          <div id="qv-swatches" style="display:flex;gap:8px;margin-bottom:1rem;"></div>
+          <div style="display:flex;gap:10px;">
+            <button id="qv-add-btn" class="btn-lime" style="flex:1;padding:14px 20px;font-size:0.85rem;">Add to Cart</button>
+            <a id="qv-view-btn" href="#" class="btn-outline" style="padding:14px 20px;font-size:0.85rem;">View Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </main>
+  <footer id="contact" style="background:white;border-top:1px solid var(--warm-gray);">
+    <div class="max-w-7xl mx-auto" style="padding:3rem clamp(1.5rem, 5vw, 4rem);">
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-12 mb-12">
+
+        <div class="col-span-2 md:col-span-1">
+          <div class="flex items-center mb-4">
+            <img src="./src/assets/Blome_Bag_logo-removebg-preview.png" alt="Blome Bag" style="height:60px;width:auto;flex-shrink:0;" />
+          </div>
+          <p style="font-family:var(--font-body);font-size:0.85rem;color:var(--muted);line-height:1.72;max-width:210px;">
+            Premium leather handbags crafted for the modern woman. Timeless elegance, exceptional quality.
+          </p>
+          <div class="flex gap-2.5 mt-5">
+            <a href="#" class="social-btn" aria-label="Instagram">
+              <svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24">
+                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                <circle cx="12" cy="12" r="5"/>
+                <circle cx="17" cy="7" r="1.5" fill="var(--charcoal)"/>
+              </svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Pinterest">
+              <svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M8 12.5a4.5 4.5 0 109 0 4.5 4.5 0 00-9 0z"/>
+                <path d="M12 2a10 10 0 00-3.3 19.4c-.1-.9-.2-2.3 0-3.3l1.6-7"/>
+                <path d="M14 13.5l-1-5.5"/>
+              </svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Facebook">
+              <svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer-heading">Shop</p>
+          <ul style="list-style:none;">
+            <li><a href="/product-listing.html" class="footer-link">All Bags</a></li>
+            <li><a href="/product-listing.html?category=Tote" class="footer-link">Totes</a></li>
+            <li><a href="/product-listing.html?category=Crossbody" class="footer-link">Crossbody</a></li>
+            <li><a href="/product-listing.html?category=Clutch" class="footer-link">Clutches</a></li>
+            <li><a href="/product-listing.html?category=Sale" class="footer-link">Sale</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-heading">Support</p>
+          <ul style="list-style:none;">
+            <li><a href="/contact.html" class="footer-link">Contact Us</a></li>
+            <li><a href="/shipping-returns.html" class="footer-link">Shipping &amp; Returns</a></li>
+            <li><a href="/account.html" class="footer-link">My Account</a></li>
+            <li><a href="/gift-cards.html" class="footer-link">Gift Cards</a></li>
+            <li><a href="/loyalty.html" class="footer-link">Loyalty Program</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-heading">Company</p>
+          <ul style="list-style:none;">
+            <li><a href="/about.html" class="footer-link">About Us</a></li>
+            <li><a href="/contact.html" class="footer-link">Contact</a></li>
+            <li><a href="/shipping-returns.html#privacy" class="footer-link">Privacy Policy</a></li>
+            <li><a href="/shipping-returns.html#terms" class="footer-link">Terms of Service</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" style="border-top:1px solid var(--warm-gray);">
+        <div class="flex items-center gap-4">
+          <p style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">&copy; 2025 Blome. All rights reserved.</p>
+          <div class="flex items-center gap-2" aria-label="Accepted payment methods">
+            <span style="font-size:0.7rem;font-weight:800;color:#0d2a7a;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;">VISA</span>
+            <span style="font-size:0.7rem;font-weight:800;color:transparent;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;position:relative;min-width:40px;display:inline-flex;align-items:center;justify-content:center;">MC</span>
+            <span style="font-size:0.7rem;font-weight:800;color:#fff;background:#1474bc;border:1px solid #1474bc;border-radius:4px;padding:2px 6px;">AMEX</span>
+            <span style="font-size:0.7rem;font-weight:800;color:#063d8f;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;">PayPal</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+  <script type="module" src="/src/main.js"></script>
+  <script type="module">
+    import { initProducts, getProductsSync } from '/src/products.js'
+    import { addToCart } from '/src/main.js'
+    import { getBanners } from '/src/services/bannerService.js'
+    let products = []
+    async function initListing() {
+      await initProducts()
+      products = getProductsSync()
+      if (products.length === 0) {
+        products = [
+          { id: '1', name: 'Aria Pebble Tote', category: 'Tote', price: 495, image: './src/assets/Bag1.png', badge: 'Best Seller' },
+          { id: '2', name: 'Seraphina Crossbody', category: 'Crossbody', price: 325, image: './src/assets/Bag2.png', badge: '' },
+          { id: '3', name: 'Luna Clutch', category: 'Clutch', price: 495, image: './src/assets/Bag3.png', badge: 'New' },
+          { id: '4', name: 'Stella Shoulder Bag', category: 'Shoulder', price: 325, image: './src/assets/Bag4.png', badge: 'Sale' },
+          { id: '5', name: 'Celeste Bucket Bag', category: 'Bucket', price: 425, image: './src/assets/Bag5.png', badge: 'New' },
+          { id: '6', name: 'Vivienne Satchel', category: 'Satchel', price: 550, image: './src/assets/Bag6.png', badge: 'Best Seller' },
+          { id: '7', name: 'Margot Mini Bag', category: 'Mini', price: 295, image: './src/assets/Bag7.png', badge: 'New' },
+          { id: '8', name: 'Elara Tote', category: 'Tote', price: 475, image: './src/assets/Bag8.png', badge: 'Sale' },
+          { id: '9', name: 'Odette Tote', category: 'Tote', price: 485, image: './src/assets/Bag9.png', badge: '' },
+          { id: '10', name: 'Camille Crossbody', category: 'Crossbody', price: 345, image: './src/assets/Bag10.png', badge: '' },
+          { id: '11', name: 'Jasmine Clutch', category: 'Clutch', price: 425, image: './src/assets/Bag11.png', badge: 'New' },
+          { id: '12', name: 'Rosalie Shoulder Bag', category: 'Shoulder', price: 365, image: './src/assets/Bag12.png', badge: '' },
+          { id: '13', name: 'Hazel Bucket Bag', category: 'Bucket', price: 445, image: './src/assets/Bag13.png', badge: '' },
+          { id: '14', name: 'Bianca Satchel', category: 'Satchel', price: 575, image: './src/assets/Bag14.png', badge: 'Best Seller' },
+          { id: '15', name: 'Faye Mini Bag', category: 'Mini', price: 315, image: './src/assets/Bag15.png', badge: 'New' },
+          { id: '16', name: 'Isla Tote', category: 'Tote', price: 505, image: './src/assets/Bag16.png', badge: '' }
+        ]
+      }
+      initUI()
+    }
+    const grid = document.getElementById('listing-grid')
+    const emptyState = document.getElementById('empty-state')
+    const resultCount = document.getElementById('result-count')
+    const searchInput = document.getElementById('product-search')
+    const categorySelect = document.getElementById('category-select')
+    const sortSelect = document.getElementById('sort-select')
+    const chips = [...document.querySelectorAll('.filter-chip')]
+    function productMatches(product, category, query) {
+      const text = `${product.name} ${product.category} ${product.badge}`.toLowerCase()
+      const categoryOk = category === 'all' || product.category === category || product.badge === category
+      return categoryOk && text.includes(query)
+    }
+    function sortProducts(items, mode) {
+      return [...items].sort((a, b) => {
+        if (mode === 'low') return a.price - b.price
+        if (mode === 'high') return b.price - a.price
+        if (mode === 'name') return a.name.localeCompare(b.name)
+        return a.id - b.id
+      })
+    }
+    function cardTemplate(product) {
+      const badge = product.badge
+        ? `<span class="prod-badge" style="${product.badge === 'Best Seller' ? 'background:var(--charcoal);color:white;' : ''}">${product.badge}</span>`
+        : ''
+      return `
+        <article class="listing-card product-card" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">
+          <a href="/product-detail.html?id=${product.id}" class="block no-underline" aria-label="View ${product.name}">
+            <div class="img-wrap">
+              <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.style.display='none'" />
+              ${badge}
+              <button class="wishlist-heart-btn" data-id="${product.id}" aria-label="Add to wishlist" style="position:absolute;top:10px;right:10px;z-index:2;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.85);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.25s ease;backdrop-filter:blur(4px);box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <svg width="16" height="16" fill="none" stroke="#1C1C1C" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+                </svg>
+              </button>
+              <button class="qv-trigger" data-id="${product.id}" aria-label="Quick view" style="position:absolute;bottom:10px;right:10px;z-index:2;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.85);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.25s ease;backdrop-filter:blur(4px);box-shadow:0 2px 8px rgba(0,0,0,0.06);opacity:0;pointer-events:none;">
+                <svg width="15" height="15" fill="none" stroke="#1C1C1C" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                </svg>
+              </button>
+            </div>
+          </a>
+          <div class="prod-info">
+            <div>
+              <a href="/product-detail.html?id=${product.id}" class="prod-name no-underline block">${product.name}</a>
+              <p class="prod-meta">${product.category}</p>
+              <p class="prod-price">$${product.price}</p>
+              ${product.stock !== undefined && product.stock <= 3 ? `<p style="font-size:0.68rem;color:#e05252;font-weight:600;margin-top:4px;">Only ${product.stock} left</p>` : ''}
+            </div>
+            <button class="add-btn" type="button" aria-label="Add ${product.name} to cart">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </button>
+          </div>
+        </article>
+      `
+    }
+    function bindCartButtons() {
+      grid.querySelectorAll('.listing-card').forEach(card => {
+        card.querySelector('.add-btn')?.addEventListener('click', () => {
+          const product = products.find(item => String(item.id) === card.dataset.id)
+          if (!product) return
+          const color = product.colors?.[0]?.label || ''
+          addToCart(product.name, product.price, product.image, product.id, color)
+        })
+      })
+      grid.querySelectorAll('.wishlist-heart-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation()
+          e.preventDefault()
+          const id = btn.dataset.id
+          const liked = toggleWishlist(id)
+          btn.querySelector('svg').setAttribute('fill', liked ? '#e05252' : 'none')
+          btn.querySelector('svg').setAttribute('stroke', liked ? '#e05252' : '#1C1C1C')
+          btn.style.background = liked ? 'rgba(224,82,82,0.15)' : 'rgba(255,255,255,0.85)'
+        })
+      })
+      grid.querySelectorAll('.qv-trigger').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation()
+          e.preventDefault()
+          const id = btn.dataset.id
+          const product = products.find(p => String(p.id) === String(id))
+          if (product) openQuickView(product)
+        })
+      })
+    }
+
+  /* ── Wishlist helpers ── */
+  function getWishlist() {
+    try { return JSON.parse(localStorage.getItem('blome_wishlist') || '[]') } catch { return [] }
+  }
+  function saveWishlist(list) { localStorage.setItem('blome_wishlist', JSON.stringify(list)) }
+  function isWishlisted(id) { return getWishlist().includes(String(id)) }
+  function toggleWishlist(id) {
+    let list = getWishlist()
+    const idx = list.indexOf(String(id))
+    if (idx > -1) list.splice(idx, 1)
+    else list.push(String(id))
+    saveWishlist(list)
+    return list.includes(String(id))
+  }
+
+  /* ── Quick View ── */
+  const qvOverlay = document.getElementById('quick-view-overlay')
+  const qvClose = document.getElementById('qv-close')
+  const qvImage = document.getElementById('qv-image')
+  const qvName = document.getElementById('qv-name')
+  const qvCategory = document.getElementById('qv-category')
+  const qvPrice = document.getElementById('qv-price')
+  const qvDesc = document.getElementById('qv-desc')
+  const qvBadge = document.getElementById('qv-badge')
+  const qvAddBtn = document.getElementById('qv-add-btn')
+  const qvViewBtn = document.getElementById('qv-view-btn')
+  const qvSwatches = document.getElementById('qv-swatches')
+  let qvProduct = null
+
+  function openQuickView(product) {
+    qvProduct = product
+    qvImage.src = product.image
+    qvImage.alt = product.name
+    qvName.textContent = product.name
+    qvCategory.textContent = product.category || ''
+    qvPrice.textContent = '$' + product.price
+    qvDesc.textContent = product.description || 'Premium quality handbag crafted with care.'
+    if (product.badge) {
+      qvBadge.style.display = 'inline-block'
+      qvBadge.textContent = product.badge
+      qvBadge.style.cssText = product.badge === 'Best Seller' ? 'background:var(--charcoal);color:white;display:inline-block;' : product.badge === 'Sale' ? 'background:#e05252;color:white;display:inline-block;' : 'background:var(--lime);color:var(--charcoal);display:inline-block;'
+    } else {
+      qvBadge.style.display = 'none'
+    }
+    qvSwatches.innerHTML = (product.colors || []).map(c => `<span style="width:24px;height:24px;border-radius:50%;background:${c.hex || c};border:2px solid var(--warm-gray);cursor:pointer;transition:transform 0.2s;" title="${c.label || c}"></span>`).join('')
+    qvAddBtn.textContent = 'Add to Cart'
+    qvViewBtn.href = '/product-detail.html?id=' + product.id
+    qvOverlay.style.display = 'flex'
+    document.body.style.overflow = 'hidden'
+  }
+
+  function closeQuickView() {
+    qvOverlay.style.display = 'none'
+    document.body.style.overflow = ''
+  }
+
+  qvClose?.addEventListener('click', closeQuickView)
+  qvOverlay?.addEventListener('click', e => { if (e.target === qvOverlay) closeQuickView() })
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeQuickView() })
+
+  qvAddBtn?.addEventListener('click', () => {
+    if (!qvProduct) return
+    const color = qvProduct.colors?.[0]?.label || ''
+    addToCart(qvProduct.name, qvProduct.price, qvProduct.image, qvProduct.id, color)
+    qvAddBtn.textContent = 'Added! ✓'
+    setTimeout(() => { qvAddBtn.textContent = 'Add to Cart' }, 2000)
+  })
+
+    function renderProducts() {
+      const category = categorySelect.value
+      const query = searchInput.value.trim().toLowerCase()
+      const visible = sortProducts(
+        products.filter(product => productMatches(product, category, query)),
+        sortSelect.value
+      )
+      grid.innerHTML = visible.map(cardTemplate).join('')
+      bindCartButtons()
+      emptyState.classList.toggle('hidden', visible.length > 0)
+      resultCount.textContent = `${visible.length} product${visible.length === 1 ? '' : 's'}`
+    }
+    function setCategory(category) {
+      categorySelect.value = [...categorySelect.options].some(option => option.value === category) ? category : 'all'
+      chips.forEach(chip => chip.classList.toggle('active', chip.dataset.category === category))
+      renderProducts()
+    }
+    function initUI() {
+      chips.forEach(chip => chip.addEventListener('click', () => setCategory(chip.dataset.category)))
+      categorySelect.addEventListener('change', () => {
+        chips.forEach(chip => chip.classList.toggle('active', chip.dataset.category === categorySelect.value))
+        renderProducts()
+      })
+      sortSelect.addEventListener('change', renderProducts)
+      searchInput.addEventListener('input', renderProducts)
+      document.getElementById('header-search-btn')?.addEventListener('click', () => searchInput.focus())
+      window.addEventListener('scroll', () => {
+        document.getElementById('nav-main')?.classList.toggle('scrolled', window.scrollY > 10)
+      })
+      const urlParams = new URLSearchParams(window.location.search)
+      const urlCategory = urlParams.get('category')
+      if (urlCategory) {
+        setCategory(urlCategory)
+      }
+      renderProducts()
+    }
+    initListing()
+    let heroImages = [
+      './src/assets/Bag1.png',
+      './src/assets/Bag2.png',
+      './src/assets/Bag3.png',
+      './src/assets/Bag4.png',
+      './src/assets/Bag5.png',
+      './src/assets/Bag6.png',
+      './src/assets/Bag7.png',
+      './src/assets/Bag8.png'
+    ]
+    try {
+      const banners = await getBanners()
+      const productsHero = banners.filter(b => b.type === 'products-hero')
+      if (productsHero.length > 0) {
+        heroImages = productsHero.map(b => b.image)
+      }
+    } catch(e) { /* ignore */ }
+    let currentSlide = 0
+    const heroSlide = document.getElementById('hero-slide')
+    const dotsContainer = document.getElementById('hero-dots')
+    function showSlide(index) {
+      heroSlide.style.opacity = '0'
+      setTimeout(() => {
+        heroSlide.src = heroImages[index]
+        heroSlide.style.opacity = '1'
+      }, 400)
+      dotsContainer.querySelectorAll('.hero-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === index)
+      })
+    }
+    heroImages.forEach((_, i) => {
+      const dot = document.createElement('button')
+      dot.className = 'hero-dot'
+      dot.setAttribute('aria-label', `Show product ${i + 1}`)
+      dot.addEventListener('click', () => {
+        currentSlide = i
+        showSlide(currentSlide)
+      })
+      dotsContainer.appendChild(dot)
+    })
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % heroImages.length
+      showSlide(currentSlide)
+    }, 5000)
+    showSlide(0)
+  </script>
+</body>
+</html>

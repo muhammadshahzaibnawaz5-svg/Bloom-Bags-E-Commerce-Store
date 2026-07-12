@@ -1,0 +1,2411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+  <link rel="alternate icon" href="/favicon/favicon.ico" />
+  <title>Blome – Elegance in Every Carry</title>
+  <meta name="description" content="Discover Blome — premium leather handbags crafted for the modern woman. Shop timeless elegance, Italian &amp; Spanish leathers, and exceptional quality. Free shipping on orders over $200." />
+  <meta name="keywords" content="Blome, luxury handbags, premium leather bags, Italian leather handbags, women&apos;s handbags, designer bags, leather tote, satchel bag, elegant handbags" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://blomebags.com/" />
+  <meta property="og:title" content="Blome – Elegance in Every Carry" />
+  <meta property="og:description" content="Discover Blome — premium leather handbags crafted for the modern woman. Shop timeless elegance, Italian &amp; Spanish leathers, and exceptional quality." />
+  <meta property="og:url" content="https://blomebags.com/" />
+  <meta property="og:image" content="https://blomebags.com/src/assets/Blome_Bag_logo-removebg-preview.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Blome" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Blome – Elegance in Every Carry" />
+  <meta name="twitter:description" content="Discover Blome — premium leather handbags crafted for the modern woman. Shop timeless elegance, Italian &amp; Spanish leathers, and exceptional quality." />
+  <meta name="twitter:image" content="https://blomebags.com/src/assets/Blome_Bag_logo-removebg-preview.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Blome",
+    "url": "https://blomebags.com/",
+    "description": "Premium leather handbags crafted for the modern woman. Timeless elegance, exceptional quality.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://blomebags.com/product-listing.html?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Blome",
+    "url": "https://blomebags.com/",
+    "logo": "https://blomebags.com/src/assets/Blome_Bag_logo-removebg-preview.png",
+    "description": "Premium leather handbags crafted for the modern woman. Timeless elegance, exceptional quality.",
+    "foundingDate": "2020",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "hello@blomebags.com",
+      "contactType": "customer service"
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./src/style.css">
+  <style>
+
+
+    /* ─── Hero ─── */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      height: 75vh;
+      max-height: 620px;
+      min-height: 480px;
+      overflow: hidden;
+      background: var(--charcoal);
+    }
+
+    .hero-slide {
+      position: absolute; inset: 0;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .hero-slide.active {
+      opacity: 1;
+    }
+    .hero-slide .hero-bg {
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      will-change: transform;
+    }
+    .hero-slide.active .hero-bg {
+      animation: heroZoom 8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    @keyframes heroZoom {
+      0%   { transform: scale(1); }
+      100% { transform: scale(1.08); }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        115deg,
+        rgba(28,28,28,0.75) 0%,
+        rgba(28,28,28,0.55) 35%,
+        rgba(28,28,28,0.28) 65%,
+        rgba(28,28,28,0.10) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-noise {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      opacity: 0.30;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+      pointer-events: none;
+      mix-blend-mode: overlay;
+    }
+
+    .hero-accent-line {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .hero-accent-line::before {
+      content: '';
+      position: absolute;
+      top: 14%;
+      right: 10%;
+      width: 72px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+    .hero-accent-line::after {
+      content: '';
+      position: absolute;
+      bottom: 22%;
+      left: 38%;
+      width: 1px;
+      height: 48px;
+      background: var(--gold);
+      opacity: 0.20;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-text-panel {
+      max-width: 560px;
+      padding: 3rem 0;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--lime);
+      font-family: var(--font-body);
+      font-size: 0.60rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero-kicker::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--gold);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5.5vw, 4.8rem);
+      font-weight: 800;
+      color: white;
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.2rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      font-weight: 700;
+      display: block;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .hero-divider {
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1.3rem 0 1.1rem;
+      border-radius: 2px;
+    }
+
+    .hero-desc {
+      font-family: var(--font-body);
+      color: rgba(255,255,255,0.78);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      max-width: 480px;
+      margin-bottom: 2.2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: var(--lime);
+      color: var(--charcoal);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .btn-hero-primary:hover {
+      background: #b6d063;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(200,226,122,0.35);
+    }
+    .btn-hero-primary:focus-visible {
+      outline: 2px solid var(--lime);
+      outline-offset: 3px;
+    }
+
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: white;
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.82rem;
+      text-decoration: none;
+      padding: 13px 24px;
+      border: 1.5px solid rgba(255,255,255,0.30);
+      border-radius: 999px;
+      transition: all 0.3s ease;
+    }
+    .btn-hero-secondary:hover {
+      background: rgba(255,255,255,0.10);
+      border-color: rgba(255,255,255,0.55);
+    }
+    .btn-hero-secondary:focus-visible {
+      outline: 2px solid var(--lime);
+      outline-offset: 3px;
+    }
+
+    .hero-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      z-index: 6;
+      background: rgba(255,255,255,0.10);
+    }
+    .hero-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--gold);
+      border-radius: 0 2px 2px 0;
+    }
+    .hero-progress-bar.animating {
+      transition: width 5s linear;
+    }
+
+    .hero-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 7;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .hero-section:hover .hero-nav-btn {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .hero-nav-btn:hover {
+      background: rgba(255,255,255,0.16);
+      border-color: rgba(255,255,255,0.25);
+      transform: translateY(-50%) scale(1.05);
+    }
+    .hero-nav-btn:focus-visible {
+      outline: 2px solid var(--lime);
+      outline-offset: 2px;
+    }
+    #prev-hero { left: 24px; }
+    #next-hero { right: 24px; }
+
+    .hero-dots {
+      position: absolute;
+      bottom: 2.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-dot {
+      width: 28px;
+      height: 3px;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.20);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.4s ease;
+    }
+    .hero-dot.active {
+      background: var(--gold);
+      width: 46px;
+    }
+    .hero-dot:focus-visible {
+      outline: 2px solid var(--lime);
+      outline-offset: 2px;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 5rem;
+      right: 2.5rem;
+      z-index: 6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.35);
+      font-family: var(--font-body);
+      font-size: 0.52rem;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+    }
+    .hero-scroll svg {
+      transform: rotate(90deg);
+    }
+
+    .hero-kicker,
+    .hero-title,
+    .hero-divider,
+    .hero-desc,
+    .hero-actions {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .hero-content .hero-kicker {
+      animation: heroFadeUp 0.6s ease 0.15s forwards;
+    }
+    .hero-content .hero-title {
+      animation: heroFadeUp 0.6s ease 0.3s forwards;
+    }
+    .hero-content .hero-divider {
+      animation: heroFadeUp 0.5s ease 0.45s forwards;
+    }
+    .hero-content .hero-desc {
+      animation: heroFadeUp 0.6s ease 0.55s forwards;
+    }
+    .hero-content .hero-actions {
+      animation: heroFadeUp 0.6s ease 0.7s forwards;
+    }
+
+    @keyframes heroFadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-slide {
+        transition: none;
+      }
+      .hero-slide.active .hero-bg {
+        animation: none;
+      }
+      .hero-kicker,
+      .hero-title,
+      .hero-divider,
+      .hero-desc,
+      .hero-actions {
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+      .hero-nav-btn {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .hero-progress-bar.animating {
+        transition: none;
+      }
+      .hero-scroll {
+        animation: none;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .hero-section {
+        min-height: 360px;
+        height: 60vh;
+        max-height: 500px;
+      }
+
+      .hero-overlay {
+        background: linear-gradient(
+          180deg,
+          rgba(28,28,28,0.50) 0%,
+          rgba(28,28,28,0.78) 100%
+        );
+      }
+
+      .hero-accent-line::before {
+        right: 6%;
+        width: 36px;
+      }
+      .hero-accent-line::after {
+        display: none;
+      }
+
+      .hero-text-panel {
+        max-width: 100%;
+        padding: 2rem 0;
+      }
+
+      .hero-title {
+        font-size: clamp(1.8rem, 8vw, 2.6rem);
+      }
+
+      .hero-desc {
+        max-width: 100%;
+      }
+
+      .hero-nav-btn {
+        width: 36px;
+        height: 36px;
+        opacity: 1;
+        pointer-events: auto;
+        background: rgba(255,255,255,0.10);
+      }
+      #prev-hero { left: 12px; }
+      #next-hero { right: 12px; }
+
+      .hero-scroll {
+        display: none;
+      }
+
+      .hero-dots {
+        bottom: 1.8rem;
+      }
+    }
+
+    /* ─── Benefits Strip ─── */
+    .benefit-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+    }
+    .benefit-icon {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      background: var(--ivory);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ─── Testimonials ─── */
+    .testimonial-card {
+      background: white;
+      border-radius: 20px;
+      padding: 28px 26px;
+      height: 100%;
+      border: 1px solid var(--warm-gray);
+      transition: box-shadow 0.3s;
+    }
+    .testimonial-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.07); }
+
+    .carousel-btn {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: white;
+      border: 1px solid var(--warm-gray);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      transition: background 0.2s, box-shadow 0.2s;
+      color: var(--charcoal);
+    }
+    .carousel-btn:hover { background: var(--lime); box-shadow: 0 4px 16px rgba(0,0,0,0.10); }
+
+    #carousel-track { scrollbar-width: none; -ms-overflow-style: none; }
+    #carousel-track::-webkit-scrollbar { display: none; }
+
+    /* ─── Bloom Showcase (pre-footer) ─── */
+    .bloom-showcase {
+      background: white;
+      padding: 5rem clamp(1.5rem, 5vw, 4rem) 4.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .bloom-showcase-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .bloom-showcase-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .bloom-kicker {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 0.85rem;
+      position: relative;
+    }
+    .bloom-kicker::before,
+    .bloom-kicker::after {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+      vertical-align: middle;
+      margin: 0 12px;
+      opacity: 0.4;
+    }
+    .bloom-heading {
+      font-family: Brigila, 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 500;
+      color: var(--charcoal);
+      line-height: 1.02;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.6rem;
+    }
+    .bloom-sub {
+      font-family: var(--font-body);
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+    }
+    .bloom-carousel-wrap {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+    }
+    .bloom-track {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 1;
+      min-height: 300px;
+      max-height: 520px;
+    }
+    .bloom-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      z-index: 0;
+    }
+    .bloom-slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
+    .bloom-img {
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      will-change: transform;
+    }
+    .bloom-slide.active .bloom-img {
+      animation: bloomZoom 7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+    @keyframes bloomZoom {
+      0%   { transform: scale(1); }
+      100% { transform: scale(1.06); }
+    }
+    .bloom-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(28,28,28,0.45) 0%,
+        rgba(28,28,28,0.15) 40%,
+        rgba(28,28,28,0) 70%
+      );
+      z-index: 2;
+    }
+    .bloom-caption {
+      position: absolute;
+      bottom: 2rem;
+      left: 2.5rem;
+      z-index: 3;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .bloom-slide.active .bloom-caption {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.3s;
+    }
+    .bloom-label {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 0.3rem;
+    }
+    .bloom-name {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1.2;
+    }
+    .bloom-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--warm-gray);
+      color: var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .bloom-carousel-wrap:hover .bloom-nav {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .bloom-nav:hover {
+      background: white;
+      border-color: var(--charcoal);
+      transform: translateY(-50%) scale(1.05);
+    }
+    .bloom-nav:focus-visible {
+      outline: 2px solid var(--lime);
+      outline-offset: 2px;
+    }
+    .bloom-prev { left: 16px; }
+    .bloom-next { right: 16px; }
+    .bloom-dots {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 2.5rem;
+      z-index: 5;
+      display: flex;
+      gap: 6px;
+    }
+    .bloom-dot {
+      width: 24px;
+      height: 3px;
+      border-radius: 2px;
+      background: var(--warm-gray);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.4s ease;
+    }
+    .bloom-dot.active {
+      background: var(--gold);
+      width: 38px;
+    }
+    .bloom-dot:focus-visible {
+      outline: 2px solid var(--lime);
+      outline-offset: 2px;
+    }
+
+    @media (max-width: 767px) {
+      .bloom-showcase { padding: 3rem 1rem 2.5rem; }
+      .bloom-track { aspect-ratio: 4 / 3; min-height: 240px; }
+      .bloom-caption { left: 1.25rem; bottom: 1.25rem; }
+      .bloom-nav {
+        opacity: 1;
+        pointer-events: auto;
+        width: 34px;
+        height: 34px;
+        background: rgba(255,255,255,0.85);
+      }
+      .bloom-prev { left: 8px; }
+      .bloom-next { right: 8px; }
+      .bloom-dots { right: 50%; transform: translateX(50%); bottom: 1rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bloom-slide { transition: none; }
+      .bloom-slide.active .bloom-img { animation: none; }
+      .bloom-caption { opacity: 1; transform: none; transition: none; }
+      .bloom-nav { opacity: 1; pointer-events: auto; }
+      .bloom-track { aspect-ratio: auto; min-height: 280px; }
+    }
+
+    .signup-section {
+      background: linear-gradient(180deg, var(--ivory) 0%, #ffffff 100%);
+      padding: 0 0 64px;
+    }
+    .signup-panel {
+      background: var(--charcoal);
+      color: white;
+      border-radius: 20px;
+      padding: 34px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      gap: 30px;
+      align-items: center;
+      box-shadow: 0 22px 60px rgba(28,28,28,0.14);
+      overflow: hidden;
+      position: relative;
+    }
+    .signup-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 92% 15%, rgba(200,226,122,0.22), transparent 28%),
+        linear-gradient(135deg, rgba(255,255,255,0.08), transparent 42%);
+      pointer-events: none;
+    }
+    .signup-copy,
+    .signup-form {
+      position: relative;
+      z-index: 1;
+    }
+    .signup-kicker {
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 0.75rem;
+    }
+    .signup-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 0.98;
+      letter-spacing: 0;
+      margin-bottom: 0.9rem;
+    }
+    .signup-text {
+      font-family: var(--font-body);
+      color: rgba(255,255,255,0.72);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 540px;
+    }
+    .signup-form {
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 16px;
+      padding: 18px;
+    }
+    .signup-field {
+      display: flex;
+      gap: 10px;
+    }
+    .signup-note {
+      font-family: var(--font-body);
+      color: rgba(255,255,255,0.58);
+      font-size: 0.74rem;
+      line-height: 1.5;
+      margin-top: 10px;
+    }
+
+    .signup-form .news-input {
+      background: white;
+      border-color: transparent;
+      min-height: 46px;
+    }
+    .signup-form .news-input:focus { border-color: var(--lime); }
+
+    @media (max-width: 767px) {
+      .signup-section { padding-bottom: 46px; }
+      .signup-panel {
+        grid-template-columns: 1fr;
+        padding: 26px 20px;
+        border-radius: 16px;
+      }
+      .signup-field { flex-direction: column; }
+      .signup-field .btn-lime { width: 100%; text-align: center; }
+    }
+
+    /* ─── Category Grid ─── */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .cat-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 3rem 2rem;
+      }
+    }
+    .cat-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      gap: 1.25rem;
+      animation: catFadeUp 0.7s ease backwards;
+      animation-delay: calc(var(--i, 0) * 0.12s);
+    }
+    @keyframes catFadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- Image --- */
+    .cat-circle-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+    }
+    .cat-circle {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cat-img {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cat-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.05));
+    }
+    .cat-card:hover .cat-img img {
+      transform: scale(1.12) rotate(-4deg);
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.08));
+    }
+
+    /* --- Text --- */
+    .cat-meta {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .cat-name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+    .cat-name::after {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1.5px;
+      background: var(--gold);
+      margin: 8px auto 0;
+      transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .cat-card:hover .cat-name::after {
+      width: 40px;
+    }
+    .cat-styles {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #6B6562;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    @media (max-width: 767px) {
+      .cat-grid { gap: 1.5rem 1rem; }
+      .cat-circle { padding: 1.25rem; }
+      .cat-name { font-size: 0.95rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cat-card { animation: none; }
+      .cat-card:hover .cat-circle { transform: none; }
+      .cat-card:hover .cat-img img { transform: none; }
+      .cat-name::after { transition: none; }
+      .cat-card:hover .cat-name::after { width: 20px; }
+    }
+
+    /* ─── Promotional Banner ─── */
+    .promo-banner {
+      background: var(--charcoal);
+      position: relative;
+      overflow: hidden;
+    }
+    .promo-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 600px 400px at 10% 50%, rgba(212,232,165,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 400px 500px at 80% 20%, rgba(212,168,83,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .promo-kicker {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .promo-kicker::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--gold);
+      vertical-align: middle;
+      margin-right: 12px;
+    }
+    .promo-heading {
+      font-family: Brigila, var(--font-display), serif;
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      font-weight: 500;
+      color: white;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+    }
+    .promo-desc {
+      font-family: var(--font-body);
+      color: rgba(255,255,255,0.65);
+      font-size: 0.9rem;
+      line-height: 1.75;
+      max-width: 480px;
+      margin-bottom: 1.8rem;
+    }
+    .promo-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 30px;
+      background: var(--lime);
+      color: var(--charcoal);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.82rem;
+      text-decoration: none;
+      border-radius: 999px;
+      transition: all 0.3s ease;
+    }
+    .promo-cta:hover {
+      background: #b6d063;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(200,226,122,0.3);
+    }
+    .promo-cta:focus-visible {
+      outline: 2px solid var(--lime);
+      outline-offset: 3px;
+    }
+    .promo-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 200px;
+    }
+    .promo-circle {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(212,168,83,0.15);
+      position: absolute;
+      animation: float 6s ease-in-out infinite;
+    }
+    .promo-circle--2 {
+      width: 120px;
+      height: 120px;
+      border-color: rgba(212,232,165,0.10);
+      animation-delay: -3s;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-20px) scale(1.02); }
+    }
+
+    @media (max-width: 767px) {
+      .promo-visual { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cat-card:hover { transform: none; }
+      .cat-card:hover .cat-img-wrap img { transform: none; }
+      .promo-circle { animation: none; }
+      .promo-cta:hover { transform: none; }
+    }
+
+    /* ─── Tablet (768-1023px) ─── */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .hero-section { height: 68vh; max-height: 540px; min-height: 420px; }
+      .hero-text-panel { max-width: 440px; }
+      .hero-title { font-size: clamp(2rem, 4.5vw, 3.2rem); }
+      .hero-desc { font-size: 0.88rem; max-width: 380px; }
+      .hero-scroll { display: none; }
+      .hero-noise { opacity: 0.20; }
+      #featured { padding: 3.5rem 5%; }
+      .bloom-showcase { padding: 3.5rem 1.5rem 3rem; }
+      .bloom-track { aspect-ratio: 2.6 / 1; }
+      .bloom-nav { opacity: 1; pointer-events: auto; width: 36px; height: 36px; background: rgba(255,255,255,0.85); }
+      .bloom-prev { left: 10px; }
+      .bloom-next { right: 10px; }
+      .promo-banner { padding: 2.5rem 0; }
+      .promo-heading { font-size: clamp(1.6rem, 3.2vw, 2.4rem); }
+      .promo-visual { min-height: 160px; }
+      .promo-circle { width: 140px; height: 140px; }
+      .promo-circle--2 { width: 100px; height: 100px; }
+      .testimonial-card { padding: 24px 20px; }
+      .section-label { margin-bottom: 0.7rem; }
+      .signup-panel { grid-template-columns: 1.1fr 0.9fr; gap: 20px; padding: 28px; }
+      .signup-title { font-size: clamp(1.8rem, 3.2vw, 2.4rem); }
+    }
+
+    /* ─── Small phones (<= 374px) ─── */
+    @media (max-width: 374px) {
+      .hero-section { min-height: 300px; height: 55vh; max-height: 400px; }
+      .hero-text-panel { padding: 1.25rem 0; }
+      .hero-title { font-size: clamp(1.4rem, 7vw, 1.8rem); }
+      .hero-kicker { font-size: 0.5rem; letter-spacing: 0.2em; margin-bottom: 1rem; }
+      .hero-desc { font-size: 0.78rem; line-height: 1.6; margin-bottom: 1.5rem; }
+      .hero-actions { flex-direction: column; align-items: stretch; gap: 10px; }
+      .btn-hero-primary, .btn-hero-secondary { justify-content: center; }
+      .hero-dots { bottom: 1.2rem; gap: 5px; }
+      .hero-dot { width: 20px; height: 2.5px; }
+      .hero-dot.active { width: 32px; }
+      .hero-nav-btn { width: 30px; height: 30px; }
+      #prev-hero { left: 8px; }
+      #next-hero { right: 8px; }
+      .cat-grid { gap: 1rem 0.75rem; }
+      .cat-name { font-size: 0.82rem; }
+      .cat-styles { font-size: 0.6rem; }
+      .bloom-showcase { padding: 2rem 0.75rem 1.5rem; }
+      .bloom-heading { font-size: clamp(1.6rem, 6vw, 2rem); }
+      .bloom-sub { font-size: 0.78rem; }
+      .bloom-track { aspect-ratio: 3 / 2; min-height: 180px; }
+      .bloom-caption { left: 0.75rem; bottom: 0.75rem; }
+      .bloom-name { font-size: clamp(0.9rem, 3vw, 1.1rem); }
+      .bloom-label { font-size: 0.48rem; }
+      .promo-heading { font-size: clamp(1.4rem, 6vw, 1.8rem); }
+      .promo-desc { font-size: 0.82rem; }
+      .promo-kicker { font-size: 0.52rem; letter-spacing: 0.2em; }
+      .signup-panel { padding: 20px 14px; }
+      .signup-title { font-size: clamp(1.5rem, 6vw, 1.8rem); }
+      .signup-text { font-size: 0.82rem; }
+      .signup-kicker { font-size: 0.58rem; }
+      .signup-field .btn-lime { font-size: 0.78rem; padding: 10px 16px; }
+      .benefit-item { gap: 6px; }
+      .benefit-icon { width: 38px; height: 38px; }
+      #carousel-track .snap-center { width: 88%; }
+      .testimonial-card { padding: 20px 16px; }
+      .promo-cta { padding: 11px 22px; font-size: 0.78rem; }
+    }
+
+    /* ─── Large screens (1536px+) ─── */
+    @media (min-width: 1536px) {
+      .hero-section { max-height: 720px; }
+      .hero-text-panel { max-width: 620px; }
+      .hero-title { font-size: clamp(3rem, 4.5vw, 5.6rem); }
+      .hero-desc { max-width: 540px; font-size: 1rem; }
+      #featured { padding: 6rem 5% 5rem; }
+      .bloom-showcase { padding: 6rem 1.5rem 5rem; }
+      .bloom-track { max-height: 600px; }
+      .testimonial-card { padding: 32px 30px; }
+    }
+
+    /* ─── Search Overlay ─── */
+    #search-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(28,28,28,0.85);
+      display: flex; align-items: flex-start; justify-content: center;
+      padding-top: 15vh;
+      backdrop-filter: blur(8px);
+    }
+    #search-overlay.hidden { display: none; }
+    .search-overlay-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      background: transparent; border: none; color: white;
+      cursor: pointer; padding: 0.5rem;
+      opacity: 0.7; transition: opacity 0.2s;
+    }
+    .search-overlay-close:hover { opacity: 1; }
+    .search-overlay-content {
+      width: 100%; max-width: 560px; padding: 0 1.5rem;
+    }
+    .search-overlay-input-wrap {
+      position: relative; display: flex; align-items: center;
+    }
+    .search-overlay-icon {
+      position: absolute; left: 1rem; color: rgba(255,255,255,0.5);
+      pointer-events: none;
+    }
+    .search-overlay-input {
+      width: 100%; padding: 1rem 1rem 1rem 3rem;
+      font-size: 1.125rem; font-family: var(--font-body);
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px; color: white; outline: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .search-overlay-input::placeholder { color: rgba(255,255,255,0.4); }
+    .search-overlay-input:focus {
+      background: rgba(255,255,255,0.18);
+      border-color: var(--lime);
+    }
+    .search-overlay-results {
+      margin-top: 1rem; background: white; border-radius: 12px;
+      overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+      max-height: 50vh; overflow-y: auto;
+    }
+    .search-overlay-results p {
+      padding: 0.75rem 1.25rem; color: var(--muted); font-size: 0.875rem;
+    }
+    .search-overlay-results a {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 0.75rem 1.25rem; text-decoration: none;
+      color: var(--charcoal); border-bottom: 1px solid var(--warm-gray);
+      transition: background 0.15s;
+    }
+    .search-overlay-results a:last-child { border-bottom: none; }
+    .search-overlay-results a:hover { background: var(--ivory); }
+    .search-overlay-results a img {
+      width: 48px; height: 48px; object-fit: cover; border-radius: 8px;
+    }
+    .search-overlay-results a .search-result-info { flex: 1; }
+    .search-overlay-results a .search-result-name {
+      font-size: 0.9rem; font-weight: 600;
+    }
+    .search-overlay-results a .search-result-price {
+      font-size: 0.8rem; color: var(--muted);
+    }
+
+    .animated-button {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 16px 36px;
+      border: 4px solid transparent;
+      font-size: 16px;
+      background-color: inherit;
+      border-radius: 100px;
+      font-weight: 600;
+      color: var(--lime);
+      box-shadow: 0 0 0 2px var(--lime);
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      text-decoration: none;
+      font-family: var(--font-body);
+    }
+    .animated-button svg { position: absolute; width: 24px; fill: var(--lime); z-index: 9; transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
+    .animated-button .arr-1 { right: 16px; }
+    .animated-button .arr-2 { left: -25%; }
+    .animated-button .circle {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px; height: 20px;
+      background-color: var(--lime);
+      border-radius: 50%;
+      opacity: 0;
+      transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .animated-button .text {
+      position: relative;
+      z-index: 1;
+      transform: translateX(-12px);
+      transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .animated-button:hover {
+      box-shadow: 0 0 0 12px transparent;
+      color: var(--charcoal);
+      border-radius: 12px;
+    }
+    .animated-button:hover .arr-1 { right: -25%; }
+    .animated-button:hover .arr-2 { left: 16px; }
+    .animated-button:hover .text { transform: translateX(12px); }
+    .animated-button:hover svg { fill: var(--charcoal); }
+    .animated-button:active { scale: 0.95; box-shadow: 0 0 0 4px var(--lime); }
+    .animated-button:hover .circle { width: 220px; height: 220px; opacity: 1; }
+
+
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+  <!-- ═══ TOAST ═══ -->
+  <div id="toast" class="toast"></div>
+
+  <!-- ═══════════════════════════════════════
+       HEADER: Announcement Bar + Navbar
+       Fixed at top; body has padding-top
+       to prevent any collapse.
+  ═══════════════════════════════════════ -->
+  <header id="navbar" class="fixed top-0 left-0 w-full z-50">
+
+    <!-- Announcement Bar -->
+    <div class="announce-bar">
+      ✦&nbsp; <strong>Free shipping</strong>&nbsp;on orders over $200 &nbsp;·&nbsp; <strong>30-day</strong>&nbsp;easy returns &nbsp;·&nbsp; Complimentary <strong>gift wrapping</strong>&nbsp; ✦
+    </div>
+
+    <!-- Main Nav -->
+    <div class="nav-glass" id="nav-main">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between" style="height:var(--nav-h);">
+
+          <!-- Logo -->
+          <a href="/" style="display:flex;align-items:center;text-decoration:none;">
+            <img src="./src/assets/Blome_Bag_logo-removebg-preview.png" alt="Blome Bag" style="height:60px;width:auto;flex-shrink:0;" />
+          </a>
+
+          <!-- Desktop Nav Links -->
+          <nav class="hidden md:flex items-center gap-8">
+            <a href="/index.html" class="nav-link active">Home</a>
+            <div class="nav-dropdown-group">
+              <a href="/product-listing.html" class="nav-link" aria-haspopup="true">Products</a>
+              <div class="nav-dropdown" role="menu">
+                <a href="/product-listing.html?category=Tote" class="nav-dropdown-link" role="menuitem">Totes</a>
+                <a href="/product-listing.html?category=Crossbody" class="nav-dropdown-link" role="menuitem">Crossbody</a>
+                <a href="/product-listing.html?category=Clutch" class="nav-dropdown-link" role="menuitem">Clutches</a>
+                <a href="/product-listing.html?category=Shoulder" class="nav-dropdown-link" role="menuitem">Shoulder</a>
+                <a href="/product-listing.html?category=Bucket" class="nav-dropdown-link" role="menuitem">Bucket</a>
+                <div class="nav-dropdown-divider" role="separator"></div>
+                <a href="/about.html" class="nav-dropdown-link" role="menuitem">About Us</a>
+                <a href="/product-listing.html" class="nav-dropdown-link" role="menuitem">View All</a>
+              </div>
+            </div>
+            <a href="/contact.html" class="nav-link">Contact Us</a>
+          </nav>
+
+          <!-- Actions -->
+          <div class="flex items-center gap-10">
+
+            <!-- Search (desktop) -->
+            <button class="nav-icon-btn hidden md:flex" aria-label="Search">
+              <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            </button>
+
+            <!-- Cart -->
+            <a href="/cart.html" class="nav-icon-btn relative" aria-label="Cart">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+              <span class="cart-badge" id="cart-count">0</span>
+            </a>
+
+            <div id="nav-user" class="nav-user">
+              <span id="nav-username" class="nav-user-name"></span>
+              <button id="nav-signout-btn" class="nav-signout-btn" type="button">Sign out</button>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="nav-icon-btn md:hidden" id="menu-btn" aria-label="Toggle menu">
+              <svg id="icon-open"  width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <line x1="3" y1="6"  x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+              </svg>
+              <svg id="icon-close" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;">
+                <line x1="18" y1="6"  x2="6"  y2="18"/>
+                <line x1="6"  y1="6"  x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden" style="background:white;border-bottom:1px solid var(--warm-gray);padding:0.75rem 1.5rem 1.25rem;">
+      <a href="/index.html" class="mobile-nav-link">Home</a>
+      <a href="/product-listing.html" class="mobile-nav-link">Products</a>
+      <div class="mobile-sub-links">
+        <a href="/product-listing.html?category=Tote" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">Totes</a>
+        <a href="/product-listing.html?category=Crossbody" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">Crossbody</a>
+        <a href="/product-listing.html?category=Clutch" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">Clutches</a>
+        <a href="/product-listing.html?category=Shoulder" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">Shoulder</a>
+        <a href="/product-listing.html?category=Bucket" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">Bucket</a>
+        <a href="/about.html" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">About Us</a>
+      </div>
+      <a href="/contact.html" class="mobile-nav-link">Contact Us</a>
+      <div id="mobile-nav-user" class="mobile-user-row">
+        <span id="mobile-nav-username"></span>
+        <button id="mobile-nav-signout-btn" class="nav-signout-btn" type="button">Sign out</button>
+      </div>
+      <button id="mobile-search-btn" type="button" style="background:none;border:none;cursor:pointer;text-align:left;width:100%;display:flex;align-items:center;gap:0.5rem;padding:13px 0;font-family:var(--font-body);font-size:1rem;font-weight:500;color:var(--charcoal);">Search</button>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+  <!-- ═══ SEARCH OVERLAY ═══ -->
+  <div id="search-overlay" class="hidden" role="dialog" aria-modal="true" aria-label="Search products">
+    <button id="search-close" class="search-overlay-close" aria-label="Close search">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <div class="search-overlay-content">
+      <div class="search-overlay-input-wrap">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" class="search-overlay-icon">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input id="search-input" class="search-overlay-input" type="text" placeholder="Search products..." autocomplete="off" />
+      </div>
+      <div id="search-results" class="search-overlay-results"></div>
+    </div>
+  </div>
+
+  <!-- ═══ HERO CAROUSEL ═══ -->
+  <section class="hero-section" id="hero-carousel" aria-label="Hero banner">
+
+    <!-- ── Slides with Ken Burns effect ── -->
+    <div id="hero-slides">
+      <div class="hero-slide active">
+        <div class="hero-bg" style="background-image:url('./src/assets/Lady_Fashion_Banner_1800x600.png');"></div>
+      </div>
+      <div class="hero-slide">
+        <div class="hero-bg" style="background-image:url('./src/assets/Hero3.png.png');"></div>
+      </div>
+      <div class="hero-slide">
+        <div class="hero-bg" style="background-image:url('./src/assets/Lady_Fashion_Banner2_1800x600.png');"></div>
+      </div>
+    </div>
+
+    <!-- Gradient overlay for text legibility -->
+    <div class="hero-overlay"></div>
+
+    <!-- Subtle noise texture for depth -->
+    <div class="hero-noise" aria-hidden="true"></div>
+
+    <!-- Decorative gold accent lines -->
+    <div class="hero-accent-line" aria-hidden="true"></div>
+
+    <!-- Auto-play progress bar -->
+    <div class="hero-progress" aria-hidden="true">
+      <div class="hero-progress-bar" id="hero-progress-bar"></div>
+    </div>
+
+    <!-- Hero text content -->
+    <div class="hero-content">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="hero-text-panel">
+
+          <span class="hero-kicker">
+            New Collection 2025
+          </span>
+
+          <h1 class="hero-title">
+            Elegance in
+            <em>Every Carry</em>
+          </h1>
+
+          <div class="hero-divider" aria-hidden="true"></div>
+
+          <p class="hero-desc">
+            Premium leather handbags, sophisticated designs, and luxury-quality craftsmanship in every piece.
+          </p>
+
+          <div class="hero-actions">
+            <a href="/product-listing.html" class="btn-hero-primary">
+              Shop Now
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+            <a href="/contact.html" class="animated-button">
+              <svg class="arr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M16.004 9.414l-7.293 7.293-1.414-1.414L14.59 8H7.004V6h11v11h-2V9.414z"/></svg>
+              <span class="text">Contact Us</span>
+              <span class="circle"></span>
+              <svg class="arr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M16.004 9.414l-7.293 7.293-1.414-1.414L14.59 8H7.004V6h11v11h-2V9.414z"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation buttons -->
+    <button id="prev-hero" class="hero-nav-btn" aria-label="Previous slide">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+    <button id="next-hero" class="hero-nav-btn" aria-label="Next slide">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <polyline points="9 6 15 12 9 18"/>
+      </svg>
+    </button>
+
+    <!-- Slide indicators -->
+    <div class="hero-dots" id="hero-dots" role="group" aria-label="Slide navigation">
+      <button class="hero-dot active" data-index="0" aria-label="Slide 1"></button>
+      <button class="hero-dot" data-index="1" aria-label="Slide 2"></button>
+      <button class="hero-dot" data-index="2" aria-label="Slide 3"></button>
+
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero-scroll" aria-hidden="true">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+      <span>Scroll</span>
+    </div>
+
+  </section>
+
+
+  <!-- ═══ BENEFITS STRIP ═══ -->
+  <section style="background:white;border-bottom:1px solid var(--warm-gray);">
+    <div class="max-w-7xl mx-auto" style="padding:2.5rem clamp(1.5rem, 5vw, 4rem);">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
+
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg width="20" height="20" fill="none" stroke="var(--charcoal)" stroke-width="1.8" viewBox="0 0 24 24">
+              <rect x="1" y="3" width="15" height="13" rx="2"/>
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+              <circle cx="5.5" cy="18.5" r="2.5"/>
+              <circle cx="18.5" cy="18.5" r="2.5"/>
+            </svg>
+          </div>
+          <div>
+            <p style="font-family:var(--font-body);font-weight:700;font-size:0.8rem;color:var(--charcoal);margin-bottom:3px;">Free Shipping</p>
+            <p style="font-family:var(--font-body);font-size:0.72rem;color:var(--muted);">On orders over $200</p>
+          </div>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg width="20" height="20" fill="none" stroke="var(--charcoal)" stroke-width="1.8" viewBox="0 0 24 24">
+              <polyline points="1 4 1 10 7 10"/>
+              <path d="M3.51 15a9 9 0 102.13-9.36L1 10"/>
+            </svg>
+          </div>
+          <div>
+            <p style="font-family:var(--font-body);font-weight:700;font-size:0.8rem;color:var(--charcoal);margin-bottom:3px;">Easy Returns</p>
+            <p style="font-family:var(--font-body);font-size:0.72rem;color:var(--muted);">30-day hassle-free policy</p>
+          </div>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg width="20" height="20" fill="none" stroke="var(--charcoal)" stroke-width="1.8" viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div>
+            <p style="font-family:var(--font-body);font-weight:700;font-size:0.8rem;color:var(--charcoal);margin-bottom:3px;">Authentic Leather</p>
+            <p style="font-family:var(--font-body);font-size:0.72rem;color:var(--muted);">100% genuine materials</p>
+          </div>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg width="20" height="20" fill="none" stroke="var(--charcoal)" stroke-width="1.8" viewBox="0 0 24 24">
+              <polyline points="20 12 20 22 4 22 4 12"/>
+              <rect x="2" y="7" width="20" height="5"/>
+              <path d="M12 22V7M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/>
+            </svg>
+          </div>
+          <div>
+            <p style="font-family:var(--font-body);font-weight:700;font-size:0.8rem;color:var(--charcoal);margin-bottom:3px;">Gift Wrapping</p>
+            <p style="font-family:var(--font-body);font-size:0.72rem;color:var(--muted);">Complimentary on all orders</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ CATEGORY GRID ═══ -->
+  <section style="background:white;padding:4rem 5%;border-bottom:1px solid var(--warm-gray);">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-10">
+        <span class="section-label">Browse by Category</span>
+        <h2 class="font-[Brigila]" style="font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:700;color:var(--charcoal);margin-bottom:0.5rem;">
+          Shop by Collection
+        </h2>
+        <p style="font-family:var(--font-body);color:var(--muted);font-size:0.9rem;">Find your perfect silhouette</p>
+      </div>
+
+      <div class="cat-grid" id="category-grid">
+        <a href="/product-listing.html?category=Tote" class="cat-card" data-category="Tote" style="--i:0">
+          <div class="cat-circle-wrap">
+            <div class="cat-circle">
+              <div class="cat-img">
+                <img src="./src/assets/Bag1.png" alt="Tote bags collection" loading="lazy" onerror="this.style.display='none'" />
+              </div>
+            </div>
+          </div>
+          <div class="cat-meta">
+            <span class="cat-name">Totes</span>
+            <span class="cat-styles" id="cat-count-Tote">4 styles</span>
+          </div>
+        </a>
+        <a href="/product-listing.html?category=Crossbody" class="cat-card" data-category="Crossbody" style="--i:1">
+          <div class="cat-circle-wrap">
+            <div class="cat-circle">
+              <div class="cat-img">
+                <img src="./src/assets/Bag2.png" alt="Crossbody bags collection" loading="lazy" onerror="this.style.display='none'" />
+              </div>
+            </div>
+          </div>
+          <div class="cat-meta">
+            <span class="cat-name">Crossbody</span>
+            <span class="cat-styles" id="cat-count-Crossbody">2 styles</span>
+          </div>
+        </a>
+        <a href="/product-listing.html?category=Clutch" class="cat-card" data-category="Clutch" style="--i:2">
+          <div class="cat-circle-wrap">
+            <div class="cat-circle">
+              <div class="cat-img">
+                <img src="./src/assets/Bag11.png" alt="Clutch bags collection" loading="lazy" onerror="this.style.display='none'" />
+              </div>
+            </div>
+          </div>
+          <div class="cat-meta">
+            <span class="cat-name">Clutches</span>
+            <span class="cat-styles" id="cat-count-Clutch">2 styles</span>
+          </div>
+        </a>
+        <a href="/product-listing.html?category=Shoulder" class="cat-card" data-category="Shoulder" style="--i:3">
+          <div class="cat-circle-wrap">
+            <div class="cat-circle">
+              <div class="cat-img">
+                <img src="./src/assets/Bag4.png" alt="Shoulder bags collection" loading="lazy" onerror="this.style.display='none'" />
+              </div>
+            </div>
+          </div>
+          <div class="cat-meta">
+            <span class="cat-name">Shoulder</span>
+            <span class="cat-styles" id="cat-count-Shoulder">2 styles</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ FEATURED PRODUCTS ═══ -->
+  <section id="featured" style="background:var(--ivory);padding:5rem 5%;">
+    <div>
+    <div class="text-center mb-12">
+      <span class="section-label">Shop Our Collection</span>
+      <h2 class="font-[Brigila]" style="font-size:clamp(1.8rem,4vw,3rem);font-weight:700;color:var(--charcoal);margin-bottom:0.75rem;">
+        Featured Products
+      </h2>
+      <p style="font-family:var(--font-body);color:var(--muted);font-size:0.95rem;max-width:400px;margin:0 auto;">
+        Handpicked just for you — our most beloved designs
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5" id="product-grid"></div>
+
+    <div class="text-center mt-12">
+      <a href="/product-listing.html" class="btn-lime">View All Products</a>
+    </div>
+  </div>
+  </section>
+
+
+  <!-- ═══ PROMOTIONAL BANNER ═══ -->
+  <section class="promo-banner">
+    <div class="max-w-7xl mx-auto" style="padding:3.5rem clamp(1.5rem, 5vw, 4rem);">
+      <div class="grid md:grid-cols-[1.2fr_1fr] gap-8 items-center">
+        <div>
+          <span class="promo-kicker">The Summer Edit</span>
+          <h2 class="promo-heading">Discover Your Signature Style</h2>
+          <p class="promo-desc">Timeless silhouettes reimagined for the season. Lightweight leathers, refined hardware, and effortless elegance — curated for warmer days.</p>
+          <a href="/product-listing.html" class="promo-cta">
+            Explore Collection
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+        <div class="promo-visual">
+          <div class="promo-circle"></div>
+          <div class="promo-circle promo-circle--2"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SALE / CLEARANCE ═══ -->
+  <section style="background:white;padding:4rem 5%;border-bottom:1px solid var(--warm-gray);">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <span class="section-label">Extra Savings</span>
+          <h2 class="font-[Brigila]" style="font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:700;color:var(--charcoal);margin-bottom:0.5rem;">
+            Sale &amp; Clearance
+          </h2>
+          <p style="font-family:var(--font-body);color:var(--muted);font-size:0.9rem;">Marked-down styles — while they last</p>
+        </div>
+        <a href="/product-listing.html?category=Sale" class="btn-outline" style="white-space:nowrap;">View All Sale</a>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5" id="sale-grid">
+        <div class="text-center py-12 text-muted" style="grid-column:1/-1;">Sale items loaded from collection...</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ TESTIMONIALS ═══ -->
+  <section style="background:#F0EDE8;padding:5rem 5%;">
+    <div>
+
+      <div class="text-center mb-12">
+        <span class="section-label">Testimonials</span>
+        <h2 class="font-[Brigila]" style="font-size:clamp(1.8rem,4vw,3rem);font-weight:700;color:var(--charcoal);margin-bottom:0.75rem;">
+          Loved by Customers
+        </h2>
+        <p style="font-family:var(--font-body);color:var(--muted);font-size:0.95rem;">
+          Hear from the Lovart community
+        </p>
+      </div>
+
+      <div class="relative">
+
+        <button id="prev-testimonial" class="carousel-btn absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 hidden md:flex" aria-label="Previous">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+        <button id="next-testimonial" class="carousel-btn absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 hidden md:flex" aria-label="Next">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <polyline points="9 6 15 12 9 18"/>
+          </svg>
+        </button>
+
+        <div id="carousel-track" class="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth -mx-4 px-4">
+
+          <!-- Testimonial 1 -->
+          <div class="snap-center shrink-0 w-full md:w-1/2 lg:w-1/3">
+            <div class="testimonial-card">
+              <div class="flex items-center gap-1 mb-4">
+                <svg width="15" height="15" fill="#D4A853" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg width="15" height="15" fill="#D4A853" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg width="15" height="15" fill="#D4A853" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg width="15" height="15" fill="#D4A853" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg width="15" height="15" fill="#D4A853" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              </div>
+              <p style="font-family:var(--font-body);color:rgba(28,28,28,0.78);font-size:0.875rem;line-height:1.78;margin-bottom:1.5rem;">
+                "Absolutely in love with my Aria Tote! The leather is buttery soft and the craftsmanship is impeccable. I've received so many compliments."
+              </p>
+              <div class="flex items-center gap-3">
+                <div style="width:40px;height:40px;border-radius:50%;background:rgba(28,28,28,0.1);display:flex;align-items:center;justify-content:center;font-size:0.68rem;font-weight:700;color:var(--charcoal);flex-shrink:0;font-family:var(--font-body);">SM</div>
+                <div>
+                  <p style="font-family:var(--font-body);font-weight:600;font-size:0.875rem;color:var(--charcoal);">Sophia M.</p>
+                  <p style="font-family:var(--font-body);font-size:0.72rem;color:var(--muted);">Verified Buyer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="snap-center shrink-0 w-full md:w-1/2 lg:w-1/3">
+            <div class="testimonial-card">
+              <div class="flex items-center gap-1 mb-4">
+                <svg width="15" height="15" fill="#D4A853" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg width="15" height="15" fill="#D4A853" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg width="15" height="15" fill="#D4A853" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg width="15" height="15" fill="#D4A853" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg width="15" height="15" fill="#D4A853" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              </div>
+              <p style="font-family:var(--font-body);color:rgba(28,28,28,0.78);font-size:0.875rem;line-height:1.78;margin-bottom:1.5rem;">
+                "The Seraphina Crossbody is my everyday essential. Lightweight yet spacious, and the gold hardware adds such a luxe touch. Worth every penny!"
+              </p>
+              <div class="flex items-center gap-3">
+                <div style="width:40px;height:40px;border-radius:50%;background:rgba(28,28,28,0.1);display:flex;align-items:center;justify-content:center;font-size:0.68rem;font-weight:700;color:var(--charcoal);flex-shrink:0;font-family:var(--font-body);">AJ</div>
+                <div>
+                  <p style="font-family:var(--font-body);font-weight:600;font-size:0.875rem;color:var(--charcoal);">Amara J.</p>
+                  <p style="font-family:var(--font-body);font-size:0.72rem;color:var(--muted);">Verified Buyer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="snap-center shrink-0 w-full md:w-1/2 lg:w-1/3">
+            <div class="testimonial-card">
+              <div class="flex items-center gap-1 mb-4">
+                <svg width="15" height="15" fill="#D4A853" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg width="15" height="15" fill="#D4A853" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg width="15" height="15" fill="#D4A853" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg width="15" height="15" fill="#D4A853" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg width="15" height="15" fill="#D4A853" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              </div>
+              <p style="font-family:var(--font-body);color:rgba(28,28,28,0.78);font-size:0.875rem;line-height:1.78;margin-bottom:1.5rem;">
+                "I purchased the Stella Shoulder Bag as a gift for my sister and ended up buying one for myself too. The quality is outstanding — truly luxury-level."
+              </p>
+              <div class="flex items-center gap-3">
+                <div style="width:40px;height:40px;border-radius:50%;background:rgba(28,28,28,0.1);display:flex;align-items:center;justify-content:center;font-size:0.68rem;font-weight:700;color:var(--charcoal);flex-shrink:0;font-family:var(--font-body);">CL</div>
+                <div>
+                  <p style="font-family:var(--font-body);font-weight:600;font-size:0.875rem;color:var(--charcoal);">Camille L.</p>
+                  <p style="font-family:var(--font-body);font-size:0.72rem;color:var(--muted);">Verified Buyer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div id="carousel-dots" class="flex items-center justify-center gap-2 mt-6 md:hidden">
+          <button data-index="0" style="width:8px;height:8px;border-radius:50%;background:var(--charcoal);border:none;cursor:pointer;transition:background 0.2s;"></button>
+          <button data-index="1" style="width:8px;height:8px;border-radius:50%;background:var(--warm-gray);border:none;cursor:pointer;transition:background 0.2s;"></button>
+          <button data-index="2" style="width:8px;height:8px;border-radius:50%;background:var(--warm-gray);border:none;cursor:pointer;transition:background 0.2s;"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ SIGN IN SECTION ═══ -->
+  <section class="signup-section" id="signup-section" style="padding-left:5%;padding-right:5%;">
+    <div>
+      <div class="signup-panel">
+        <div class="signup-copy">
+          <p class="signup-kicker">Private List</p>
+          <h2 class="signup-title">Early access to the pieces worth waiting for.</h2>
+          <p class="signup-text">
+            Join the Blome list for exclusive drops, first access to new collections, and 10% off your first order.
+          </p>
+        </div>
+        <div class="signup-form">
+          <div class="signup-field">
+            <input
+              id="email-input"
+              type="email"
+              placeholder="Your email address"
+              class="news-input"
+            />
+            <button id="signup-btn" class="btn-lime" style="padding:12px 22px;font-size:0.82rem;white-space:nowrap;flex-shrink:0;">
+              Sign up
+            </button>
+          </div>
+          <p id="signup-msg" class="hidden" style="font-family:var(--font-body);font-size:0.82rem;color:var(--lime);margin-top:10px;">
+            Thanks! You're on the list.
+          </p>
+          <p class="signup-note">No clutter. Just launch notes, limited releases, and thoughtful offers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ BLOOM SHOWCASE CAROUSEL (before footer) ═══ -->
+  <section class="bloom-showcase" aria-label="The Bloom Edit">
+    <div class="bloom-showcase-inner">
+      <div class="bloom-showcase-header">
+        <span class="bloom-kicker">Curated For You</span>
+        <h2 class="bloom-heading">The Bloom Edit</h2>
+        <p class="bloom-sub">Three looks. One signature elegance.</p>
+      </div>
+
+      <div class="bloom-carousel-wrap">
+        <div class="bloom-track" id="bloom-track">
+          <div class="bloom-slide active">
+            <div class="bloom-img" style="background-image:url('./src/assets/Bloom1.png');"></div>
+            <div class="bloom-overlay"></div>
+            <div class="bloom-caption">
+              <span class="bloom-label">01 &mdash; Petal</span>
+              <span class="bloom-name">The Structured Tote</span>
+            </div>
+          </div>
+          <div class="bloom-slide">
+            <div class="bloom-img" style="background-image:url('./src/assets/Bloom2.png');"></div>
+            <div class="bloom-overlay"></div>
+            <div class="bloom-caption">
+              <span class="bloom-label">02 &mdash; Bloom</span>
+              <span class="bloom-name">The Curved Shoulder</span>
+            </div>
+          </div>
+          <div class="bloom-slide">
+            <div class="bloom-img" style="background-image:url('./src/assets/Bloom3.png');"></div>
+            <div class="bloom-overlay"></div>
+            <div class="bloom-caption">
+              <span class="bloom-label">03 &mdash; Radiance</span>
+              <span class="bloom-name">The Evening Clutch</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="bloom-nav bloom-prev" id="bloom-prev" aria-label="Previous banner">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+        <button class="bloom-nav bloom-next" id="bloom-next" aria-label="Next banner">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <polyline points="9 6 15 12 9 18"/>
+          </svg>
+        </button>
+
+        <div class="bloom-dots" id="bloom-dots" role="group" aria-label="Banner navigation">
+          <button class="bloom-dot active" data-index="0" aria-label="Banner 1"></button>
+          <button class="bloom-dot" data-index="1" aria-label="Banner 2"></button>
+          <button class="bloom-dot" data-index="2" aria-label="Banner 3"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer style="background:white;border-top:1px solid var(--warm-gray);">
+    <div class="max-w-7xl mx-auto" style="padding:3rem clamp(1.5rem, 5vw, 4rem);">
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-12 mb-12">
+
+        <div class="col-span-2 md:col-span-1">
+          <div class="flex items-center mb-4">
+            <img src="./src/assets/Blome_Bag_logo-removebg-preview.png" alt="Blome Bag" style="height:60px;width:auto;flex-shrink:0;" />
+          </div>
+          <p style="font-family:var(--font-body);font-size:0.85rem;color:var(--muted);line-height:1.72;max-width:210px;">
+            Premium leather handbags crafted for the modern woman. Timeless elegance, exceptional quality.
+          </p>
+          <div class="flex gap-2.5 mt-5">
+            <a href="#" class="social-btn" aria-label="Instagram"><svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17" cy="7" r="1.5" fill="var(--charcoal)"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Pinterest"><svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24"><path d="M8 12.5a4.5 4.5 0 109 0 4.5 4.5 0 00-9 0z"/><path d="M12 2a10 10 0 00-3.3 19.4c-.1-.9-.2-2.3 0-3.3l1.6-7"/><path d="M14 13.5l-1-5.5"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Facebook"><svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer-heading">Shop</p>
+          <ul style="list-style:none;">
+            <li><a href="/product-listing.html" class="footer-link">All Bags</a></li>
+            <li><a href="/product-listing.html?category=Tote" class="footer-link">Totes</a></li>
+            <li><a href="/product-listing.html?category=Crossbody" class="footer-link">Crossbody</a></li>
+            <li><a href="/product-listing.html?category=Clutch" class="footer-link">Clutches</a></li>
+            <li><a href="/product-listing.html?category=Sale" class="footer-link">Sale</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-heading">Support</p>
+          <ul style="list-style:none;">
+            <li><a href="/contact.html" class="footer-link">Contact Us</a></li>
+            <li><a href="/shipping-returns.html" class="footer-link">Shipping &amp; Returns</a></li>
+            <li><a href="/account.html" class="footer-link">My Account</a></li>
+            <li><a href="/gift-cards.html" class="footer-link">Gift Cards</a></li>
+            <li><a href="/loyalty.html" class="footer-link">Loyalty Program</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-heading">Company</p>
+          <ul style="list-style:none;">
+            <li><a href="/about.html" class="footer-link">About Us</a></li>
+            <li><a href="/contact.html" class="footer-link">Contact</a></li>
+            <li><a href="/shipping-returns.html#privacy" class="footer-link">Privacy Policy</a></li>
+            <li><a href="/shipping-returns.html#terms" class="footer-link">Terms of Service</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" style="border-top:1px solid var(--warm-gray);">
+        <div class="flex items-center gap-4">
+          <p style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">&copy; 2025 Blome. All rights reserved.</p>
+          <div class="flex items-center gap-2" aria-label="Accepted payment methods">
+            <span style="font-size:0.7rem;font-weight:800;color:#0d2a7a;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;">VISA</span>
+            <span style="font-size:0.7rem;font-weight:800;color:transparent;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;position:relative;min-width:40px;display:inline-flex;align-items:center;justify-content:center;">MC</span>
+            <span style="font-size:0.7rem;font-weight:800;color:#fff;background:#1474bc;border:1px solid #1474bc;border-radius:4px;padding:2px 6px;">AMEX</span>
+            <span style="font-size:0.7rem;font-weight:800;color:#063d8f;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;">PayPal</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ═══ JAVASCRIPT ═══ -->
+  <script>
+    /* ── Navbar scroll shadow ── */
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav-main').classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    /* ── Mobile menu toggle ── */
+    const menuBtn   = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconOpen  = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
+    let menuOpen = false;
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('hidden', !menuOpen);
+      iconOpen.style.display  = menuOpen ? 'none'  : 'block';
+      iconClose.style.display = menuOpen ? 'block' : 'none';
+    });
+
+    /* ── Toast ── */
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2800);
+    }
+
+    /* ── Cart (localStorage) ── */
+    function getCart() {
+      try { return JSON.parse(localStorage.getItem('blome_cart') || '[]'); } catch { return []; }
+    }
+    function saveCart(cart) { localStorage.setItem('blome_cart', JSON.stringify(cart)); }
+    function updateBadge() {
+      const n = getCart().reduce((s, i) => s + (i.qty || 1), 0);
+      const el = document.getElementById('cart-count');
+      if (el) el.textContent = n;
+    }
+    updateBadge();
+
+    /* ── Wishlist ── */
+    function getWishlist() {
+      try { return JSON.parse(localStorage.getItem('blome_wishlist') || '[]') } catch { return [] }
+    }
+    function saveWishlist(list) { localStorage.setItem('blome_wishlist', JSON.stringify(list)) }
+    function isWishlisted(id) { return getWishlist().includes(String(id)) }
+    function toggleWishlist(id) {
+      let list = getWishlist()
+      const idx = list.indexOf(String(id))
+      if (idx > -1) list.splice(idx, 1)
+      else list.push(String(id))
+      saveWishlist(list)
+      return list.includes(String(id))
+    }
+
+    /* ── Navigate to product detail on card click ── */
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.addEventListener('click', e => {
+        const btn = card.querySelector('.add-btn');
+        if (btn && btn.contains(e.target)) return;
+        window.location.href = `/product-detail.html?id=${card.dataset.id}`;
+      });
+    });
+
+    /* ── Search overlay ── */
+    const searchBtn = document.querySelector('[aria-label="Search"]');
+    const searchOverlay = document.getElementById('search-overlay');
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+    const searchClose = document.getElementById('search-close');
+
+    function openSearch() {
+      searchOverlay.classList.remove('hidden');
+      searchOverlay.style.display = 'flex';
+      setTimeout(() => searchInput.focus(), 100);
+      document.body.style.overflow = 'hidden';
+    }
+    function closeSearch() {
+      searchOverlay.classList.add('hidden');
+      searchOverlay.style.display = 'none';
+      document.body.style.overflow = '';
+      searchInput.value = '';
+      searchResults.innerHTML = '';
+    }
+
+    searchBtn?.addEventListener('click', openSearch);
+    document.getElementById('mobile-search-btn')?.addEventListener('click', () => { mobileMenu.classList.add('hidden'); iconOpen.style.display = 'block'; iconClose.style.display = 'none'; menuOpen = false; openSearch(); });
+    searchClose?.addEventListener('click', closeSearch);
+    searchOverlay?.addEventListener('click', e => { if (e.target === searchOverlay) closeSearch(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSearch(); });
+
+    /* ── Product data for search ── */
+    const productData = [];
+    document.querySelectorAll('.product-card').forEach(card => {
+      const { id, name, price } = card.dataset;
+      if (name) productData.push({ id, name, price: +price, image: card.querySelector('img')?.src || '' });
+    });
+    if (productData.length === 0) {
+      try {
+        const stored = JSON.parse(localStorage.getItem('blome_products') || '[]');
+        stored.forEach(p => {
+          const img = p.image || (Array.isArray(p.images) && p.images[0]) || '';
+          if (p.name) productData.push({ id: p.id, name: p.name, price: +p.price, image: img });
+        });
+      } catch(e) {}
+    }
+
+    searchInput?.addEventListener('input', function () {
+      const q = this.value.trim().toLowerCase();
+      if (!q) { searchResults.innerHTML = ''; return; }
+      const matches = productData.filter(p => p.name.toLowerCase().includes(q));
+      if (matches.length === 0) {
+        searchResults.innerHTML = '<p style="padding:0.75rem 0;color:var(--muted);">No products found.</p>';
+        return;
+      }
+      searchResults.innerHTML = matches.map(p => `
+        <a href="/product-detail.html?id=${p.id}" style="display:flex;align-items:center;gap:0.75rem;padding:0.6rem 0;text-decoration:none;color:var(--charcoal);border-bottom:1px solid var(--warm-gray);transition:opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+          <span style="flex:1;font-weight:500;">${p.name}</span>
+          <span style="color:var(--muted);font-size:0.85rem;">$${p.price.toFixed(2)}</span>
+        </a>
+      `).join('');
+    });
+
+    /* ── Load banners from localStorage (set by admin dashboard) ── */
+    try {
+      const stored = JSON.parse(localStorage.getItem('blome_banners') || '[]');
+      const heroBanners = stored.filter(b => b.type === 'hero' || !b.type);
+      if (heroBanners.length > 0) {
+        const hsc = document.getElementById('hero-slides');
+        const hdc = document.getElementById('hero-dots');
+        if (hsc) {
+          hsc.innerHTML = heroBanners.map((b, i) =>
+            `<div class="hero-slide${i === 0 ? ' active' : ''}">` +
+              `<div class="hero-bg" style="background-image:url('${b.image}');"></div>` +
+            `</div>`
+          ).join('');
+        }
+        if (hdc) {
+          hdc.innerHTML = heroBanners.map((_, i) =>
+            `<button class="hero-dot${i === 0 ? ' active' : ''}" data-index="${i}" aria-label="Slide ${i + 1}"></button>`
+          ).join('');
+        }
+      }
+    } catch(e) { /* ignore */ }
+
+    /* ── Hero carousel with Ken Burns and progress bar ── */
+    let heroSlides = document.querySelectorAll('#hero-slides .hero-slide');
+    let heroDots = document.querySelectorAll('#hero-dots .hero-dot');
+    const prevHero = document.getElementById('prev-hero');
+    const nextHero = document.getElementById('next-hero');
+    const progressBar = document.getElementById('hero-progress-bar');
+    let heroIndex = 0;
+    let heroTimer;
+    const AUTO_INTERVAL = 5000;
+
+    function goToSlide(i) {
+      heroSlides.forEach((s, idx) => {
+        s.classList.remove('active');
+        heroDots[idx].classList.remove('active');
+      });
+      heroSlides[i].classList.add('active');
+      heroDots[i].classList.add('active');
+      heroIndex = i;
+      resetProgress();
+    }
+
+    function resetProgress() {
+      if (!progressBar) return;
+      progressBar.classList.remove('animating');
+      progressBar.style.width = '0%';
+      void progressBar.offsetWidth;
+      progressBar.style.width = '100%';
+      progressBar.classList.add('animating');
+    }
+
+    function heroNext() { goToSlide((heroIndex + 1) % heroSlides.length); }
+    function heroPrev() { goToSlide((heroIndex - 1 + heroSlides.length) % heroSlides.length); }
+
+    function startHeroTimer() {
+      clearInterval(heroTimer);
+      heroTimer = setInterval(heroNext, AUTO_INTERVAL);
+      resetProgress();
+    }
+
+    function stopHeroTimer() {
+      clearInterval(heroTimer);
+      if (progressBar) {
+        progressBar.classList.remove('animating');
+        progressBar.style.width = '0%';
+      }
+    }
+
+    prevHero?.addEventListener('click', () => { heroPrev(); startHeroTimer(); });
+    nextHero?.addEventListener('click', () => { heroNext(); startHeroTimer(); });
+    heroDots.forEach(d => d.addEventListener('click', () => { goToSlide(+d.dataset.index); startHeroTimer(); }));
+
+    document.getElementById('hero-carousel')?.addEventListener('mouseenter', stopHeroTimer);
+    document.getElementById('hero-carousel')?.addEventListener('mouseleave', startHeroTimer);
+
+    startHeroTimer();
+
+    /* ── Expose restart for module script (Firestore-backed banners) ── */
+    window.__restartHeroCarousel = function(banners) {
+      if (!banners || !banners.length) return;
+      stopHeroTimer();
+      const hsc = document.getElementById('hero-slides');
+      const hdc = document.getElementById('hero-dots');
+      if (hsc) {
+        hsc.innerHTML = banners.map((b, i) =>
+          `<div class="hero-slide${i === 0 ? ' active' : ''}">` +
+            `<div class="hero-bg" style="background-image:url('${b.image}');"></div>` +
+          `</div>`
+        ).join('');
+      }
+      if (hdc) {
+        hdc.innerHTML = banners.map((_, i) =>
+          `<button class="hero-dot${i === 0 ? ' active' : ''}" data-index="${i}" aria-label="Slide ${i + 1}"></button>`
+        ).join('');
+      }
+      heroSlides = document.querySelectorAll('#hero-slides .hero-slide');
+      heroDots = document.querySelectorAll('#hero-dots .hero-dot');
+      heroIndex = 0;
+      prevHero?.addEventListener('click', () => { heroPrev(); startHeroTimer(); });
+      nextHero?.addEventListener('click', () => { heroNext(); startHeroTimer(); });
+      heroDots.forEach(d => d.addEventListener('click', () => { goToSlide(+d.dataset.index); startHeroTimer(); }));
+      startHeroTimer();
+    };
+
+    /* ── Bloom showcase carousel (pre-footer) ── */
+    const bloomSlides = document.querySelectorAll('#bloom-track .bloom-slide');
+    const bloomDots = document.querySelectorAll('#bloom-dots .bloom-dot');
+    const bloomPrev = document.getElementById('bloom-prev');
+    const bloomNext = document.getElementById('bloom-next');
+    let bloomIdx = 0;
+    let bloomTimer;
+    const BLOOM_INTERVAL = 4500;
+
+    function bloomGo(i) {
+      bloomSlides.forEach((s, idx) => {
+        s.classList.remove('active');
+        bloomDots[idx].classList.remove('active');
+      });
+      bloomSlides[i].classList.add('active');
+      bloomDots[i].classList.add('active');
+      bloomIdx = i;
+    }
+
+    function bloomNextFn() { bloomGo((bloomIdx + 1) % bloomSlides.length); }
+    function bloomPrevFn() { bloomGo((bloomIdx - 1 + bloomSlides.length) % bloomSlides.length); }
+
+    function bloomStart() {
+      clearInterval(bloomTimer);
+      bloomTimer = setInterval(bloomNextFn, BLOOM_INTERVAL);
+    }
+    function bloomStop() { clearInterval(bloomTimer); }
+
+    bloomPrev?.addEventListener('click', () => { bloomPrevFn(); bloomStart(); });
+    bloomNext?.addEventListener('click', () => { bloomNextFn(); bloomStart(); });
+    bloomDots.forEach(d => d.addEventListener('click', () => { bloomGo(+d.dataset.index); bloomStart(); }));
+
+    document.querySelector('.bloom-carousel-wrap')?.addEventListener('mouseenter', bloomStop);
+    document.querySelector('.bloom-carousel-wrap')?.addEventListener('mouseleave', bloomStart);
+
+    bloomStart();
+
+    /* ── Testimonial carousel ── */
+    const track = document.getElementById('carousel-track');
+    const dots  = document.querySelectorAll('#carousel-dots button');
+
+    function cardW() {
+      const c = track?.querySelector('.snap-center');
+      return c ? c.offsetWidth + 20 : 0;
+    }
+    document.getElementById('prev-testimonial')?.addEventListener('click', () => track.scrollBy({ left: -cardW(), behavior: 'smooth' }));
+    document.getElementById('next-testimonial')?.addEventListener('click', () => track.scrollBy({ left:  cardW(), behavior: 'smooth' }));
+    dots.forEach(d => d.addEventListener('click', () => track.scrollTo({ left: +d.dataset.index * cardW(), behavior: 'smooth' })));
+    track?.addEventListener('scroll', () => {
+      const i = Math.round(track.scrollLeft / (cardW() || 1));
+      dots.forEach((d, j) => d.style.background = j === i ? 'var(--charcoal)' : 'var(--warm-gray)');
+    });
+  </script>
+
+  <script type="module">
+    import { initProducts, getProductsSync } from '/src/products.js'
+    import { addToCart } from '/src/main.js'
+    import { getBanners } from '/src/services/bannerService.js'
+
+    Promise.all([initProducts(), getBanners()]).then(([, banners]) => {
+      const heroBanners = banners.filter(b => b.type === 'hero' || !b.type)
+      if (heroBanners.length > 0) {
+        localStorage.setItem('blome_banners', JSON.stringify(
+          heroBanners.map(b => ({
+            ...b,
+            createdAt: b.createdAt?.toDate ? b.createdAt.toDate().toISOString() : b.createdAt instanceof Date ? b.createdAt.toISOString() : b.createdAt
+          }))
+        ))
+        window.__restartHeroCarousel?.(heroBanners)
+      }
+      const all = getProductsSync()
+      const featured = all.slice(0, 8)
+      const grid = document.getElementById('product-grid')
+
+      const catGrid = document.getElementById('category-grid')
+      if (catGrid) {
+        catGrid.querySelectorAll('.cat-card').forEach(card => {
+          const cat = card.dataset.category
+          if (!cat) return
+          const catProducts = all.filter(p => p.category && p.category.toLowerCase() === cat.toLowerCase())
+          if (catProducts.length > 0) {
+            const latest = catProducts[0]
+            const img = latest.image || (Array.isArray(latest.images) && latest.images[0]) || ''
+            if (img) {
+              const imgEl = card.querySelector('.cat-img img')
+              if (imgEl) imgEl.src = img
+            }
+            const countEl = document.getElementById('cat-count-' + cat)
+            if (countEl) countEl.textContent = catProducts.length + ' style' + (catProducts.length !== 1 ? 's' : '')
+          }
+        })
+      }
+
+      if (!grid || featured.length === 0) return
+
+      grid.innerHTML = featured.map(p => {
+        const badge = p.badge
+          ? `<span class="prod-badge" style="background:${p.badge === 'Sale' ? 'var(--lime);color:var(--charcoal)' : 'var(--charcoal);color:white'};">${p.badge}</span>`
+          : ''
+        const wishlisted = window.isWishlisted(p.id)
+        return `
+          <div class="product-card" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}">
+            <a href="/product-detail.html?id=${p.id}" class="block no-underline" aria-label="View ${p.name}">
+              <div class="img-wrap">
+                <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'" />
+                ${badge}
+                <button class="wishlist-heart-btn" data-id="${p.id}" aria-label="${wishlisted ? 'Remove from' : 'Add to'} wishlist" style="position:absolute;top:10px;right:10px;z-index:2;width:32px;height:32px;border-radius:50%;background:${wishlisted ? 'rgba(224,82,82,0.15)' : 'rgba(255,255,255,0.85)'};border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.25s ease;backdrop-filter:blur(4px);box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                  <svg width="16" height="16" fill="${wishlisted ? '#e05252' : 'none'}" stroke="${wishlisted ? '#e05252' : '#1C1C1C'}" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+                  </svg>
+                </button>
+              </div>
+            </a>
+            <div class="prod-info">
+              <div>
+                <a href="/product-detail.html?id=${p.id}" class="prod-name no-underline block" style="font-family:var(--font-body);font-weight:600;font-size:0.875rem;color:var(--charcoal);line-height:1.3;margin-bottom:2px;">${p.name}</a>
+                <p style="font-family:var(--font-body);font-size:0.68rem;color:var(--muted);margin-bottom:6px;">${p.category || ''}</p>
+                <p style="font-family:var(--font-body);font-weight:700;font-size:0.9rem;color:var(--charcoal);">$${p.price}</p>
+              </div>
+              <button class="add-btn" aria-label="Add ${p.name} to cart">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        `
+      }).join('')
+
+      grid.querySelectorAll('.add-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation()
+          const card = btn.closest('.product-card')
+          if (!card) return
+          const p = all.find(item => String(item.id) === card.dataset.id)
+          const color = p?.colors?.[0]?.label || ''
+          addToCart(card.dataset.name, parseInt(card.dataset.price), card.querySelector('img')?.src || '', card.dataset.id, color)
+        })
+      })
+      grid.querySelectorAll('.wishlist-heart-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation()
+          e.preventDefault()
+          const id = btn.dataset.id
+          const liked = window.toggleWishlist(id)
+          btn.querySelector('svg').setAttribute('fill', liked ? '#e05252' : 'none')
+          btn.querySelector('svg').setAttribute('stroke', liked ? '#e05252' : '#1C1C1C')
+          btn.style.background = liked ? 'rgba(224,82,82,0.15)' : 'rgba(255,255,255,0.85)'
+          const name = btn.closest('.product-card')?.dataset.name || 'Item'
+          window.showToast(liked ? `♥  ${name} saved` : `${name} removed from wishlist`)
+        })
+      })
+  
+      /* ── Sale products ── */
+      const saleGrid = document.getElementById('sale-grid')
+      if (saleGrid && all.length > 0) {
+        const saleItems = all.filter(p => p.badge === 'Sale' || p.originalPrice).slice(0, 4)
+        if (saleItems.length > 0) {
+        saleGrid.innerHTML = saleItems.map(p => {
+          const badge = '<span class="prod-badge" style="background:#e05252;color:white;">Sale</span>'
+          return `
+            <div class="product-card" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}">
+              <a href="/product-detail.html?id=${p.id}" class="block no-underline" aria-label="View ${p.name}">
+                <div class="img-wrap">
+                  <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'" />
+                  ${badge}
+                  <button class="wishlist-heart-btn" data-id="${p.id}" aria-label="Add to wishlist" style="position:absolute;top:10px;right:10px;z-index:2;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.85);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.25s ease;backdrop-filter:blur(4px);box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                    <svg width="16" height="16" fill="none" stroke="#1C1C1C" stroke-width="2" viewBox="0 0 24 24">
+                      <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+                    </svg>
+                  </button>
+                </div>
+              </a>
+              <div class="prod-info">
+                <div>
+                  <a href="/product-detail.html?id=${p.id}" class="prod-name no-underline block" style="font-family:var(--font-body);font-weight:600;font-size:0.875rem;color:var(--charcoal);line-height:1.3;margin-bottom:2px;">${p.name}</a>
+                  <p style="font-family:var(--font-body);font-size:0.68rem;color:var(--muted);margin-bottom:6px;">${p.category || ''}</p>
+                  <p style="font-family:var(--font-body);font-weight:700;font-size:0.9rem;color:var(--charcoal);">
+                    $${p.price}
+                    ${p.originalPrice ? `<span style="text-decoration:line-through;color:var(--muted);font-weight:400;margin-left:6px;">$${p.originalPrice}</span>` : ''}
+                  </p>
+                </div>
+                <button class="add-btn" aria-label="Add ${p.name} to cart">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          `
+        }).join('')
+        saleGrid.querySelectorAll('.add-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation()
+            const card = btn.closest('.product-card')
+            if (!card) return
+            const p = all.find(item => String(item.id) === card.dataset.id)
+            const color = p?.colors?.[0]?.label || ''
+            addToCart(card.dataset.name, parseInt(card.dataset.price), card.querySelector('img')?.src || '', card.dataset.id, color)
+          })
+        })
+        saleGrid.querySelectorAll('.wishlist-heart-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation()
+            e.preventDefault()
+            const id = btn.dataset.id
+            const liked = window.toggleWishlist(id)
+            btn.querySelector('svg').setAttribute('fill', liked ? '#e05252' : 'none')
+            btn.querySelector('svg').setAttribute('stroke', liked ? '#e05252' : '#1C1C1C')
+            btn.style.background = liked ? 'rgba(224,82,82,0.15)' : 'rgba(255,255,255,0.85)'
+            const name = btn.closest('.product-card')?.dataset.name || 'Item'
+            window.showToast(liked ? `♥  ${name} saved` : `${name} removed from wishlist`)
+          })
+        })
+        }
+      }
+    })
+  </script>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

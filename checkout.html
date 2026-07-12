@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+  <link rel="alternate icon" href="/favicon/favicon.ico" />
+  <title>Secure Checkout — Blome</title>
+  <meta name="description" content="Complete your purchase securely at Blome. Express checkout for premium leather handbags with multiple payment options. Fast, encrypted, and reliable." />
+  <meta name="keywords" content="secure checkout Blome, luxury handbag payment, buy leather bag, express checkout handbags" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://blomebags.com/checkout.html" />
+  <meta property="og:title" content="Secure Checkout — Blome" />
+  <meta property="og:description" content="Complete your purchase securely at Blome. Express checkout for premium leather handbags with multiple payment options. Fast, encrypted, and reliable." />
+  <meta property="og:url" content="https://blomebags.com/checkout.html" />
+  <meta property="og:image" content="https://blomebags.com/src/assets/Blome_Bag_logo-removebg-preview.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Blome" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Secure Checkout — Blome" />
+  <meta name="twitter:description" content="Complete your purchase securely at Blome. Express checkout for premium leather handbags with multiple payment options. Fast, encrypted, and reliable." />
+  <meta name="twitter:image" content="https://blomebags.com/src/assets/Blome_Bag_logo-removebg-preview.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./src/style.css" />
+  <style>
+    .checkout-page {
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .checkout-shell {
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 28px 0 0;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .breadcrumb a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .breadcrumb a:hover { color: var(--charcoal); }
+    .breadcrumb span { color: var(--charcoal); font-weight: 600; }
+    .breadcrumb-sep { color: var(--warm-gray); }
+
+    .progress-steps {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      padding: 24px 0 18px;
+    }
+    .progress-step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .progress-step .step-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--warm-gray);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 800;
+      transition: background 0.3s;
+    }
+    .progress-step.active .step-circle {
+      background: var(--charcoal);
+    }
+    .progress-step.completed .step-circle {
+      background: var(--lime);
+      color: var(--charcoal);
+    }
+    .progress-step.active { color: var(--charcoal); }
+    .progress-step.completed { color: var(--charcoal); }
+    .progress-line {
+      width: 48px;
+      height: 2px;
+      background: var(--warm-gray);
+      margin: 0 12px;
+      transition: background 0.3s;
+    }
+    .progress-line.completed { background: var(--lime); }
+
+    .checkout-hero {
+      padding: 20px 0 18px;
+      text-align: center;
+    }
+    .checkout-hero h1 {
+      font-family: Brigila, var(--font-display), serif;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      line-height: 0.98;
+      font-weight: 500;
+      letter-spacing: 0;
+      margin: 0;
+    }
+    .checkout-hero p {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .checkout-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(320px, 0.85fr);
+      gap: 24px;
+      align-items: start;
+      padding-bottom: 60px;
+    }
+
+    .checkout-section {
+      background: white;
+      border-radius: 16px;
+      border: 1px solid var(--warm-gray);
+      padding: 28px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+    }
+    .checkout-section + .checkout-section {
+      margin-top: 20px;
+    }
+    .checkout-section h2 {
+      margin: 0 0 20px;
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 2vw, 1.65rem);
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .checkout-field {
+      margin-bottom: 16px;
+    }
+    .checkout-label {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--charcoal);
+    }
+    .checkout-label .required { color: #e05252; }
+    .checkout-input {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1.5px solid var(--warm-gray);
+      border-radius: 12px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      background: white;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .checkout-input:focus {
+      border-color: var(--charcoal);
+      box-shadow: 0 0 0 3px rgba(28,28,28,0.06);
+    }
+    .checkout-input.error {
+      border-color: #e05252;
+    }
+    .checkout-input.error:focus {
+      box-shadow: 0 0 0 3px rgba(224,82,82,0.12);
+    }
+    select.checkout-input {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238A8582' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 42px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .billing-toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 4px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .billing-toggle input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--charcoal);
+      cursor: pointer;
+    }
+
+    #billing-fields { margin-top: 16px; }
+
+    .order-summary-card {
+      background: white;
+      border-radius: 16px;
+      border: 1px solid var(--warm-gray);
+      padding: 28px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+      position: sticky;
+      top: calc(var(--nav-h) + var(--announce-h) + 24px);
+    }
+    .order-summary-card h2 {
+      margin: 0 0 20px;
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 2vw, 1.65rem);
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .checkout-item {
+      display: grid;
+      grid-template-columns: 60px minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--warm-gray);
+    }
+    .checkout-item:first-of-type { padding-top: 0; }
+    .checkout-item:last-of-type { border-bottom: none; }
+    .checkout-item-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      background: var(--ivory);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+    .checkout-item-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 6px;
+      display: block;
+    }
+    .checkout-item-info h3 {
+      margin: 0 0 2px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+    .checkout-item-info p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    .checkout-item-price {
+      font-size: 0.92rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .summary-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: baseline;
+      margin: 14px 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.35;
+    }
+    .summary-row span:last-child {
+      color: var(--charcoal);
+      font-weight: 700;
+      text-align: right;
+      white-space: nowrap;
+    }
+    .summary-row.discount span:last-child {
+      color: #2e7d32;
+    }
+
+    .promo-form {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 96px;
+      height: 52px;
+      margin: 26px 0 28px;
+      border: 1px solid var(--warm-gray);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .promo-form input {
+      width: 100%;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      padding: 0 16px;
+      font-size: 0.92rem;
+      color: var(--charcoal);
+    }
+    .promo-form input::placeholder { color: #818181; }
+    .promo-form button {
+      margin: 0;
+      border: 0;
+      background: var(--charcoal);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .promo-form button:hover { background: #171717; }
+
+    .summary-divider {
+      border: 0;
+      border-top: 1px solid var(--warm-gray);
+      margin: 0 0 28px;
+    }
+    .summary-total {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 24px;
+      font-size: 1rem;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+    .summary-total strong {
+      font-size: clamp(1.3rem, 2.2vw, 1.65rem);
+      white-space: nowrap;
+    }
+
+    .payment-section {
+      margin-top: 20px;
+    }
+    .payment-section h3 {
+      margin: 0 0 16px;
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+      font-weight: 800;
+      line-height: 1.1;
+    }
+    .payment-icons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 18px 0;
+    }
+    .pay-badge {
+      height: 35px;
+      min-width: 54px;
+      padding: 0 9px;
+      border-radius: 4px;
+      border: 1px solid #e1e1e1;
+      background: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: -.04em;
+      color: #0d2a7a;
+    }
+    .pay-badge.mastercard {
+      min-width: 54px;
+      position: relative;
+      color: transparent;
+    }
+    .pay-badge.mastercard::before,
+    .pay-badge.mastercard::after {
+      content: "";
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      position: absolute;
+      top: 6px;
+    }
+    .pay-badge.mastercard::before {
+      left: 12px;
+      background: #eb001b;
+    }
+    .pay-badge.mastercard::after {
+      right: 12px;
+      background: #f79e1b;
+      mix-blend-mode: multiply;
+    }
+    .pay-badge.amex {
+      background: #1474bc;
+      color: #fff;
+    }
+    .pay-badge.paypal {
+      color: #063d8f;
+      font-size: 1rem;
+      font-style: italic;
+    }
+
+    .place-order-btn {
+      width: 100%;
+      min-height: 54px;
+      border: 0;
+      border-radius: 8px;
+      background: var(--lime);
+      color: var(--charcoal);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.2s, filter 0.2s;
+    }
+    .place-order-btn:hover {
+      filter: brightness(.96);
+      transform: translateY(-1px);
+    }
+    .place-order-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .secure-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 18px;
+    }
+
+    .payment-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .payment-method-card {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      border: 1.5px solid var(--warm-gray);
+      border-radius: 10px;
+      background: #fff;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+
+    .payment-method-card:hover {
+      border-color: var(--charcoal);
+      background: #fcfcf9;
+    }
+
+    .payment-method-card.selected {
+      border-color: var(--charcoal);
+      background: #faf9f5;
+      box-shadow: 0 0 0 3px rgba(28,28,28,0.06);
+    }
+
+    .payment-method-card input[type="radio"] {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      border: 2px solid var(--warm-gray);
+      border-radius: 50%;
+      margin: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s;
+    }
+
+    .payment-method-card input[type="radio"]:checked {
+      border-color: var(--charcoal);
+      background: var(--charcoal);
+      box-shadow: inset 0 0 0 4px #fff;
+    }
+
+    .payment-method-card .pm-icon {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      border-radius: 8px;
+      background: var(--ivory);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--charcoal);
+    }
+
+    .payment-method-card .pm-label {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--charcoal);
+    }
+
+    .payment-method-card .pm-desc {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+
+    .payment-detail-panel {
+      margin: 8px 0 16px;
+      padding: 16px;
+      background: var(--ivory);
+      border-radius: 10px;
+      border: 1px solid var(--warm-gray);
+      display: none;
+    }
+
+    .payment-detail-panel.active {
+      display: block;
+    }
+
+    .payment-detail-panel .account-info {
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: var(--charcoal);
+      margin-bottom: 14px;
+    }
+
+    .payment-detail-panel .account-info strong {
+      display: inline-block;
+      min-width: 80px;
+    }
+
+    .upload-area {
+      position: relative;
+      border: 1.5px dashed var(--warm-gray);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .upload-area:hover {
+      border-color: var(--charcoal);
+      background: rgba(28,28,28,0.02);
+    }
+
+    .upload-area.has-file {
+      border-style: solid;
+      border-color: var(--lime);
+      background: rgba(200,226,122,0.06);
+    }
+
+    .upload-area input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .upload-area .upload-icon {
+      width: 36px;
+      height: 36px;
+      margin: 0 auto 8px;
+      border-radius: 50%;
+      background: var(--warm-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .upload-area .upload-text {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+
+    .upload-area .upload-hint {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .upload-preview {
+      display: none;
+      margin-top: 10px;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      max-width: 200px;
+    }
+
+    .upload-preview.has-file {
+      display: block;
+    }
+
+    .upload-preview img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      border: 1px solid var(--warm-gray);
+    }
+
+    .upload-preview .remove-file {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(28,28,28,0.7);
+      color: #fff;
+      border: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      transition: background 0.2s;
+    }
+
+    .upload-preview .remove-file:hover {
+      background: rgba(28,28,28,0.9);
+    }
+
+    .payment-error {
+      color: #d32f2f;
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-top: 8px;
+      display: none;
+    }
+
+    .payment-error.show {
+      display: block;
+    }
+
+    #billing-fields.hidden { display: none; }
+
+    @media (max-width: 1024px) {
+      .checkout-layout {
+        grid-template-columns: 1fr;
+      }
+      .order-summary-card {
+        position: static;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .checkout-shell {
+        width: min(1180px, calc(100% - 28px));
+      }
+      .checkout-section,
+      .order-summary-card {
+        padding: 22px;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .progress-line { width: 32px; margin: 0 8px; }
+      .progress-step .step-circle { width: 28px; height: 28px; font-size: 0.72rem; }
+      .progress-step { font-size: 0.75rem; gap: 6px; }
+    }
+
+    @media (max-width: 560px) {
+      .checkout-section,
+      .order-summary-card {
+        padding: 16px;
+      }
+      .checkout-item { grid-template-columns: 50px minmax(0, 1fr) auto; gap: 10px; }
+      .checkout-item-img { width: 50px; height: 50px; }
+      .checkout-item-info h3 { font-size: 0.82rem; }
+      .checkout-item-price { font-size: 0.85rem; }
+      .promo-form { grid-template-columns: 1fr 80px; }
+    }
+
+    @media (max-width: 374px) {
+      .checkout-shell { width: min(1180px, calc(100% - 16px)); }
+      .checkout-section, .order-summary-card { padding: 12px; }
+      .checkout-hero h1 { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+      .checkout-hero p { font-size: 0.82rem; }
+      .checkout-input { padding: 11px 14px; font-size: 0.82rem; }
+      .checkout-section h2 { font-size: clamp(1.1rem, 4vw, 1.3rem); }
+      .progress-step .step-circle { width: 24px; height: 24px; font-size: 0.65rem; }
+      .progress-step { font-size: 0.68rem; }
+      .progress-line { width: 24px; margin: 0 6px; }
+      .checkout-item { grid-template-columns: 42px minmax(0, 1fr) auto; gap: 8px; }
+      .checkout-item-img { width: 42px; height: 42px; }
+      .place-order-btn { min-height: 48px; font-size: 0.88rem; }
+      .secure-note { font-size: 0.78rem; }
+    }
+
+    @media (min-width: 1536px) {
+      .checkout-hero h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); }
+      .checkout-section, .order-summary-card { padding: 32px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+  <div id="toast" class="toast"></div>
+
+  <header id="navbar" class="fixed top-0 left-0 w-full z-50">
+    <div class="announce-bar">
+      ✦&nbsp; <strong>Free shipping</strong>&nbsp;on orders over $200 &nbsp;·&nbsp; <strong>30-day</strong>&nbsp;easy returns &nbsp;·&nbsp; Complimentary <strong>gift wrapping</strong>&nbsp; ✦
+    </div>
+
+    <div class="nav-glass" id="nav-main">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between" style="height:var(--nav-h);">
+
+          <a href="/" style="display:flex;align-items:center;text-decoration:none;">
+            <img src="./src/assets/Blome_Bag_logo-removebg-preview.png" alt="Blome Bag" style="height:60px;width:auto;flex-shrink:0;" />
+          </a>
+
+          <nav class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">Home</a>
+            <div class="nav-dropdown-group">
+              <a href="/product-listing.html" class="nav-link" aria-haspopup="true">Products</a>
+              <div class="nav-dropdown" role="menu">
+                <a href="/product-listing.html?category=Tote" class="nav-dropdown-link" role="menuitem">Totes</a>
+                <a href="/product-listing.html?category=Crossbody" class="nav-dropdown-link" role="menuitem">Crossbody</a>
+                <a href="/product-listing.html?category=Clutch" class="nav-dropdown-link" role="menuitem">Clutches</a>
+                <a href="/product-listing.html?category=Shoulder" class="nav-dropdown-link" role="menuitem">Shoulder</a>
+                <a href="/product-listing.html?category=Bucket" class="nav-dropdown-link" role="menuitem">Bucket</a>
+                <div class="nav-dropdown-divider" role="separator"></div>
+                <a href="/about.html" class="nav-dropdown-link" role="menuitem">About Us</a>
+                <a href="/product-listing.html" class="nav-dropdown-link" role="menuitem">View All</a>
+              </div>
+            </div>
+            <a href="/contact.html" class="nav-link">Contact Us</a>
+          </nav>
+
+          <div class="flex items-center gap-10">
+
+            <button class="nav-icon-btn hidden md:flex" id="header-search-btn" aria-label="Search">
+              <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            </button>
+
+            <a href="/cart.html" class="nav-icon-btn relative" aria-label="Cart">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+              <span class="cart-badge" id="cart-count">0</span>
+            </a>
+
+            <div id="nav-user" class="nav-user">
+              <span id="nav-username" class="nav-user-name"></span>
+              <button id="nav-signout-btn" class="nav-signout-btn" type="button">Sign out</button>
+            </div>
+
+            <button class="nav-icon-btn md:hidden" id="menu-btn" aria-label="Toggle menu" aria-expanded="false">
+              <svg id="menu-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="mobile-menu" class="hidden md:hidden" style="background:white;border-bottom:1px solid var(--warm-gray);padding:0.75rem 1.5rem 1.25rem;">
+        <a href="/" class="mobile-nav-link">Home</a>
+        <a href="/product-listing.html" class="mobile-nav-link">Products</a>
+        <div class="mobile-sub-links">
+          <a href="/product-listing.html?category=Tote" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">Totes</a>
+          <a href="/product-listing.html?category=Crossbody" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">Crossbody</a>
+          <a href="/product-listing.html?category=Clutch" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">Clutches</a>
+          <a href="/product-listing.html?category=Shoulder" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">Shoulder</a>
+          <a href="/product-listing.html?category=Bucket" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">Bucket</a>
+          <a href="/about.html" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">About Us</a>
+        </div>
+        <a href="/contact.html" class="mobile-nav-link">Contact Us</a>
+        <div id="mobile-nav-user" class="mobile-user-row">
+          <span id="mobile-nav-username"></span>
+          <button id="mobile-nav-signout-btn" class="nav-signout-btn" type="button">Sign out</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="checkout-page">
+    <main id="main-content" class="checkout-shell">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">/</span>
+        <a href="/cart.html">Cart</a>
+        <span class="breadcrumb-sep" aria-hidden="true">/</span>
+        <span aria-current="page">Checkout</span>
+      </nav>
+
+      <div class="progress-steps" role="group" aria-label="Checkout progress">
+        <div class="progress-step completed">
+          <span class="step-circle" aria-hidden="true">✓</span>
+          Cart
+        </div>
+        <div class="progress-line completed" aria-hidden="true"></div>
+        <div class="progress-step active">
+          <span class="step-circle" aria-hidden="true">2</span>
+          Checkout
+        </div>
+        <div class="progress-line" aria-hidden="true"></div>
+        <div class="progress-step">
+          <span class="step-circle" aria-hidden="true">3</span>
+          Confirmation
+        </div>
+      </div>
+
+      <section class="checkout-hero">
+        <h1>Secure Checkout</h1>
+        <p>Complete your order with confidence</p>
+      </section>
+
+      <div class="checkout-layout">
+
+        <div>
+
+          <div class="checkout-section" id="shipping-section">
+            <h2>Shipping Information</h2>
+            <form id="shipping-form" novalidate>
+              <div class="form-row">
+                <div class="checkout-field">
+                  <label for="field-firstname" class="checkout-label">First Name <span class="required" aria-hidden="true">*</span></label>
+                  <input id="field-firstname" name="firstName" type="text" required class="checkout-input" placeholder="Jane" autocomplete="given-name" />
+                </div>
+                <div class="checkout-field">
+                  <label for="field-lastname" class="checkout-label">Last Name <span class="required" aria-hidden="true">*</span></label>
+                  <input id="field-lastname" name="lastName" type="text" required class="checkout-input" placeholder="Doe" autocomplete="family-name" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="checkout-field">
+                  <label for="field-email" class="checkout-label">Email <span class="required" aria-hidden="true">*</span></label>
+                  <input id="field-email" name="email" type="email" required class="checkout-input" placeholder="jane@example.com" autocomplete="email" />
+                </div>
+                <div class="checkout-field">
+                  <label for="field-phone" class="checkout-label">Phone <span class="required" aria-hidden="true">*</span></label>
+                  <input id="field-phone" name="phone" type="tel" required class="checkout-input" placeholder="+1 (555) 000-0000" autocomplete="tel" />
+                </div>
+              </div>
+              <div class="checkout-field">
+                <label for="field-address" class="checkout-label">Address <span class="required" aria-hidden="true">*</span></label>
+                <input id="field-address" name="address" type="text" required class="checkout-input" placeholder="123 Fashion Avenue" autocomplete="street-address" />
+              </div>
+              <div class="form-row">
+                <div class="checkout-field">
+                  <label for="field-city" class="checkout-label">City <span class="required" aria-hidden="true">*</span></label>
+                  <input id="field-city" name="city" type="text" required class="checkout-input" placeholder="New York" autocomplete="address-level2" />
+                </div>
+                <div class="checkout-field">
+                  <label for="field-state" class="checkout-label">State <span class="required" aria-hidden="true">*</span></label>
+                  <select id="field-state" name="state" required class="checkout-input" autocomplete="address-level1">
+                    <option value="">Select state</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                  </select>
+                </div>
+              </div>
+              <div class="checkout-field">
+                <label for="field-zip" class="checkout-label">ZIP Code <span class="required" aria-hidden="true">*</span></label>
+                <input id="field-zip" name="zip" type="text" required class="checkout-input" placeholder="10001" autocomplete="postal-code" />
+              </div>
+            </form>
+          </div>
+
+          <div class="checkout-section" id="billing-section">
+            <h2>Billing Address</h2>
+            <label class="billing-toggle">
+              <input type="checkbox" id="billing-same" checked />
+              Same as shipping address
+            </label>
+            <div id="billing-fields" class="hidden">
+              <div class="form-row">
+                <div class="checkout-field">
+                  <label for="field-bill-firstname" class="checkout-label">First Name <span class="required" aria-hidden="true">*</span></label>
+                  <input id="field-bill-firstname" name="billFirstName" type="text" class="checkout-input" placeholder="Jane" autocomplete="billing given-name" />
+                </div>
+                <div class="checkout-field">
+                  <label for="field-bill-lastname" class="checkout-label">Last Name <span class="required" aria-hidden="true">*</span></label>
+                  <input id="field-bill-lastname" name="billLastName" type="text" class="checkout-input" placeholder="Doe" autocomplete="billing family-name" />
+                </div>
+              </div>
+              <div class="checkout-field">
+                <label for="field-bill-address" class="checkout-label">Address <span class="required" aria-hidden="true">*</span></label>
+                <input id="field-bill-address" name="billAddress" type="text" class="checkout-input" placeholder="123 Fashion Avenue" autocomplete="billing street-address" />
+              </div>
+              <div class="form-row">
+                <div class="checkout-field">
+                  <label for="field-bill-city" class="checkout-label">City <span class="required" aria-hidden="true">*</span></label>
+                  <input id="field-bill-city" name="billCity" type="text" class="checkout-input" placeholder="New York" autocomplete="billing address-level2" />
+                </div>
+                <div class="checkout-field">
+                  <label for="field-bill-state" class="checkout-label">State <span class="required" aria-hidden="true">*</span></label>
+                  <select id="field-bill-state" name="billState" class="checkout-input" autocomplete="billing address-level1">
+                    <option value="">Select state</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                  </select>
+                </div>
+              </div>
+              <div class="checkout-field">
+                <label for="field-bill-zip" class="checkout-label">ZIP Code <span class="required" aria-hidden="true">*</span></label>
+                <input id="field-bill-zip" name="billZip" type="text" class="checkout-input" placeholder="10001" autocomplete="billing postal-code" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <aside>
+
+          <div class="order-summary-card" aria-label="Order summary">
+            <h2>Order Summary</h2>
+
+            <div id="checkout-items"></div>
+
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span id="summary-subtotal">$0</span>
+            </div>
+            <div class="summary-row">
+              <span>Shipping</span>
+              <span id="summary-shipping">Free</span>
+            </div>
+            <div class="summary-row">
+              <span>Estimated Tax</span>
+              <span id="summary-tax">$0</span>
+            </div>
+            <div class="summary-row discount" id="discount-row" style="display:none;">
+              <span>Discount (WELCOME10)</span>
+              <span id="summary-discount">-$0</span>
+            </div>
+
+            <form class="promo-form" id="promo-form">
+              <input type="text" id="promo-code" placeholder="Promo code" autocomplete="off" aria-label="Promo code" />
+              <button type="submit">Apply</button>
+            </form>
+
+            <hr class="summary-divider" />
+
+            <div class="summary-total">
+              <span>Total</span>
+              <strong id="summary-total">$0</strong>
+            </div>
+
+            <div class="payment-section">
+              <h3>Payment Method</h3>
+
+              <div class="payment-methods" id="payment-methods" role="radiogroup" aria-label="Payment methods">
+
+                <label class="payment-method-card" data-method="jazzcash">
+                  <input type="radio" name="payment-method" value="jazzcash" />
+                  <span class="pm-icon" style="background:#d42a2a;color:#fff;">JC</span>
+                  <div>
+                    <div class="pm-label">JazzCash</div>
+                    <div class="pm-desc">Mobile wallet &mdash; 0300 1234567</div>
+                  </div>
+                </label>
+
+                <label class="payment-method-card" data-method="easypaisa">
+                  <input type="radio" name="payment-method" value="easypaisa" />
+                  <span class="pm-icon" style="background:#107a3e;color:#fff;">EP</span>
+                  <div>
+                    <div class="pm-label">EasyPaisa</div>
+                    <div class="pm-desc">Mobile wallet &mdash; 0300 1234567</div>
+                  </div>
+                </label>
+
+                <label class="payment-method-card" data-method="card">
+                  <input type="radio" name="payment-method" value="card" />
+                  <span class="pm-icon" style="background:#1a3a6b;color:#fff;">
+                    <svg width="18" height="14" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 18">
+                      <rect x="1" y="2" width="22" height="14" rx="2.5" />
+                      <line x1="1" y1="8" x2="23" y2="8" />
+                    </svg>
+                  </span>
+                  <div>
+                    <div class="pm-label">Credit / Debit Card</div>
+                    <div class="pm-desc">Visa, Mastercard, American Express</div>
+                  </div>
+                </label>
+
+              </div>
+
+              <div id="payment-error" class="payment-error">Please select a payment method.</div>
+
+              <div class="payment-detail-panel" id="panel-jazzcash">
+                <div class="account-info">
+                  <strong>Account:</strong> JazzCash<br />
+                  <strong>Number:</strong> 0300 1234567<br />
+                  <strong>Name:</strong> Blome Official<br />
+                  <strong>Amount:</strong> <span id="pay-amount-jazzcash">$0</span>
+                </div>
+                <div class="upload-area" id="upload-area-jazzcash">
+                  <input type="file" accept="image/*" capture="environment" />
+                  <div class="upload-icon">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                      <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                      <polyline points="17 8 12 3 7 8" />
+                      <line x1="12" y1="3" x2="12" y2="15" />
+                    </svg>
+                  </div>
+                  <div class="upload-text">Upload payment screenshot</div>
+                  <div class="upload-hint">Tap to capture or choose from gallery</div>
+                </div>
+                <div class="upload-preview" id="preview-jazzcash">
+                  <img id="preview-img-jazzcash" src="" alt="Payment screenshot" />
+                  <button class="remove-file" data-for="jazzcash" type="button" aria-label="Remove screenshot">&times;</button>
+                </div>
+              </div>
+
+              <div class="payment-detail-panel" id="panel-easypaisa">
+                <div class="account-info">
+                  <strong>Account:</strong> EasyPaisa<br />
+                  <strong>Number:</strong> 0300 1234567<br />
+                  <strong>Name:</strong> Blome Official<br />
+                  <strong>Amount:</strong> <span id="pay-amount-easypaisa">$0</span>
+                </div>
+                <div class="upload-area" id="upload-area-easypaisa">
+                  <input type="file" accept="image/*" capture="environment" />
+                  <div class="upload-icon">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                      <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                      <polyline points="17 8 12 3 7 8" />
+                      <line x1="12" y1="3" x2="12" y2="15" />
+                    </svg>
+                  </div>
+                  <div class="upload-text">Upload payment screenshot</div>
+                  <div class="upload-hint">Tap to capture or choose from gallery</div>
+                </div>
+                <div class="upload-preview" id="preview-easypaisa">
+                  <img id="preview-img-easypaisa" src="" alt="Payment screenshot" />
+                  <button class="remove-file" data-for="easypaisa" type="button" aria-label="Remove screenshot">&times;</button>
+                </div>
+              </div>
+
+              <div class="payment-detail-panel" id="panel-card">
+                <div class="checkout-field">
+                  <label for="field-card" class="checkout-label">Card Number <span class="required" aria-hidden="true">*</span></label>
+                  <input id="field-card" name="card" type="text" inputmode="numeric" class="checkout-input" placeholder="1234 5678 9012 3456" maxlength="19" autocomplete="cc-number" />
+                </div>
+                <div class="form-row">
+                  <div class="checkout-field">
+                    <label for="field-expiry" class="checkout-label">Expiry <span class="required" aria-hidden="true">*</span></label>
+                    <input id="field-expiry" name="expiry" type="text" class="checkout-input" placeholder="MM/YY" maxlength="5" autocomplete="cc-exp" />
+                  </div>
+                  <div class="checkout-field">
+                    <label for="field-cvc" class="checkout-label">CVC <span class="required" aria-hidden="true">*</span></label>
+                    <input id="field-cvc" name="cvc" type="text" inputmode="numeric" class="checkout-input" placeholder="123" maxlength="4" autocomplete="cc-csc" />
+                  </div>
+                </div>
+                <div class="payment-icons" aria-label="Accepted payment methods">
+                  <span class="pay-badge">VISA</span>
+                  <span class="pay-badge mastercard">Mastercard</span>
+                  <span class="pay-badge amex">AMEX</span>
+                  <span class="pay-badge paypal">P</span>
+                </div>
+                <div style="margin-top:10px;font-size:0.78rem;color:var(--muted);line-height:1.5;">
+                  No screenshot needed for card payments.
+                </div>
+              </div>
+
+              <button class="place-order-btn" id="place-order-btn" type="button">
+                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="5" y="10" width="14" height="11" rx="1.5" />
+                  <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+                </svg>
+                <span>Place Order</span>
+              </button>
+
+              <div class="secure-note">
+                <svg width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
+                  <path d="m8.5 12.5 2.2 2.2 4.8-5" />
+                </svg>
+                <span>Secure checkout</span>
+              </div>
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+
+    </main>
+  </div>
+
+  <footer style="background:white;border-top:1px solid var(--warm-gray);">
+    <div class="max-w-7xl mx-auto" style="padding:3rem clamp(1.5rem, 5vw, 4rem);">
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-12 mb-12">
+
+        <div class="col-span-2 md:col-span-1">
+          <div class="flex items-center mb-4">
+            <img src="./src/assets/Blome_Bag_logo-removebg-preview.png" alt="Blome Bag" style="height:60px;width:auto;flex-shrink:0;" />
+          </div>
+          <p style="font-family:var(--font-body);font-size:0.85rem;color:var(--muted);line-height:1.72;max-width:210px;">
+            Premium leather handbags crafted for the modern woman. Timeless elegance, exceptional quality.
+          </p>
+          <div class="flex gap-2.5 mt-5">
+            <a href="#" class="social-btn" aria-label="Instagram"><svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17" cy="7" r="1.5" fill="var(--charcoal)"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Pinterest"><svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24"><path d="M8 12.5a4.5 4.5 0 109 0 4.5 4.5 0 00-9 0z"/><path d="M12 2a10 10 0 00-3.3 19.4c-.1-.9-.2-2.3 0-3.3l1.6-7"/><path d="M14 13.5l-1-5.5"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Facebook"><svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer-heading">Shop</p>
+          <ul style="list-style:none;">
+            <li><a href="/product-listing.html" class="footer-link">All Bags</a></li>
+            <li><a href="/product-listing.html?category=Tote" class="footer-link">Totes</a></li>
+            <li><a href="/product-listing.html?category=Crossbody" class="footer-link">Crossbody</a></li>
+            <li><a href="/product-listing.html?category=Clutch" class="footer-link">Clutches</a></li>
+            <li><a href="/product-listing.html?category=Sale" class="footer-link">Sale</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-heading">Support</p>
+          <ul style="list-style:none;">
+            <li><a href="/contact.html" class="footer-link">Contact Us</a></li>
+            <li><a href="/shipping-returns.html" class="footer-link">Shipping &amp; Returns</a></li>
+            <li><a href="/account.html" class="footer-link">My Account</a></li>
+            <li><a href="/gift-cards.html" class="footer-link">Gift Cards</a></li>
+            <li><a href="/loyalty.html" class="footer-link">Loyalty Program</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-heading">Company</p>
+          <ul style="list-style:none;">
+            <li><a href="/about.html" class="footer-link">About Us</a></li>
+            <li><a href="/contact.html" class="footer-link">Contact</a></li>
+            <li><a href="/shipping-returns.html#privacy" class="footer-link">Privacy Policy</a></li>
+            <li><a href="/shipping-returns.html#terms" class="footer-link">Terms of Service</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" style="border-top:1px solid var(--warm-gray);">
+        <div class="flex items-center gap-4">
+          <p style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">&copy; 2025 Blome. All rights reserved.</p>
+          <div class="flex items-center gap-2" aria-label="Accepted payment methods">
+            <span style="font-size:0.7rem;font-weight:800;color:#0d2a7a;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;">VISA</span>
+            <span style="font-size:0.7rem;font-weight:800;color:transparent;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;position:relative;min-width:40px;display:inline-flex;align-items:center;justify-content:center;">MC</span>
+            <span style="font-size:0.7rem;font-weight:800;color:#fff;background:#1474bc;border:1px solid #1474bc;border-radius:4px;padding:2px 6px;">AMEX</span>
+            <span style="font-size:0.7rem;font-weight:800;color:#063d8f;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;">PayPal</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initProducts, getProductsSync } from '/src/products.js'
+    import { auth, db, isFirebaseAvailable } from '/src/firebase.js'
+    import { onAuthStateChanged } from 'firebase/auth'
+    import { addDoc, collection } from 'firebase/firestore'
+
+    async function initCheckout() {
+      await initProducts()
+      const products = getProductsSync()
+
+      const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 0
+      })
+
+      const productColorMap = {
+        1: 'Tan', 2: 'Black', 3: 'Cream', 4: 'Black', 5: 'Cognac', 6: 'Brown'
+      }
+
+      const toast = document.getElementById('toast')
+      const checkoutItems = document.getElementById('checkout-items')
+      const promoForm = document.getElementById('promo-form')
+      const mobileMenu = document.getElementById('mobile-menu')
+      const menuBtn = document.getElementById('menu-btn')
+      const menuIcon = document.getElementById('menu-icon')
+      const navUser = document.getElementById('nav-user')
+      const navUsername = document.getElementById('nav-username')
+      const mobileNavUser = document.getElementById('mobile-nav-user')
+      const mobileNavUsername = document.getElementById('mobile-nav-username')
+      const billingSame = document.getElementById('billing-same')
+      const billingFields = document.getElementById('billing-fields')
+      const placeOrderBtn = document.getElementById('place-order-btn')
+
+      let currentUser = null
+
+      if (isFirebaseAvailable) {
+        onAuthStateChanged(auth, (user) => {
+          currentUser = user
+          const signedIn = !!user
+          const name = user?.displayName || displayNameFromEmail(user?.email) || 'Customer'
+          ;[navUser, mobileNavUser].forEach(el => el?.classList.toggle('is-visible', signedIn))
+          if (navUsername) navUsername.textContent = name
+          if (mobileNavUsername) mobileNavUsername.textContent = name
+        })
+      }
+
+      let cart = normaliseCart(loadCart())
+      let promoApplied = false
+      let discountPercent = 0
+
+      function loadCart() {
+        try { return JSON.parse(localStorage.getItem('blome_cart')) || [] } catch { return [] }
+      }
+
+      function saveCart() {
+        localStorage.setItem('blome_cart', JSON.stringify(cart))
+        updateCartBadge()
+      }
+
+      function updateCartBadge() {
+        const badge = document.getElementById('cart-count')
+        const count = cartCount()
+        badge.textContent = count
+        badge.classList.toggle('cart-badge--hidden', count === 0)
+      }
+
+      function normaliseCart(items) {
+        return items
+          .filter(item => item && item.id != null)
+          .map(item => {
+            const numId = Number(item.id)
+            const normId = numId || item.id
+            const product = products.find(p => String(p.id) === String(normId))
+            return {
+              id: normId,
+              name: item.name || product?.name || 'Blome Bag',
+              color: item.color || productColorMap[normId] || product?.colors?.[0]?.label || 'Black',
+              price: Number(item.price || product?.price || 0),
+              qty: Math.max(1, Number(item.qty || 1)),
+              img: item.img || item.image || product?.image || './src/assets/Bag1.png'
+            }
+          })
+      }
+
+      function cartCount() {
+        return cart.reduce((sum, item) => sum + item.qty, 0)
+      }
+
+      function cartSubtotal() {
+        return cart.reduce((sum, item) => sum + item.price * item.qty, 0)
+      }
+
+      function estimatedTax(subtotal) {
+        return Math.round(subtotal * 0.08)
+      }
+
+      function showToast(message) {
+        toast.textContent = message
+        toast.classList.add('show')
+        clearTimeout(toast._hide)
+        toast._hide = setTimeout(() => toast.classList.remove('show'), 2800)
+      }
+
+      function renderOrderSummary() {
+        const count = cartCount()
+        const subtotal = cartSubtotal()
+        const tax = estimatedTax(subtotal)
+        const discount = promoApplied ? Math.round(subtotal * discountPercent) : 0
+        const total = subtotal + tax - discount
+
+        document.getElementById('summary-subtotal').textContent = formatter.format(subtotal)
+        document.getElementById('summary-tax').textContent = formatter.format(tax)
+        document.getElementById('summary-total').textContent = formatter.format(total)
+
+        const discountRow = document.getElementById('discount-row')
+        if (promoApplied && discount > 0) {
+          discountRow.style.display = 'grid'
+          document.getElementById('summary-discount').textContent = `-${formatter.format(discount)}`
+        } else {
+          discountRow.style.display = 'none'
+        }
+
+        updatePaymentAmounts()
+
+        checkoutItems.innerHTML = cart.map(item => `
+          <div class="checkout-item" data-id="${item.id}">
+            <div class="checkout-item-img">
+              <img src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.style.display='none'" />
+            </div>
+            <div class="checkout-item-info">
+              <h3>${item.name}</h3>
+              <p>${item.color} &times; ${item.qty}</p>
+            </div>
+            <div class="checkout-item-price">${formatter.format(item.price * item.qty)}</div>
+          </div>
+        `).join('') || '<p style="color:var(--muted);padding:12px 0;">Your cart is empty.</p>'
+      }
+
+      promoForm.addEventListener('submit', event => {
+        event.preventDefault()
+        const codeInput = document.getElementById('promo-code')
+        const code = codeInput.value.trim().toUpperCase()
+
+        if (code === 'WELCOME10') {
+          promoApplied = true
+          discountPercent = 0.10
+          codeInput.value = ''
+          codeInput.placeholder = '10% off applied!'
+          renderOrderSummary()
+          showToast('Promo code applied! 10% off')
+        } else if (code === '') {
+          codeInput.placeholder = 'Enter a code'
+        } else {
+          codeInput.value = ''
+          codeInput.placeholder = 'Invalid code'
+        }
+      })
+
+      billingSame.addEventListener('change', () => {
+        billingFields.classList.toggle('hidden', billingSame.checked)
+      })
+
+      function getShippingData() {
+        return {
+          firstName: document.getElementById('field-firstname').value.trim(),
+          lastName: document.getElementById('field-lastname').value.trim(),
+          email: document.getElementById('field-email').value.trim(),
+          phone: document.getElementById('field-phone').value.trim(),
+          address: document.getElementById('field-address').value.trim(),
+          city: document.getElementById('field-city').value.trim(),
+          state: document.getElementById('field-state').value,
+          zip: document.getElementById('field-zip').value.trim()
+        }
+      }
+
+      function getBillingData() {
+        if (billingSame.checked) return null
+        return {
+          firstName: document.getElementById('field-bill-firstname').value.trim(),
+          lastName: document.getElementById('field-bill-lastname').value.trim(),
+          address: document.getElementById('field-bill-address').value.trim(),
+          city: document.getElementById('field-bill-city').value.trim(),
+          state: document.getElementById('field-bill-state').value,
+          zip: document.getElementById('field-bill-zip').value.trim()
+        }
+      }
+
+      function validateField(id) {
+        const el = document.getElementById(id)
+        if (!el.value || !el.value.trim()) {
+          el.classList.add('error')
+          return false
+        }
+        el.classList.remove('error')
+        return true
+      }
+
+      function validateEmail(value) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+      }
+
+      function validateForm() {
+        const shippingFields = [
+          'field-firstname', 'field-lastname', 'field-email',
+          'field-phone', 'field-address', 'field-city', 'field-state', 'field-zip'
+        ]
+        let valid = true
+        shippingFields.forEach(id => { if (!validateField(id)) valid = false })
+
+        const email = document.getElementById('field-email').value.trim()
+        if (email && !validateEmail(email)) {
+          document.getElementById('field-email').classList.add('error')
+          valid = false
+        }
+
+        if (!billingSame.checked) {
+          const billFields = [
+            'field-bill-firstname', 'field-bill-lastname', 'field-bill-address',
+            'field-bill-city', 'field-bill-state', 'field-bill-zip'
+          ]
+          billFields.forEach(id => { if (!validateField(id)) valid = false })
+        }
+
+        return valid
+      }
+
+      function displayNameFromEmail(email) {
+        const name = (email || '').split('@')[0].replace(/[._-]+/g, ' ').trim()
+        return name ? name.replace(/\b\w/g, c => c.toUpperCase()) : 'Customer'
+      }
+
+      function clearErrors() {
+        document.querySelectorAll('.checkout-input.error').forEach(el => el.classList.remove('error'))
+      }
+
+      document.querySelectorAll('.checkout-input').forEach(inp => {
+        inp.addEventListener('input', () => inp.classList.remove('error'))
+        inp.addEventListener('change', () => inp.classList.remove('error'))
+      })
+
+      // ─── Payment Method Selection ───
+      let selectedPaymentMethod = null
+      let paymentScreenshotData = null
+      const paymentError = document.getElementById('payment-error')
+
+      document.querySelectorAll('.payment-method-card input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', () => {
+          const method = radio.value
+          selectedPaymentMethod = method
+          paymentError.classList.remove('show')
+
+          document.querySelectorAll('.payment-method-card').forEach(c =>
+            c.classList.toggle('selected', c.dataset.method === method)
+          )
+
+          document.querySelectorAll('.payment-detail-panel').forEach(p => {
+            p.classList.toggle('active', p.id === 'panel-' + method)
+          })
+
+          if (method !== 'jazzcash' && method !== 'easypaisa') {
+            paymentScreenshotData = null
+          }
+        })
+      })
+
+      // ─── Payment Screenshot Upload ───
+      function compressImage(file, maxWidth = 800, quality = 0.7) {
+        return new Promise((resolve) => {
+          const reader = new FileReader()
+          reader.onload = (e) => {
+            const img = new Image()
+            img.onload = () => {
+              try {
+                const canvas = document.createElement('canvas')
+                let w = img.width, h = img.height
+                if (w > maxWidth) { h = h * maxWidth / w; w = maxWidth }
+                canvas.width = w; canvas.height = h
+                const ctx = canvas.getContext('2d')
+                ctx.drawImage(img, 0, 0, w, h)
+                resolve(canvas.toDataURL('image/jpeg', quality))
+              } catch {
+                resolve(e.target.result)
+              }
+              URL.revokeObjectURL(img.src)
+            }
+            img.onerror = () => resolve(e.target.result)
+            img.src = e.target.result
+          }
+          reader.onerror = () => resolve(null)
+          reader.readAsDataURL(file)
+        })
+      }
+
+      function handleFileUpload(method, file) {
+        if (!file) return
+        const preview = document.getElementById('preview-' + method)
+        const img = document.getElementById('preview-img-' + method)
+        const area = document.getElementById('upload-area-' + method)
+
+        area.querySelector('.upload-text').textContent = 'Processing...'
+        area.querySelector('.upload-hint').textContent = ''
+
+        compressImage(file).then(dataUrl => {
+          if (!dataUrl) {
+            area.querySelector('.upload-text').textContent = 'Failed to process image'
+            area.querySelector('.upload-hint').textContent = 'Try a different image'
+            return
+          }
+          paymentScreenshotData = { method, dataUrl, name: file.name }
+          img.src = dataUrl
+          preview.classList.add('has-file')
+          area.classList.add('has-file')
+          area.querySelector('.upload-text').textContent = file.name
+          const kb = Math.round(dataUrl.length * 0.75 / 1024)
+          area.querySelector('.upload-hint').textContent = kb + ' KB'
+        })
+      }
+
+      document.querySelectorAll('.upload-area input[type="file"]').forEach(input => {
+        input.addEventListener('change', () => {
+          const area = input.closest('.upload-area')
+          const method = area.id.replace('upload-area-', '')
+          handleFileUpload(method, input.files[0])
+        })
+      })
+
+      document.querySelectorAll('.remove-file').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const method = btn.dataset.for
+          paymentScreenshotData = null
+
+          const preview = document.getElementById('preview-' + method)
+          const area = document.getElementById('upload-area-' + method)
+          const input = area.querySelector('input[type="file"]')
+
+          preview.classList.remove('has-file')
+          area.classList.remove('has-file')
+          area.querySelector('.upload-text').textContent = 'Upload payment screenshot'
+          area.querySelector('.upload-hint').textContent = 'Tap to capture or choose from gallery'
+          input.value = ''
+        })
+      })
+
+      // ─── Update payment amount display ───
+      function updatePaymentAmounts() {
+        const subtotal = cartSubtotal()
+        const tax = estimatedTax(subtotal)
+        const discount = promoApplied ? Math.round(subtotal * discountPercent) : 0
+        const total = subtotal + tax - discount
+        const formatted = formatter.format(total)
+        document.getElementById('pay-amount-jazzcash').textContent = formatted
+        document.getElementById('pay-amount-easypaisa').textContent = formatted
+      }
+
+      placeOrderBtn.addEventListener('click', async () => {
+        clearErrors()
+
+        if (!validateForm()) {
+          showToast('Please fill in all required fields.')
+          return
+        }
+
+        if (!selectedPaymentMethod) {
+          paymentError.classList.add('show')
+          showToast('Please select a payment method.')
+          return
+        }
+
+        if ((selectedPaymentMethod === 'jazzcash' || selectedPaymentMethod === 'easypaisa') && !paymentScreenshotData) {
+          showToast('Please upload a payment screenshot to proceed.')
+          return
+        }
+
+        const shipping = getShippingData()
+        const billing = getBillingData()
+        const subtotal = cartSubtotal()
+        const tax = estimatedTax(subtotal)
+        const discount = promoApplied ? Math.round(subtotal * discountPercent) : 0
+        const total = subtotal + tax - discount
+
+        placeOrderBtn.disabled = true
+        placeOrderBtn.textContent = 'Placing order...'
+
+        try {
+          const orderData = {
+            customer: `${shipping.firstName} ${shipping.lastName}`,
+            email: shipping.email,
+            items: cart.map(item => item.name).join(', '),
+            itemCount: cartCount(),
+            shipping,
+            billing: billing || { sameAsShipping: true, ...shipping },
+            subtotal,
+            tax,
+            discount,
+            shippingCost: 0,
+            total,
+            status: 'Awaiting Payment',
+            date: new Date().toISOString(),
+            userId: currentUser?.uid || 'guest',
+            paymentMethod: selectedPaymentMethod,
+            paymentScreenshot: paymentScreenshotData?.dataUrl || '',
+            paymentStatus: selectedPaymentMethod === 'card' ? 'Paid' : 'Pending'
+          }
+
+          if (isFirebaseAvailable) {
+            try {
+              const docRef = await addDoc(collection(db, 'orders'), orderData)
+              orderData._id = docRef.id
+            } catch (fireErr) {
+              console.warn('Firestore save failed, order saved locally:', fireErr.message)
+            }
+          }
+
+          localStorage.setItem('blome_last_order', JSON.stringify(orderData))
+
+          showToast('Order placed successfully! Thank you.')
+          placeOrderBtn.innerHTML = '<span>Order Confirmed ✓</span>'
+
+          setTimeout(() => {
+            window.location.href = '/order-confirmation.html'
+          }, 2000)
+        } catch (err) {
+          console.error('Order error:', err)
+          showToast('Failed to place order. Please try again.')
+          placeOrderBtn.disabled = false
+          placeOrderBtn.textContent = 'Place Order'
+        }
+      })
+
+      menuBtn?.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.toggle('hidden')
+        menuBtn.setAttribute('aria-expanded', String(!isHidden))
+        menuIcon.innerHTML = !isHidden
+          ? '<line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/>'
+          : '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>'
+      })
+
+      document.getElementById('header-search-btn')?.addEventListener('click', () => {
+        window.location.href = '/product-listing.html'
+      })
+      window.addEventListener('scroll', () => {
+        document.getElementById('nav-main')?.classList.toggle('scrolled', window.scrollY > 10)
+      })
+
+      updateCartBadge()
+      renderOrderSummary()
+    }
+    initCheckout()
+  </script>
+
+</body>
+</html>

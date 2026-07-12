@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — Blome</title>
+  <meta name="description" content="Learn the story behind Blome. Founded in 2020, our atelier bridges luxury craftsmanship with everyday wearability using the finest Italian and Spanish leathers. Handcrafted perfection." />
+  <meta name="keywords" content="about Blome, luxury handbag brand story, Italian leather artisans, premium handbag craftsmanship, about us leather bags" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://blomebags.com/about.html" />
+  <meta property="og:title" content="About Us — Blome" />
+  <meta property="og:description" content="Learn the story behind Blome. Founded in 2020, our atelier bridges luxury craftsmanship with everyday wearability using the finest Italian and Spanish leathers. Handcrafted perfection." />
+  <meta property="og:url" content="https://blomebags.com/about.html" />
+  <meta property="og:image" content="https://blomebags.com/src/assets/Blome_Bag_logo-removebg-preview.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Blome" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About Us — Blome" />
+  <meta name="twitter:description" content="Learn the story behind Blome. Founded in 2020, our atelier bridges luxury craftsmanship with everyday wearability using the finest Italian and Spanish leathers. Handcrafted perfection." />
+  <meta name="twitter:image" content="https://blomebags.com/src/assets/Blome_Bag_logo-removebg-preview.png" />
+  <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+  <link rel="alternate icon" href="/favicon/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./src/style.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://blomebags.com/" },
+      { "@type": "ListItem", "position": 2, "name": "About Us", "item": "https://blomebags.com/about.html" }
+    ]
+  }
+  </script>
+  <style>
+    .hero-noise {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.25;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+      pointer-events: none;
+      mix-blend-mode: overlay;
+    }
+
+    [data-anim] {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+    [data-anim].anim-fade-up {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .value-card {
+      background: white;
+      border: 1px solid var(--warm-gray);
+      border-radius: 16px;
+      padding: 24px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .value-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.07);
+      transform: translateY(-3px);
+    }
+    .value-icon {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--ivory);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 14px;
+      color: var(--gold);
+    }
+    .value-title {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+    .value-desc {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: white;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.65);
+      font-weight: 400;
+    }
+
+    .about-card {
+      background: white;
+      border: 1px solid var(--warm-gray);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+    }
+
+    .team-card {
+      background: white;
+      border: 1px solid var(--warm-gray);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .team-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.07);
+      transform: translateY(-3px);
+    }
+
+
+  @media (max-width: 767px) {
+    .value-card { padding: 20px 16px; }
+    .value-title { font-size: 0.88rem; }
+    .value-desc { font-size: 0.78rem; }
+    .team-card { padding: 16px; }
+    .stat-number { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+    .stat-label { font-size: 0.75rem; }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .about-hero-title { font-size: clamp(2rem, 4.5vw, 3.2rem); }
+    .value-card { padding: 22px 18px; }
+    .stat-number { font-size: clamp(1.8rem, 3.5vw, 2.4rem); }
+  }
+
+  @media (max-width: 374px) {
+    .about-hero { padding: 2rem 5%; }
+    .about-hero-title { font-size: clamp(1.5rem, 7vw, 2rem); }
+    .value-card { padding: 16px 12px; }
+    .value-icon { width: 40px; height: 40px; }
+    .stat-number { font-size: 1.4rem; }
+    .stat-label { font-size: 0.7rem; }
+    .team-card { padding: 12px; }
+  }
+
+  @media (min-width: 1536px) {
+    .about-hero-title { font-size: clamp(2.5rem, 4vw, 4rem); }
+    .value-card { padding: 28px 24px; }
+    .stat-number { font-size: clamp(2.2rem, 3.5vw, 3.4rem); }
+  }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+  <div id="toast" class="toast"></div>
+
+  <header id="navbar" class="fixed top-0 left-0 w-full z-50">
+
+    <div class="announce-bar">
+      ✦&nbsp; <strong>Free shipping</strong>&nbsp;on orders over $200 &nbsp;·&nbsp; <strong>30-day</strong>&nbsp;easy returns &nbsp;·&nbsp; Complimentary <strong>gift wrapping</strong>&nbsp; ✦
+    </div>
+
+    <div class="nav-glass" id="nav-main">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between" style="height:var(--nav-h);">
+
+          <a href="/" style="display:flex;align-items:center;text-decoration:none;">
+            <img src="./src/assets/Blome_Bag_logo-removebg-preview.png" alt="Blome Bag" style="height:60px;width:auto;flex-shrink:0;" />
+          </a>
+
+          <nav class="hidden md:flex items-center gap-8">
+            <a href="/index.html" class="nav-link">Home</a>
+            <div class="nav-dropdown-group">
+              <a href="/product-listing.html" class="nav-link" aria-haspopup="true">Products</a>
+              <div class="nav-dropdown" role="menu">
+                <a href="/product-listing.html?category=Tote" class="nav-dropdown-link" role="menuitem">Totes</a>
+                <a href="/product-listing.html?category=Crossbody" class="nav-dropdown-link" role="menuitem">Crossbody</a>
+                <a href="/product-listing.html?category=Clutch" class="nav-dropdown-link" role="menuitem">Clutches</a>
+                <a href="/product-listing.html?category=Shoulder" class="nav-dropdown-link" role="menuitem">Shoulder</a>
+                <a href="/product-listing.html?category=Bucket" class="nav-dropdown-link" role="menuitem">Bucket</a>
+                <div class="nav-dropdown-divider" role="separator"></div>
+                <a href="/about.html" class="nav-dropdown-link" role="menuitem">About Us</a>
+                <a href="/product-listing.html" class="nav-dropdown-link" role="menuitem">View All</a>
+              </div>
+            </div>
+            <a href="/contact.html" class="nav-link">Contact Us</a>
+          </nav>
+
+          <div class="flex items-center gap-10">
+
+            <button class="nav-icon-btn hidden md:flex" aria-label="Search">
+              <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            </button>
+
+            <a href="/cart.html" class="nav-icon-btn relative" aria-label="Cart">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+              <span class="cart-badge" id="cart-count">0</span>
+            </a>
+
+            <div id="nav-user" class="nav-user">
+              <span id="nav-username" class="nav-user-name"></span>
+              <button id="nav-signout-btn" class="nav-signout-btn" type="button">Sign out</button>
+            </div>
+
+            <button class="nav-icon-btn md:hidden" id="menu-btn" aria-label="Toggle menu">
+              <svg id="icon-open"  width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <line x1="3" y1="6"  x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+              </svg>
+              <svg id="icon-close" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;">
+                <line x1="18" y1="6"  x2="6"  y2="18"/>
+                <line x1="6"  y1="6"  x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden" style="background:white;border-bottom:1px solid var(--warm-gray);padding:0.75rem 1.5rem 1.25rem;">
+      <a href="/index.html" class="mobile-nav-link">Home</a>
+      <a href="/product-listing.html" class="mobile-nav-link">Products</a>
+      <div class="mobile-sub-links">
+        <a href="/product-listing.html?category=Tote" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">Totes</a>
+        <a href="/product-listing.html?category=Crossbody" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">Crossbody</a>
+        <a href="/product-listing.html?category=Clutch" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">Clutches</a>
+        <a href="/product-listing.html?category=Shoulder" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">Shoulder</a>
+        <a href="/product-listing.html?category=Bucket" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">Bucket</a>
+        <a href="/about.html" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">About Us</a>
+      </div>
+      <a href="/contact.html" class="mobile-nav-link">Contact Us</a>
+      <div id="mobile-nav-user" class="mobile-user-row">
+        <span id="mobile-nav-username"></span>
+        <button id="mobile-nav-signout-btn" class="nav-signout-btn" type="button">Sign out</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <section style="position:relative;background:linear-gradient(165deg, #F0EBE4 0%, var(--ivory) 40%, #FCFAF7 100%);border-top:1px solid var(--warm-gray);overflow:hidden;min-height:clamp(240px,38vh,380px);display:flex;align-items:center;" data-anim>
+      <div class="hero-noise" aria-hidden="true" style="opacity:0.18;"></div>
+      <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden;" aria-hidden="true">
+        <div style="position:absolute;top:-120px;right:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle, rgba(212,168,83,0.08) 0%, transparent 70%);"></div>
+        <div style="position:absolute;bottom:-60px;left:-40px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle, rgba(200,226,122,0.10) 0%, transparent 70%);"></div>
+        <div style="position:absolute;top:50%;right:12%;width:1px;height:120px;background:linear-gradient(to bottom, var(--gold), transparent);opacity:0.25;"></div>
+        <div style="position:absolute;bottom:20%;left:55%;width:60px;height:1px;background:var(--gold);opacity:0.20;"></div>
+      </div>
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full" style="padding:clamp(2.5rem,5vh,4rem) 0;">
+        <div style="max-width:640px;position:relative;">
+          <span style="display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:0.60rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;" data-anim>
+            <span style="display:inline-block;width:28px;height:2px;background:var(--gold);border-radius:1px;"></span>
+            About
+          </span>
+          <h1 style="font-family:Brigila,var(--font-display),serif;font-size:clamp(2.6rem,6.5vw,5rem);font-weight:500;color:var(--charcoal);line-height:0.95;letter-spacing:-0.01em;margin-bottom:0.6rem;" data-anim>
+            Our Story
+          </h1>
+          <div style="width:56px;height:2.5px;background:var(--gold);border-radius:2px;margin-bottom:1.2rem;" aria-hidden="true" data-anim></div>
+          <p style="font-family:var(--font-body);font-size:clamp(0.92rem,1.15vw,1.05rem);color:var(--muted);line-height:1.8;max-width:500px;" data-anim>
+            Crafted for the modern woman since 2020
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding:5rem 0;">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-[1fr_1.1fr] gap-10 md:gap-14 items-center">
+          <div data-anim>
+            <h2 style="font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;color:var(--charcoal);line-height:1.08;margin-bottom:1.2rem;">
+              Where Elegance Meets <span style="font-style:italic;font-weight:700;color:rgba(28,28,28,0.88);">Purpose</span>
+            </h2>
+            <div style="width:40px;height:2px;background:var(--gold);border-radius:2px;margin-bottom:1.5rem;" aria-hidden="true"></div>
+            <p style="font-family:var(--font-body);font-size:0.92rem;color:var(--muted);line-height:1.8;margin-bottom:1.2rem;">
+              Blome was born from a simple belief: that every woman deserves a handbag that feels as extraordinary as she is. Founded in 2020, our atelier set out to bridge the gap between luxury craftsmanship and everyday wearability.
+            </p>
+            <p style="font-family:var(--font-body);font-size:0.92rem;color:var(--muted);line-height:1.8;margin-bottom:1.2rem;">
+              Each Blome piece is handcrafted by master artisans using time-honored techniques passed down through generations. We source only the finest Italian and Spanish leathers, ensuring every stitch, every seam, and every detail meets our uncompromising standards.
+            </p>
+            <p style="font-family:var(--font-body);font-size:0.92rem;color:var(--muted);line-height:1.8;">
+              From our studio to your hands, each bag carries with it a legacy of dedication — designed not just to be carried, but to be cherished. This is more than a handbag. This is a companion for life's most beautiful moments.
+            </p>
+          </div>
+          <div class="about-card" data-anim>
+            <img src="./src/assets/Bag1.png" alt="Blome Bags collection" loading="lazy" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:cover;display:block;padding:2rem;" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:white;padding:4rem 0;border-top:1px solid var(--warm-gray);border-bottom:1px solid var(--warm-gray);">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10" data-anim>
+          <span style="display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:0.60rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-bottom:0.85rem;">
+            <span style="display:inline-block;width:24px;height:1.5px;background:var(--gold);"></span>
+            Our Values
+          </span>
+          <h2 style="font-family:Brigila,var(--font-display),serif;font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:500;color:var(--charcoal);line-height:1.08;">What We Stand For</h2>
+        </div>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+
+          <div class="value-card" data-anim>
+            <div class="value-icon" aria-hidden="true">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
+            <p class="value-title">Quality Craftsmanship</p>
+            <p class="value-desc">Hand-stitched by master artisans using time-honored techniques</p>
+          </div>
+
+          <div class="value-card" data-anim>
+            <div class="value-icon" aria-hidden="true">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <p class="value-title">Sustainable Materials</p>
+            <p class="value-desc">Ethically sourced leathers from Gold-Rated tanneries</p>
+          </div>
+
+          <div class="value-card" data-anim>
+            <div class="value-icon" aria-hidden="true">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 6v6l4 2"/>
+              </svg>
+            </div>
+            <p class="value-title">Timeless Design</p>
+            <p class="value-desc">Silhouettes that transcend seasons and trends</p>
+          </div>
+
+          <div class="value-card" data-anim>
+            <div class="value-icon" aria-hidden="true">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+                <path d="M16 3.13a4 4 0 010 7.75"/>
+              </svg>
+            </div>
+            <p class="value-title">Community First</p>
+            <p class="value-desc">Empowering women through fair wages and education</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section style="background:var(--charcoal);padding:3.5rem 0;">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 text-center">
+          <div data-anim>
+            <p class="stat-number">16</p>
+            <p class="stat-label">Signature Bags</p>
+          </div>
+          <div data-anim>
+            <p class="stat-number">100%</p>
+            <p class="stat-label">Genuine Leather</p>
+          </div>
+          <div data-anim>
+            <p class="stat-number">5000+</p>
+            <p class="stat-label">Happy Customers</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="background:white;border-top:1px solid var(--warm-gray);">
+    <div class="max-w-7xl mx-auto" style="padding:3rem clamp(1.5rem, 5vw, 4rem);">
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-12 mb-12">
+
+        <div class="col-span-2 md:col-span-1">
+          <div class="flex items-center mb-4">
+            <img src="./src/assets/Blome_Bag_logo-removebg-preview.png" alt="Blome Bag" style="height:60px;width:auto;flex-shrink:0;" />
+          </div>
+          <p style="font-family:var(--font-body);font-size:0.85rem;color:var(--muted);line-height:1.72;max-width:210px;">
+            Premium leather handbags crafted for the modern woman. Timeless elegance, exceptional quality.
+          </p>
+          <div class="flex gap-2.5 mt-5">
+            <a href="#" class="social-btn" aria-label="Instagram">
+              <svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24">
+                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                <circle cx="12" cy="12" r="5"/>
+                <circle cx="17" cy="7" r="1.5" fill="var(--charcoal)"/>
+              </svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Pinterest">
+              <svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M8 12.5a4.5 4.5 0 109 0 4.5 4.5 0 00-9 0z"/>
+                <path d="M12 2a10 10 0 00-3.3 19.4c-.1-.9-.2-2.3 0-3.3l1.6-7"/>
+                <path d="M14 13.5l-1-5.5"/>
+              </svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Facebook">
+              <svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer-heading">Shop</p>
+          <ul style="list-style:none;">
+            <li><a href="/product-listing.html" class="footer-link">All Bags</a></li>
+            <li><a href="/product-listing.html?category=Tote" class="footer-link">Totes</a></li>
+            <li><a href="/product-listing.html?category=Crossbody" class="footer-link">Crossbody</a></li>
+            <li><a href="/product-listing.html?category=Clutch" class="footer-link">Clutches</a></li>
+            <li><a href="/product-listing.html?category=Sale" class="footer-link">Sale</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-heading">Support</p>
+          <ul style="list-style:none;">
+            <li><a href="/contact.html" class="footer-link">Contact Us</a></li>
+            <li><a href="/shipping-returns.html" class="footer-link">Shipping &amp; Returns</a></li>
+            <li><a href="/account.html" class="footer-link">My Account</a></li>
+            <li><a href="/gift-cards.html" class="footer-link">Gift Cards</a></li>
+            <li><a href="/loyalty.html" class="footer-link">Loyalty Program</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-heading">Company</p>
+          <ul style="list-style:none;">
+            <li><a href="/about.html" class="footer-link">About Us</a></li>
+            <li><a href="/contact.html" class="footer-link">Contact</a></li>
+            <li><a href="/shipping-returns.html#privacy" class="footer-link">Privacy Policy</a></li>
+            <li><a href="/shipping-returns.html#terms" class="footer-link">Terms of Service</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" style="border-top:1px solid var(--warm-gray);">
+        <div class="flex items-center gap-4">
+          <p style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">&copy; 2025 Blome. All rights reserved.</p>
+          <div class="flex items-center gap-2" aria-label="Accepted payment methods">
+            <span style="font-size:0.7rem;font-weight:800;color:#0d2a7a;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;">VISA</span>
+            <span style="font-size:0.7rem;font-weight:800;color:transparent;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;position:relative;min-width:40px;display:inline-flex;align-items:center;justify-content:center;">MC</span>
+            <span style="font-size:0.7rem;font-weight:800;color:#fff;background:#1474bc;border:1px solid #1474bc;border-radius:4px;padding:2px 6px;">AMEX</span>
+            <span style="font-size:0.7rem;font-weight:800;color:#063d8f;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;">PayPal</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav-main').classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    const menuBtn   = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconOpen  = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
+    let menuOpen = false;
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('hidden', !menuOpen);
+      iconOpen.style.display  = menuOpen ? 'none'  : 'block';
+      iconClose.style.display = menuOpen ? 'block' : 'none';
+    });
+
+    function getCart() {
+      try { return JSON.parse(localStorage.getItem('blome_cart') || '[]'); } catch { return []; }
+    }
+    function updateBadge() {
+      const n = getCart().reduce((s, i) => s + (i.qty || 1), 0);
+      const el = document.getElementById('cart-count');
+      if (el) el.textContent = n;
+    }
+    updateBadge();
+
+    const navUser = document.getElementById('nav-user');
+    const navUsername = document.getElementById('nav-username');
+    const mobileNavUser = document.getElementById('mobile-nav-user');
+    const mobileNavUsername = document.getElementById('mobile-nav-username');
+
+    function displayNameFromEmail(email) {
+      const name = (email || '').split('@')[0].replace(/[._-]+/g, ' ').trim();
+      return name ? name.replace(/\b\w/g, c => c.toUpperCase()) : 'Customer';
+    }
+    function updateNavbarUser() {
+      const signedIn = localStorage.getItem('blome_signed_in') === 'true';
+      const name = localStorage.getItem('blome_user_name') || displayNameFromEmail(localStorage.getItem('blome_user_email'));
+      [navUser, mobileNavUser].forEach(el => el?.classList.toggle('is-visible', signedIn));
+      if (navUsername) navUsername.textContent = name;
+      if (mobileNavUsername) mobileNavUsername.textContent = name;
+    }
+    document.getElementById('nav-signout-btn')?.addEventListener('click', () => {
+      localStorage.removeItem('blome_signed_in');
+      localStorage.removeItem('blome_user_email');
+      localStorage.removeItem('blome_user_name');
+      updateNavbarUser();
+    });
+    document.getElementById('mobile-nav-signout-btn')?.addEventListener('click', () => {
+      localStorage.removeItem('blome_signed_in');
+      localStorage.removeItem('blome_user_email');
+      localStorage.removeItem('blome_user_name');
+      updateNavbarUser();
+    });
+    updateNavbarUser();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('anim-fade-up');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('[data-anim]').forEach(el => observer.observe(el));
+  </script>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

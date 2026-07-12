@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+  <link rel="alternate icon" href="/favicon/favicon.ico" />
+  <title>Contact Us — Blome</title>
+  <meta name="description" content="Get in touch with Blome. Have a question about our premium leather handbags, shipping, or returns? Reach out to our customer service team and we will be happy to help." />
+  <meta name="keywords" content="contact Blome, customer service handbags, Blome support, luxury bag inquiries, contact leather handbag brand" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://blomebags.com/contact.html" />
+  <meta property="og:title" content="Contact Us — Blome" />
+  <meta property="og:description" content="Get in touch with Blome. Have a question about our premium leather handbags, shipping, or returns? Reach out to our customer service team and we will be happy to help." />
+  <meta property="og:url" content="https://blomebags.com/contact.html" />
+  <meta property="og:image" content="https://blomebags.com/src/assets/Blome_Bag_logo-removebg-preview.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Blome" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contact Us — Blome" />
+  <meta name="twitter:description" content="Get in touch with Blome. Have a question about our premium leather handbags, shipping, or returns? Reach out to our customer service team and we will be happy to help." />
+  <meta name="twitter:image" content="https://blomebags.com/src/assets/Blome_Bag_logo-removebg-preview.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./src/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Blome",
+    "description": "Contact Blome customer service for inquiries about premium leather handbags, shipping, and returns.",
+    "url": "https://blomebags.com/contact.html",
+    "mainEntity": {
+      "@type": "ContactPoint",
+      "telephone": "",
+      "email": "hello@blomebags.com",
+      "contactType": "customer service",
+      "availableLanguage": ["English"]
+    }
+  }
+  </script>
+  <style>
+
+    .hero-noise {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.25;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+      pointer-events: none;
+      mix-blend-mode: overlay;
+    }
+
+    .form-card {
+      background: white;
+      border: 1px solid var(--warm-gray);
+      border-radius: 20px;
+      padding: 32px 28px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+    }
+
+    .contact-input {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1.5px solid var(--warm-gray);
+      border-radius: 12px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      background: white;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .contact-input:focus {
+      border-color: var(--charcoal);
+      box-shadow: 0 0 0 3px rgba(28, 28, 28, 0.06);
+    }
+    .contact-input.error {
+      border-color: #e05252;
+    }
+    .contact-input.error:focus {
+      box-shadow: 0 0 0 3px rgba(224, 82, 82, 0.12);
+    }
+
+    .info-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 20px;
+      background: white;
+      border: 1px solid var(--warm-gray);
+      border-radius: 16px;
+      transition: box-shadow 0.3s;
+    }
+    .info-card:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+    .info-card-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--ivory);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--gold);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--warm-gray);
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      text-align: left;
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--muted); }
+    .faq-question:focus-visible {
+      outline: 2px solid var(--charcoal);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      color: var(--gold);
+      transition: transform 0.3s ease;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding-bottom: 18px;
+    }
+    .faq-answer p {
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.72;
+    }
+
+    .whatsapp-card {
+      background: white;
+      border: 1px solid var(--warm-gray);
+      border-radius: 20px;
+      padding: 28px 24px;
+      text-align: center;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .whatsapp-card:hover {
+      box-shadow: 0 12px 40px rgba(37, 211, 102, 0.12);
+      transform: translateY(-3px);
+    }
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: #25D366;
+      color: white;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.9rem;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-whatsapp:hover {
+      background: #1ebe5a;
+      transform: translateY(-2px);
+    }
+    .btn-whatsapp:focus-visible {
+      outline: 2px solid #25D366;
+      outline-offset: 3px;
+    }
+
+    [data-anim] {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+    [data-anim].anim-fade-up {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      [data-anim] {
+        opacity: 1;
+        transform: none;
+      }
+      .spinner { animation: none; }
+    }
+
+    @media (max-width: 767px) {
+      .nav-user.is-visible { display: none; }
+      .form-card { padding: 24px 18px; }
+      .info-card { padding: 14px 16px; }
+      .info-card-icon { width: 36px; height: 36px; }
+      .contact-input { padding: 12px 14px; font-size: 0.85rem; }
+      .faq-question { font-size: 0.88rem; padding: 14px 0; }
+      .faq-answer { font-size: 0.82rem; }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .form-card { padding: 28px 22px; }
+      .info-card { padding: 16px 18px; }
+    }
+
+    @media (max-width: 374px) {
+      .form-card { padding: 18px 14px; }
+      .contact-hero h1 { font-size: clamp(1.6rem, 7vw, 2rem); }
+      .contact-hero p { font-size: 0.82rem; }
+      .info-card { flex-direction: column; align-items: center; text-align: center; }
+      .info-card-icon { width: 32px; height: 32px; }
+      .faq-question { font-size: 0.82rem; }
+    }
+
+    @media (min-width: 1536px) {
+      .form-card { padding: 36px 32px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+  <div id="toast" class="toast"></div>
+
+  <header id="navbar" class="fixed top-0 left-0 w-full z-50">
+
+    <div class="announce-bar">
+      ✦&nbsp; <strong>Free shipping</strong>&nbsp;on orders over $200 &nbsp;·&nbsp; <strong>30-day</strong>&nbsp;easy returns &nbsp;·&nbsp; Complimentary <strong>gift wrapping</strong>&nbsp; ✦
+    </div>
+
+    <div class="nav-glass" id="nav-main">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between" style="height:var(--nav-h);">
+
+          <a href="/" style="display:flex;align-items:center;text-decoration:none;">
+            <img src="./src/assets/Blome_Bag_logo-removebg-preview.png" alt="Blome Bag" style="height:60px;width:auto;flex-shrink:0;" />
+          </a>
+
+          <nav class="hidden md:flex items-center gap-8">
+            <a href="/index.html" class="nav-link">Home</a>
+            <div class="nav-dropdown-group">
+              <a href="/product-listing.html" class="nav-link" aria-haspopup="true">Products</a>
+              <div class="nav-dropdown" role="menu">
+                <a href="/product-listing.html?category=Tote" class="nav-dropdown-link" role="menuitem">Totes</a>
+                <a href="/product-listing.html?category=Crossbody" class="nav-dropdown-link" role="menuitem">Crossbody</a>
+                <a href="/product-listing.html?category=Clutch" class="nav-dropdown-link" role="menuitem">Clutches</a>
+                <a href="/product-listing.html?category=Shoulder" class="nav-dropdown-link" role="menuitem">Shoulder</a>
+                <a href="/product-listing.html?category=Bucket" class="nav-dropdown-link" role="menuitem">Bucket</a>
+                <div class="nav-dropdown-divider" role="separator"></div>
+                <a href="/about.html" class="nav-dropdown-link" role="menuitem">About Us</a>
+                <a href="/product-listing.html" class="nav-dropdown-link" role="menuitem">View All</a>
+              </div>
+            </div>
+            <a href="/contact.html" class="nav-link active">Contact Us</a>
+          </nav>
+
+          <div class="flex items-center gap-10">
+
+            <button class="nav-icon-btn hidden md:flex" aria-label="Search">
+              <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            </button>
+
+            <a href="/cart.html" class="nav-icon-btn relative" aria-label="Cart">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+              <span class="cart-badge" id="cart-count">0</span>
+            </a>
+
+            <div id="nav-user" class="nav-user">
+              <span id="nav-username" class="nav-user-name"></span>
+              <button id="nav-signout-btn" class="nav-signout-btn" type="button">Sign out</button>
+            </div>
+
+            <button class="nav-icon-btn md:hidden" id="menu-btn" aria-label="Toggle menu">
+              <svg id="icon-open"  width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <line x1="3" y1="6"  x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+              </svg>
+              <svg id="icon-close" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;">
+                <line x1="18" y1="6"  x2="6"  y2="18"/>
+                <line x1="6"  y1="6"  x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden" style="background:white;border-bottom:1px solid var(--warm-gray);padding:0.75rem 1.5rem 1.25rem;">
+      <a href="/index.html" class="mobile-nav-link">Home</a>
+      <a href="/product-listing.html" class="mobile-nav-link">Products</a>
+      <div class="mobile-sub-links">
+        <a href="/product-listing.html?category=Tote" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">Totes</a>
+        <a href="/product-listing.html?category=Crossbody" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">Crossbody</a>
+        <a href="/product-listing.html?category=Clutch" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">Clutches</a>
+        <a href="/product-listing.html?category=Shoulder" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">Shoulder</a>
+        <a href="/product-listing.html?category=Bucket" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">Bucket</a>
+        <a href="/about.html" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.75rem;">About Us</a>
+      </div>
+      <a href="/contact.html" class="mobile-nav-link">Contact Us</a>
+      <div id="mobile-nav-user" class="mobile-user-row">
+        <span id="mobile-nav-username"></span>
+        <button id="mobile-nav-signout-btn" class="nav-signout-btn" type="button">Sign out</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <section style="position:relative;background:linear-gradient(165deg, #F0EBE4 0%, var(--ivory) 40%, #FCFAF7 100%);border-top:1px solid var(--warm-gray);overflow:hidden;min-height:clamp(240px,38vh,380px);display:flex;align-items:center;" data-anim>
+      <div class="hero-noise" aria-hidden="true" style="opacity:0.18;"></div>
+      <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden;" aria-hidden="true">
+        <div style="position:absolute;top:-120px;right:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle, rgba(212,168,83,0.08) 0%, transparent 70%);"></div>
+        <div style="position:absolute;bottom:-60px;left:-40px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle, rgba(200,226,122,0.10) 0%, transparent 70%);"></div>
+        <div style="position:absolute;top:50%;right:12%;width:1px;height:120px;background:linear-gradient(to bottom, var(--gold), transparent);opacity:0.25;"></div>
+        <div style="position:absolute;bottom:20%;left:55%;width:60px;height:1px;background:var(--gold);opacity:0.20;"></div>
+      </div>
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full" style="padding:clamp(2.5rem,5vh,4rem) 0;">
+        <div style="max-width:640px;position:relative;">
+          <span style="display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:0.60rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;" data-anim>
+            <span style="display:inline-block;width:28px;height:2px;background:var(--gold);border-radius:1px;"></span>
+            Contact
+          </span>
+          <h1 style="font-family:var(--font-display);font-size:clamp(2.2rem,5.5vw,4.2rem);font-weight:800;color:var(--charcoal);line-height:1.02;letter-spacing:-0.025em;margin-bottom:0.6rem;" data-anim>
+            Get in <em style="font-style:italic;font-weight:700;color:rgba(28,28,28,0.88);">Touch</em>
+          </h1>
+          <div style="width:56px;height:2.5px;background:var(--gold);border-radius:2px;margin-bottom:1.2rem;" aria-hidden="true" data-anim></div>
+          <p style="font-family:var(--font-body);font-size:clamp(0.92rem,1.15vw,1.05rem);color:var(--muted);line-height:1.8;max-width:500px;" data-anim>
+            We'd love to hear from you — whether it's about our collections, an order, or just to say hello.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding:5rem 0;">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-10 md:gap-12">
+
+          <div class="form-card" data-anim>
+            <form id="contact-form" novalidate>
+              <div style="margin-bottom:18px;">
+                <label for="field-name" style="display:block;font-family:var(--font-body);font-size:0.85rem;font-weight:600;margin-bottom:6px;color:var(--charcoal);">Full Name <span aria-hidden="true" style="color:#e05252;">*</span></label>
+                <input id="field-name" name="name" type="text" required class="contact-input" placeholder="Your name" autocomplete="name" />
+              </div>
+              <div style="margin-bottom:18px;">
+                <label for="field-email" style="display:block;font-family:var(--font-body);font-size:0.85rem;font-weight:600;margin-bottom:6px;color:var(--charcoal);">Email Address <span aria-hidden="true" style="color:#e05252;">*</span></label>
+                <input id="field-email" name="email" type="email" required class="contact-input" placeholder="you@example.com" autocomplete="email" />
+              </div>
+              <div style="margin-bottom:18px;">
+                <label for="field-subject" style="display:block;font-family:var(--font-body);font-size:0.85rem;font-weight:600;margin-bottom:6px;color:var(--charcoal);">Subject <span aria-hidden="true" style="color:#e05252;">*</span></label>
+                <input id="field-subject" name="subject" type="text" required class="contact-input" placeholder="What's this about?" />
+              </div>
+              <div style="margin-bottom:24px;">
+                <label for="field-message" style="display:block;font-family:var(--font-body);font-size:0.85rem;font-weight:600;margin-bottom:6px;color:var(--charcoal);">Message <span aria-hidden="true" style="color:#e05252;">*</span></label>
+                <textarea id="field-message" name="message" required rows="5" class="contact-input" placeholder="Tell us more..." style="resize:vertical;min-height:120px;"></textarea>
+              </div>
+              <button type="submit" id="submit-btn" class="btn-lime" style="display:inline-flex;align-items:center;gap:10px;padding:14px 36px;font-size:0.9rem;">
+                <span id="btn-text">Send Message</span>
+                <span id="btn-spinner" style="display:none;" class="spinner"></span>
+              </button>
+            </form>
+          </div>
+
+          <div class="form-card" style="display:flex;flex-direction:column;gap:20px;" data-anim>
+
+            <div class="info-card">
+              <div class="info-card-icon" aria-hidden="true">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div>
+                <p style="font-family:var(--font-body);font-weight:600;font-size:0.85rem;color:var(--charcoal);margin-bottom:2px;">Address</p>
+                <p style="font-family:var(--font-body);font-size:0.85rem;color:var(--muted);line-height:1.5;">123 Fashion Avenue, New York, NY 10001</p>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-card-icon" aria-hidden="true">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                </svg>
+              </div>
+              <div>
+                <p style="font-family:var(--font-body);font-weight:600;font-size:0.85rem;color:var(--charcoal);margin-bottom:2px;">Phone</p>
+                <p style="font-family:var(--font-body);font-size:0.85rem;color:var(--muted);line-height:1.5;">+1 (555) 123-4567</p>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-card-icon" aria-hidden="true">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </div>
+              <div>
+                <p style="font-family:var(--font-body);font-weight:600;font-size:0.85rem;color:var(--charcoal);margin-bottom:2px;">Email</p>
+                <p style="font-family:var(--font-body);font-size:0.85rem;color:var(--muted);line-height:1.5;">hello@blomebags.com</p>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-card-icon" aria-hidden="true">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <div>
+                <p style="font-family:var(--font-body);font-weight:600;font-size:0.85rem;color:var(--charcoal);margin-bottom:2px;">Hours</p>
+                <p style="font-family:var(--font-body);font-size:0.85rem;color:var(--muted);line-height:1.5;">Mon–Sat: 10am – 7pm · Sun: 11am – 5pm</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding:0 0 4rem;">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10" data-anim>
+          <span style="display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:0.60rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-bottom:0.85rem;">
+            <span style="display:inline-block;width:24px;height:1.5px;background:var(--gold);"></span>
+            FAQ
+          </span>
+          <h2 style="font-family:var(--font-display);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:800;color:var(--charcoal);line-height:1.08;">Frequently Asked Questions</h2>
+        </div>
+        <div class="form-card" style="padding:6px 28px;" data-anim>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>What materials are your bags made from?</span>
+              <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>We use 100% genuine Italian and Spanish leather sourced from Gold-Rated tanneries. Each hide is hand-selected for grain, texture, and durability. Our hardware is solid brass with real gold or ruthenium plating.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>How long does shipping take?</span>
+              <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>Domestic orders arrive within 3–6 business days. International shipping takes 6–12 business days depending on customs. All orders over $200 ship free with tracking and signature on delivery.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>What is your return policy?</span>
+              <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>We offer a 30-day hassle-free return policy on all full-price items. Simply contact our support team to generate a prepaid return label. Final sale items and personalized pieces are non-returnable.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Do you offer international shipping?</span>
+              <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>Yes, we ship to over 40 countries worldwide. International duties and taxes are calculated at checkout. Free shipping applies to international orders over $300.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>How do I care for my leather bag?</span>
+              <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>Store your bag in the provided dust bag when not in use. Clean with a soft dry cloth and apply a quality leather conditioner every 3–4 months. Avoid prolonged exposure to direct sunlight and moisture.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section style="padding:0 0 5rem;">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div style="max-width:520px;margin:0 auto;">
+          <div class="whatsapp-card" data-anim>
+            <div style="margin-bottom:14px;">
+              <svg width="44" height="44" fill="#25D366" viewBox="0 0 24 24" aria-hidden="true" style="display:inline-block;">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+            </div>
+            <h2 style="font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:var(--charcoal);margin-bottom:6px;">Chat with us on WhatsApp</h2>
+            <p style="font-family:var(--font-body);font-size:0.85rem;color:var(--muted);margin-bottom:18px;">We typically reply within minutes</p>
+            <a href="https://wa.me/923261762648" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+              <svg width="18" height="18" fill="white" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Message on WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="background:white;border-top:1px solid var(--warm-gray);">
+    <div class="max-w-7xl mx-auto" style="padding:3rem clamp(1.5rem, 5vw, 4rem);">
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-12 mb-12">
+
+        <div class="col-span-2 md:col-span-1">
+          <div class="flex items-center mb-4">
+            <img src="./src/assets/Blome_Bag_logo-removebg-preview.png" alt="Blome Bag" style="height:60px;width:auto;flex-shrink:0;" />
+          </div>
+          <p style="font-family:var(--font-body);font-size:0.85rem;color:var(--muted);line-height:1.72;max-width:210px;">
+            Premium leather handbags crafted for the modern woman. Timeless elegance, exceptional quality.
+          </p>
+          <div class="flex gap-2.5 mt-5">
+            <a href="#" class="social-btn" aria-label="Instagram"><svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17" cy="7" r="1.5" fill="var(--charcoal)"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Pinterest"><svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24"><path d="M8 12.5a4.5 4.5 0 109 0 4.5 4.5 0 00-9 0z"/><path d="M12 2a10 10 0 00-3.3 19.4c-.1-.9-.2-2.3 0-3.3l1.6-7"/><path d="M14 13.5l-1-5.5"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Facebook"><svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer-heading">Shop</p>
+          <ul style="list-style:none;">
+            <li><a href="/product-listing.html" class="footer-link">All Bags</a></li>
+            <li><a href="/product-listing.html?category=Tote" class="footer-link">Totes</a></li>
+            <li><a href="/product-listing.html?category=Crossbody" class="footer-link">Crossbody</a></li>
+            <li><a href="/product-listing.html?category=Clutch" class="footer-link">Clutches</a></li>
+            <li><a href="/product-listing.html?category=Sale" class="footer-link">Sale</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-heading">Support</p>
+          <ul style="list-style:none;">
+            <li><a href="/contact.html" class="footer-link">Contact Us</a></li>
+            <li><a href="/shipping-returns.html" class="footer-link">Shipping &amp; Returns</a></li>
+            <li><a href="/account.html" class="footer-link">My Account</a></li>
+            <li><a href="/gift-cards.html" class="footer-link">Gift Cards</a></li>
+            <li><a href="/loyalty.html" class="footer-link">Loyalty Program</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-heading">Company</p>
+          <ul style="list-style:none;">
+            <li><a href="/about.html" class="footer-link">About Us</a></li>
+            <li><a href="/contact.html" class="footer-link">Contact</a></li>
+            <li><a href="/shipping-returns.html#privacy" class="footer-link">Privacy Policy</a></li>
+            <li><a href="/shipping-returns.html#terms" class="footer-link">Terms of Service</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" style="border-top:1px solid var(--warm-gray);">
+        <div class="flex items-center gap-4">
+          <p style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">&copy; 2025 Blome. All rights reserved.</p>
+          <div class="flex items-center gap-2" aria-label="Accepted payment methods">
+            <span style="font-size:0.7rem;font-weight:800;color:#0d2a7a;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;">VISA</span>
+            <span style="font-size:0.7rem;font-weight:800;color:transparent;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;position:relative;min-width:40px;display:inline-flex;align-items:center;justify-content:center;">MC</span>
+            <span style="font-size:0.7rem;font-weight:800;color:#fff;background:#1474bc;border:1px solid #1474bc;border-radius:4px;padding:2px 6px;">AMEX</span>
+            <span style="font-size:0.7rem;font-weight:800;color:#063d8f;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;">PayPal</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script type="module">
+    import { auth, db, isFirebaseAvailable } from '/src/firebase.js'
+    import { onAuthStateChanged, signOut } from 'firebase/auth'
+    import { addDoc, collection } from 'firebase/firestore'
+
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const btnText = document.getElementById('btn-text');
+    const btnSpinner = document.getElementById('btn-spinner');
+    const toast = document.getElementById('toast');
+    const navUser = document.getElementById('nav-user');
+    const navUsername = document.getElementById('nav-username');
+    const mobileNavUser = document.getElementById('mobile-nav-user');
+    const mobileNavUsername = document.getElementById('mobile-nav-username');
+
+    function showToast(msg, type) {
+      toast.textContent = msg;
+      toast.className = 'toast';
+      if (type === 'error') toast.classList.add('error');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    if (isFirebaseAvailable) {
+      onAuthStateChanged(auth, (user) => {
+        const signedIn = !!user
+        const name = user?.displayName || (user?.email ? user.email.split('@')[0].replace(/[._-]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : '') || 'Customer'
+        ;[navUser, mobileNavUser].forEach(el => el?.classList.toggle('is-visible', signedIn))
+        if (navUsername) navUsername.textContent = name
+        if (mobileNavUsername) mobileNavUsername.textContent = name
+      })
+
+      document.getElementById('nav-signout-btn')?.addEventListener('click', () => signOut(auth))
+      document.getElementById('mobile-nav-signout-btn')?.addEventListener('click', () => signOut(auth))
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name    = document.getElementById('field-name').value.trim();
+      const email   = document.getElementById('field-email').value.trim();
+      const subject = document.getElementById('field-subject').value.trim();
+      const message = document.getElementById('field-message').value.trim();
+
+      const fields = [
+        { el: document.getElementById('field-name'), val: name },
+        { el: document.getElementById('field-email'), val: email },
+        { el: document.getElementById('field-subject'), val: subject },
+        { el: document.getElementById('field-message'), val: message }
+      ];
+
+      fields.forEach(f => f.el.classList.toggle('error', !f.val));
+
+      if (!name || !email || !subject || !message) {
+        showToast('Please fill in all fields.', 'error');
+        return;
+      }
+
+      if (!email.includes('@')) {
+        document.getElementById('field-email').classList.add('error');
+        showToast('Please enter a valid email address.', 'error');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      btnText.textContent = 'Sending...';
+      btnSpinner.style.display = 'inline-block';
+
+      try {
+        const promises = []
+
+        if (isFirebaseAvailable) {
+          promises.push(
+            addDoc(collection(db, 'messages'), {
+              name, email, subject, message,
+              userId: auth.currentUser?.uid || null,
+              createdAt: new Date().toISOString()
+            })
+          )
+        }
+
+        if (typeof emailjs !== 'undefined') {
+          promises.push(
+            (async () => {
+              emailjs.init('Bxl49RrV9sVpuMi2x');
+              await emailjs.send('service_ippw0gm', 'template_hflr1mj', {
+                name, email, subject, message,
+                to_email: 'muhammadshahzaibnawaz5@gmail.com'
+              });
+            })()
+          )
+        }
+
+        await Promise.allSettled(promises)
+
+        showToast('Message sent successfully! We\'ll get back to you soon.');
+        form.reset();
+      } catch (err) {
+        console.error('Submit error:', err);
+        showToast('Failed to send. Please try again.', 'error');
+      }
+
+      submitBtn.disabled = false;
+      btnText.textContent = 'Send Message';
+      btnSpinner.style.display = 'none';
+    });
+
+    document.querySelectorAll('.contact-input').forEach(inp => {
+      inp.addEventListener('input', () => inp.classList.remove('error'));
+    });
+
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav-main').classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    const menuBtn   = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconOpen  = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
+    let menuOpen = false;
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('hidden', !menuOpen);
+      iconOpen.style.display  = menuOpen ? 'none'  : 'block';
+      iconClose.style.display = menuOpen ? 'block' : 'none';
+    });
+
+    function getCart() {
+      try { return JSON.parse(localStorage.getItem('blome_cart') || '[]'); } catch { return []; }
+    }
+    function updateBadge() {
+      const n = getCart().reduce((s, i) => s + (i.qty || 1), 0);
+      const el = document.getElementById('cart-count');
+      if (el) el.textContent = n;
+    }
+    updateBadge();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('anim-fade-up');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('[data-anim]').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        if (!wasOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

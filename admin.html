@@ -1,0 +1,1863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blome – Admin Dashboard</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./src/style.css" />
+  <style>
+
+    :root {
+      --admin-nav: 64px;
+      --admin-side: 240px;
+      --nav-h: 0px;
+      --announce-h: 0px;
+    }
+
+    /* ═══ LOGIN ═══ */
+    .login-view {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+      background: var(--ivory);
+    }
+    .login-card {
+      background: white;
+      border-radius: 16px;
+      padding: 40px 36px;
+      width: 100%;
+      max-width: 400px;
+      border: 1px solid var(--warm-gray);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+    .login-logo { height: 56px; width: auto; margin-bottom: 16px; }
+    .login-heading { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; color: var(--charcoal); margin-bottom: 6px; }
+    .login-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 28px; }
+    .login-field { margin-bottom: 16px; text-align: left; }
+    .login-label { display: block; font-size: 0.75rem; font-weight: 600; color: var(--charcoal); margin-bottom: 5px; }
+    .login-input {
+      width: 100%; padding: 11px 14px; border: 1.5px solid var(--warm-gray); border-radius: 8px;
+      font-family: var(--font-body); font-size: 0.88rem; color: var(--charcoal);
+      background: var(--ivory); outline: none; transition: border-color 0.2s, background 0.2s;
+    }
+    .login-input:focus { border-color: var(--charcoal); background: white; }
+    .login-submit {
+      width: 100%; padding: 12px; background: var(--lime); color: var(--charcoal);
+      font-family: var(--font-body); font-size: 0.9rem; font-weight: 700;
+      border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s; margin-top: 4px;
+    }
+    .login-submit:hover { background: #b6d063; }
+    .login-error { color: #dc3545; font-size: 0.8rem; margin-top: 12px; display: none; }
+    .login-error.visible { display: block; }
+    .login-hint { font-size: 0.72rem; color: var(--muted); margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--warm-gray); }
+
+    /* ═══ ADMIN LAYOUT ═══ */
+    .admin-wrap { display: none; min-height: 100vh; }
+    .admin-wrap.active { display: flex; flex-direction: column; }
+
+    .admin-topbar {
+      height: var(--admin-nav);
+      background: white;
+      border-bottom: 1px solid var(--warm-gray);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      gap: 12px;
+    }
+    .admin-topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .admin-topbar-logo {
+      height: 42px; width: auto; flex-shrink: 0;
+    }
+    .admin-topbar-title {
+      font-family: Brigila, var(--font-display), serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+    .admin-topbar-divider {
+      width: 1px; height: 28px; background: var(--warm-gray);
+    }
+    .admin-topbar-badge {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--muted);
+    }
+    .admin-topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .admin-user-name {
+      font-size: 0.82rem; font-weight: 600; color: var(--charcoal);
+    }
+    .btn-logout {
+      padding: 7px 16px; background: transparent; color: var(--charcoal);
+      border: 1.5px solid var(--warm-gray); border-radius: 8px;
+      font-family: var(--font-body); font-size: 0.78rem; font-weight: 600;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .btn-logout:hover { background: var(--charcoal); border-color: var(--charcoal); color: white; }
+
+    .admin-body {
+      display: flex;
+      flex: 1;
+    }
+
+    /* ═══ SIDEBAR ═══ */
+    .admin-sidebar {
+      width: var(--admin-side);
+      background: white;
+      border-right: 1px solid var(--warm-gray);
+      padding: 12px 10px;
+      flex-shrink: 0;
+      overflow-y: auto;
+    }
+    .admin-sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 11px 12px;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      border: none;
+      background: transparent;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.15s;
+      margin-bottom: 2px;
+    }
+    .admin-sidebar-item:hover {
+      background: var(--ivory);
+    }
+    .admin-sidebar-item:focus-visible {
+      outline: 2px solid var(--charcoal);
+      outline-offset: -2px;
+    }
+    .admin-sidebar-item.active {
+      background: var(--lime);
+      font-weight: 600;
+    }
+    .admin-sidebar-item svg {
+      flex-shrink: 0;
+      width: 18px; height: 18px;
+    }
+
+    /* ═══ CONTENT ═══ */
+    .admin-content {
+      flex: 1;
+      padding: 24px;
+      overflow-x: hidden;
+      min-width: 0;
+    }
+    .admin-pane { display: none; }
+    .admin-pane.active { display: block; }
+
+    .pane-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .pane-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+    .pane-subtitle {
+      font-size: 0.85rem; color: var(--muted); margin-top: 2px;
+    }
+
+    /* ═══ BUTTONS ═══ */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 9px 20px; background: var(--charcoal); color: white;
+      border: none; border-radius: 8px;
+      font-family: var(--font-body); font-size: 0.82rem; font-weight: 600;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #333; }
+    .btn-primary:focus-visible { outline: 2px solid var(--charcoal); outline-offset: 2px; }
+
+    .btn-sm { padding: 6px 14px; font-size: 0.75rem; border-radius: 6px; border-width: 1px; display: inline-flex; align-items: center; gap: 4px; }
+    .btn-danger { background: #dc3545; color: white; border: none; }
+    .btn-danger:hover { background: #c82333; }
+    .btn-ghost { background: transparent; color: var(--charcoal); border: 1px solid var(--warm-gray); }
+    .btn-ghost:hover { background: var(--ivory); }
+
+    /* Override marketing button hover effects for admin context */
+    .admin-wrap .btn-lime:hover,
+    #screenshot-modal .btn-lime:hover {
+      transform: none;
+      box-shadow: none;
+      background: #b6d063;
+    }
+    .admin-wrap .btn-outline:hover,
+    #screenshot-modal .btn-outline:hover {
+      background: var(--charcoal);
+      color: white;
+    }
+
+    .btn-icon {
+      width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 6px; border: 1px solid var(--warm-gray); background: white;
+      cursor: pointer; transition: all 0.15s;
+    }
+    .btn-icon:hover { background: var(--ivory); border-color: var(--charcoal); }
+
+    /* ═══ CARDS / TABLE ═══ */
+    .admin-card {
+      background: white;
+      border: 1px solid var(--warm-gray);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .admin-card-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 14px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 10px;
+      border: 1px solid var(--warm-gray);
+      background: white;
+    }
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      min-width: 550px;
+    }
+    .admin-table th {
+      background: var(--charcoal);
+      color: white;
+      font-weight: 600;
+      text-align: left;
+      padding: 11px 14px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+    .admin-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--warm-gray);
+      vertical-align: middle;
+    }
+    .admin-table tbody tr:last-child td { border-bottom: none; }
+    .admin-table tbody tr:hover td { background: rgba(0,0,0,0.015); }
+    .admin-table .col-actions {
+      white-space: nowrap;
+      display: flex;
+      gap: 6px;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .status-delivered { background: #d4edda; color: #155724; }
+    .status-shipped { background: #cce5ff; color: #004085; }
+    .status-processing { background: #fff3cd; color: #856404; }
+    .status-cancelled { background: #f8d7da; color: #721c24; }
+
+    /* ═══ STATS ═══ */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .stat-box {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid var(--warm-gray);
+      cursor: pointer;
+      transition: box-shadow 0.2s ease;
+    }
+    .stat-box:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .stat-box-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .stat-box-value {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--charcoal);
+    }
+    .stat-box-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ═══ MODAL ═══ */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+      z-index: 200; display: none; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: white; border-radius: 14px; padding: 28px;
+      width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      animation: modalIn 0.25s ease;
+    }
+    .modal-wide { max-width: 640px; }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(12px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .modal-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--charcoal); margin-bottom: 20px; }
+    .modal-field { margin-bottom: 16px; }
+    .modal-label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--charcoal); margin-bottom: 5px; }
+    .modal-input {
+      width: 100%; padding: 10px 14px; border: 1.5px solid var(--warm-gray); border-radius: 8px;
+      font-family: var(--font-body); font-size: 0.88rem; color: var(--charcoal);
+      background: var(--ivory); outline: none; transition: border-color 0.2s, background 0.2s;
+    }
+    .modal-input:focus { border-color: var(--charcoal); background: white; }
+    .modal-select {
+      width: 100%; padding: 10px 14px; border: 1.5px solid var(--warm-gray); border-radius: 8px;
+      font-family: var(--font-body); font-size: 0.88rem; color: var(--charcoal);
+      background: var(--ivory); outline: none; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='%238A8582' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 10px center; background-size: 16px;
+      cursor: pointer; transition: border-color 0.2s, background 0.2s;
+    }
+    .modal-select:focus { border-color: var(--charcoal); background: white; }
+    .modal-textarea {
+      width: 100%; padding: 10px 14px; border: 1.5px solid var(--warm-gray); border-radius: 8px;
+      font-family: var(--font-body); font-size: 0.88rem; color: var(--charcoal);
+      background: var(--ivory); outline: none; resize: vertical; min-height: 80px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .modal-textarea:focus { border-color: var(--charcoal); background: white; }
+    .modal-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .modal-actions {
+      display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;
+    }
+    .btn-modal {
+      padding: 10px 22px; border-radius: 8px; border: none;
+      font-family: var(--font-body); font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .btn-modal-primary { background: var(--charcoal); color: white; }
+    .btn-modal-primary:hover { background: #333; }
+    .btn-modal-cancel { background: var(--warm-gray); color: var(--charcoal); }
+    .btn-modal-cancel:hover { background: #d5cfc9; }
+
+    /* ═══ IMAGE UPLOAD PREVIEW ═══ */
+    .image-preview-wrap {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;
+    }
+    .image-preview-item {
+      width: 80px; height: 80px; border-radius: 8px; overflow: hidden;
+      border: 1px solid var(--warm-gray); position: relative;
+    }
+    .image-preview-item img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .image-preview-item .remove-img {
+      position: absolute; top: 2px; right: 2px; width: 20px; height: 20px;
+      border-radius: 50%; background: rgba(0,0,0,0.6); color: white;
+      border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem;
+    }
+    .file-input-wrap {
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .file-input-wrap input[type="file"] { display: none; }
+    .file-input-label {
+      padding: 8px 16px; background: var(--ivory); border: 1.5px dashed var(--warm-gray);
+      border-radius: 8px; font-size: 0.8rem; font-weight: 500; cursor: pointer;
+      transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .file-input-label:hover { border-color: var(--charcoal); background: white; }
+
+    /* ═══ TOAST ═══ */
+
+    /* ═══ EMPTY STATE ═══ */
+    .empty-state {
+      text-align: center; padding: 3rem 1rem;
+      border: 1.5px dashed var(--warm-gray); border-radius: 12px;
+    }
+    .empty-state p { font-size: 0.9rem; color: var(--muted); margin-bottom: 12px; }
+
+    /* ═══ TOGGLE SWITCH ═══ */
+    .toggle-switch {
+      position: relative; width: 40px; height: 22px; display: inline-block;
+    }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider {
+      position: absolute; cursor: pointer; inset: 0;
+      background: var(--warm-gray); border-radius: 22px; transition: 0.2s;
+    }
+    .toggle-slider::before {
+      content: ''; position: absolute; height: 16px; width: 16px;
+      left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: 0.2s;
+    }
+    .toggle-switch input:checked + .toggle-slider { background: var(--lime); }
+    .toggle-switch input:checked + .toggle-slider::before { transform: translateX(18px); }
+
+    /* ═══ SECTION LIST ═══ */
+    .section-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 16px; border: 1px solid var(--warm-gray); border-radius: 10px;
+      background: white; margin-bottom: 8px; gap: 12px;
+    }
+    .section-item-info { flex: 1; min-width: 0; }
+    .section-item-name { font-weight: 600; font-size: 0.9rem; color: var(--charcoal); }
+    .section-item-desc { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+
+    /* ═══ COLOR INPUT ═══ */
+    .color-input-row {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
+    }
+    .color-input-row input[type="color"] {
+      width: 32px; height: 32px; border: 1px solid var(--warm-gray);
+      border-radius: 6px; padding: 2px; cursor: pointer;
+    }
+
+    /* ═══ SETTINGS GRID ═══ */
+    .settings-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .settings-card {
+      background: white; border: 1px solid var(--warm-gray);
+      border-radius: 12px; padding: 20px;
+    }
+    .settings-card h3,
+    .settings-card-heading {
+      font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+      color: var(--charcoal); margin-bottom: 14px; padding-bottom: 10px;
+      border-bottom: 1px solid var(--warm-gray);
+    }
+
+    /* ═══ RESPONSIVE ═══ */
+    @media (max-width: 1023px) {
+      :root { --admin-side: 56px; }
+      .admin-sidebar { padding: 10px 6px; }
+      .admin-sidebar-item { justify-content: center; padding: 10px; }
+      .admin-sidebar-item span { display: none; }
+      .admin-sidebar-item svg { width: 20px; height: 20px; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .settings-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 639px) {
+      :root { --admin-side: 0px; }
+      .admin-sidebar { display: none; }
+      .admin-sidebar.mobile-open {
+        display: block; position: fixed; top: var(--admin-nav); left: 0; bottom: 0;
+        width: 220px; z-index: 90; box-shadow: 4px 0 20px rgba(0,0,0,0.08);
+      }
+      .admin-sidebar-item { justify-content: flex-start; padding: 11px 12px; }
+      .admin-sidebar-item span { display: inline; }
+      .admin-content { padding: 16px; }
+      .stats-row { grid-template-columns: 1fr; }
+      .modal-row { grid-template-columns: 1fr; }
+      .pane-header { flex-direction: column; align-items: flex-start; }
+      .admin-topbar-badge { display: none; }
+      .admin-user-name { display: none; }
+      .mobile-sidebar-toggle { display: flex !important; }
+    }
+    @media (min-width: 640px) {
+      .mobile-sidebar-toggle { display: none !important; }
+    }
+    @media (max-width: 374px) {
+      .login-card { padding: 28px 20px; }
+      .login-heading { font-size: 1.3rem; }
+      .login-input { padding: 9px 12px; font-size: 0.82rem; }
+      .admin-topbar { padding: 0 12px; }
+      .admin-topbar-title { font-size: 1rem; }
+      .admin-content { padding: 12px; }
+      .stats-row { gap: 10px; }
+      .stat-card { padding: 14px; }
+      .stat-number { font-size: 1.3rem; }
+      .pane-header h2 { font-size: 1rem; }
+      .search-input { padding: 8px 12px; font-size: 0.82rem; }
+      .modal-content { padding: 20px; margin: 10px; }
+      .settings-card { padding: 14px; }
+    }
+    @media (min-width: 1536px) {
+      .admin-content { padding: 32px; }
+      .stats-row { gap: 20px; }
+      .pane-header h2 { font-size: 1.3rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 2px solid var(--charcoal);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+  <div id="toast" class="toast"></div>
+
+  <main id="main-content">
+
+  <!-- ═══ LOGIN VIEW ═══ -->
+  <div id="login-view" class="login-view">
+    <div class="login-card">
+      <img class="login-logo" src="./src/assets/Blome_Bag_logo-removebg-preview.png" alt="Blome" />
+      <h1 class="login-heading">Admin Login</h1>
+      <p class="login-sub">Sign in to manage your store</p>
+      <form id="login-form" novalidate>
+        <div class="login-field">
+          <label class="login-label" for="login-email">Email</label>
+          <input class="login-input" id="login-email" type="email" autocomplete="email" placeholder="you@example.com" required />
+        </div>
+        <div class="login-field">
+          <label class="login-label" for="login-password">Password</label>
+          <input class="login-input" id="login-password" type="password" autocomplete="current-password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" required />
+        </div>
+        <button class="login-submit" type="submit">Sign In</button>
+        <p class="login-error" id="login-error" role="alert"></p>
+      </form>
+      <p class="login-hint">Demo: admin@blome.com / admin123</p>
+    </div>
+  </div>
+
+  <!-- ═══ ADMIN DASHBOARD ═══ -->
+  <div class="admin-wrap" id="admin-wrap">
+
+    <!-- Top Bar -->
+    <header class="admin-topbar">
+      <div class="admin-topbar-left">
+        <button class="btn-icon mobile-sidebar-toggle" id="mobile-sidebar-toggle" aria-label="Toggle sidebar" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <img class="admin-topbar-logo" src="./src/assets/Blome_Bag_logo-removebg-preview.png" alt="Blome" />
+        <div class="admin-topbar-divider" aria-hidden="true"></div>
+        <span class="admin-topbar-title">Blome</span>
+        <span class="admin-topbar-badge">Admin</span>
+      </div>
+      <div class="admin-topbar-right">
+        <span class="admin-user-name" id="admin-user-name">Admin</span>
+        <button class="btn-logout" id="logout-btn" type="button">Logout</button>
+      </div>
+    </header>
+
+    <div class="admin-body">
+
+      <!-- Sidebar -->
+      <nav class="admin-sidebar" id="admin-sidebar" aria-label="Admin navigation">
+        <button class="admin-sidebar-item active" data-pane="dashboard" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+          <span>Dashboard</span>
+        </button>
+        <button class="admin-sidebar-item" data-pane="products" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          <span>Products</span>
+        </button>
+        <button class="admin-sidebar-item" data-pane="banners" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Banners</span>
+        </button>
+        <button class="admin-sidebar-item" data-pane="categories" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16"/><path d="M4 15h16"/><path d="M10 3L8 21"/><path d="M16 3l-2 18"/></svg>
+          <span>Categories</span>
+        </button>
+        <button class="admin-sidebar-item" data-pane="sections" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          <span>Sections</span>
+        </button>
+        <button class="admin-sidebar-item" data-pane="orders" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span>Orders</span>
+        </button>
+        <button class="admin-sidebar-item" data-pane="settings" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          <span>Settings</span>
+        </button>
+      </nav>
+
+      <!-- Content Area -->
+      <div class="admin-content">
+
+        <!-- ═══════ DASHBOARD ═══════ -->
+        <div class="admin-pane active" id="pane-dashboard">
+          <div class="pane-header">
+            <div>
+              <h1 class="pane-title">Dashboard</h1>
+              <p class="pane-subtitle">Overview of your store</p>
+            </div>
+          </div>
+
+          <div class="stats-row" id="dash-stats">
+            <div class="stat-box">
+              <div class="stat-box-label">Total Products</div>
+              <div class="stat-box-value" id="dash-total-products">0</div>
+              <div class="stat-box-sub">In catalog</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-box-label">Total Orders</div>
+              <div class="stat-box-value" id="dash-total-orders">0</div>
+              <div class="stat-box-sub">All time</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-box-label">Total Revenue</div>
+              <div class="stat-box-value" id="dash-total-revenue">$0</div>
+              <div class="stat-box-sub">From orders</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-box-label">Categories</div>
+              <div class="stat-box-value" id="dash-total-categories">0</div>
+              <div class="stat-box-sub">Active</div>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card-title">Recent Orders</div>
+            <div class="table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr><th>Order #</th><th>Customer</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th><th>Date</th></tr>
+                </thead>
+                <tbody id="dash-orders-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════ PRODUCTS ═══════ -->
+        <div class="admin-pane" id="pane-products">
+          <div class="pane-header">
+            <div>
+              <h1 class="pane-title">Products</h1>
+              <p class="pane-subtitle">Manage your product catalog</p>
+            </div>
+            <button class="btn-primary" id="add-product-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add Product
+            </button>
+          </div>
+          <div class="table-wrap">
+            <table class="admin-table" id="products-table">
+              <thead>
+                <tr><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>Badge</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="products-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ═══════ BANNERS ═══════ -->
+        <div class="admin-pane" id="pane-banners">
+          <div class="pane-header">
+            <div>
+              <h1 class="pane-title">Banners</h1>
+              <p class="pane-subtitle">Manage hero slideshow and promotional banners</p>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card-title">
+              <span>Hero Slides</span>
+              <button class="btn-outline btn-sm" id="add-hero-btn" type="button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Add
+              </button>
+            </div>
+            <div class="table-wrap">
+              <table class="admin-table">
+                <thead><tr><th>Preview</th><th>Image</th><th>Label</th><th>Actions</th></tr></thead>
+                <tbody id="banners-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card-title">
+              <span>Products Hero</span>
+              <button class="btn-outline btn-sm" id="add-products-hero-btn" type="button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Add
+              </button>
+            </div>
+            <div class="table-wrap">
+              <table class="admin-table">
+                <thead><tr><th>Preview</th><th>Image</th><th>Label</th><th>Actions</th></tr></thead>
+                <tbody id="products-hero-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card-title">
+              <span>Bloom Carousel</span>
+              <button class="btn-outline btn-sm" id="add-bloom-btn" type="button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Add
+              </button>
+            </div>
+            <div class="table-wrap">
+              <table class="admin-table">
+                <thead><tr><th>Preview</th><th>Image</th><th>Label</th><th>Actions</th></tr></thead>
+                <tbody id="bloom-banners-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════ CATEGORIES ═══════ -->
+        <div class="admin-pane" id="pane-categories">
+          <div class="pane-header">
+            <div>
+              <h1 class="pane-title">Categories</h1>
+              <p class="pane-subtitle">Manage product categories</p>
+            </div>
+            <button class="btn-primary" id="add-category-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add Category
+            </button>
+          </div>
+          <div class="table-wrap">
+            <table class="admin-table">
+              <thead><tr><th>Category</th><th>Product Count</th><th>Actions</th></tr></thead>
+              <tbody id="categories-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ═══════ SECTIONS ═══════ -->
+        <div class="admin-pane" id="pane-sections">
+          <div class="pane-header">
+            <div>
+              <h1 class="pane-title">Sections</h1>
+              <p class="pane-subtitle">Manage homepage sections</p>
+            </div>
+          </div>
+          <div id="sections-list"></div>
+        </div>
+
+        <!-- ═══════ ORDERS ═══════ -->
+        <div class="admin-pane" id="pane-orders">
+          <div class="pane-header">
+            <div>
+              <h1 class="pane-title">Orders</h1>
+              <p class="pane-subtitle">Manage customer orders</p>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="admin-table">
+              <thead><tr><th>Order #</th><th>Customer</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead>
+              <tbody id="orders-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ═══════ SETTINGS ═══════ -->
+        <div class="admin-pane" id="pane-settings">
+          <div class="pane-header">
+            <div>
+              <h1 class="pane-title">Settings</h1>
+              <p class="pane-subtitle">Configure your store</p>
+            </div>
+            <button class="btn-lime btn-sm" id="save-settings-btn" type="button" style="border-radius:8px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Save Settings
+            </button>
+          </div>
+
+          <div class="settings-grid">
+            <div class="settings-card">
+              <h2 class="settings-card-heading">General</h2>
+              <div class="modal-field">
+                <label class="modal-label" for="set-site-name">Site Name</label>
+                <input class="modal-input" id="set-site-name" value="Blome" />
+              </div>
+              <div class="modal-field">
+                <label class="modal-label" for="set-tagline">Tagline</label>
+                <input class="modal-input" id="set-tagline" value="Elegance in Every Carry" />
+              </div>
+              <div class="modal-field">
+                <label class="modal-label" for="set-announce-text">Announcement Bar Text</label>
+                <input class="modal-input" id="set-announce-text" value="Free shipping on orders over $200 · 30-day easy returns · Complimentary gift wrapping" />
+              </div>
+            </div>
+
+            <div class="settings-card">
+              <h2 class="settings-card-heading">Contact & Social</h2>
+              <div class="modal-field">
+                <label class="modal-label" for="set-email">Contact Email</label>
+                <input class="modal-input" id="set-email" value="hello@blome.com" />
+              </div>
+              <div class="modal-field">
+                <label class="modal-label" for="set-phone">Phone</label>
+                <input class="modal-input" id="set-phone" value="+1 (555) 123-4567" />
+              </div>
+              <div class="modal-field">
+                <label class="modal-label" for="set-address">Address</label>
+                <input class="modal-input" id="set-address" value="123 Fashion Avenue, New York, NY 10001" />
+              </div>
+            </div>
+
+            <div class="settings-card">
+              <h2 class="settings-card-heading">Newsletter</h2>
+              <div class="modal-field">
+                <label class="modal-label" for="set-newsletter-title">Newsletter Title</label>
+                <input class="modal-input" id="set-newsletter-title" value="Join Our Community" />
+              </div>
+              <div class="modal-field">
+                <label class="modal-label" for="set-newsletter-text">Newsletter Description</label>
+                <textarea class="modal-textarea" id="set-newsletter-text">Subscribe for exclusive offers, new arrivals, and 10% off your first order.</textarea>
+              </div>
+            </div>
+
+            <div class="settings-card">
+              <h2 class="settings-card-heading">Shipping & Returns</h2>
+              <div class="modal-field">
+                <label class="modal-label" for="set-free-shipping">Free Shipping Threshold ($)</label>
+                <input class="modal-input" id="set-free-shipping" type="number" value="200" />
+              </div>
+              <div class="modal-field">
+                <label class="modal-label" for="set-return-days">Return Period (days)</label>
+                <input class="modal-input" id="set-return-days" type="number" value="30" />
+              </div>
+            </div>
+
+            <div class="settings-card" style="grid-column:1/-1;">
+              <h2 class="settings-card-heading">Footer</h2>
+              <div class="modal-row">
+                <div class="modal-field">
+                  <label class="modal-label" for="set-footer-text">Footer Text</label>
+                  <input class="modal-input" id="set-footer-text" value="&copy; 2025 Blome. All rights reserved." />
+                </div>
+                <div class="modal-field">
+                  <label class="modal-label" for="set-footer-desc">Footer Description</label>
+                  <input class="modal-input" id="set-footer-desc" value="Premium leather handbags crafted for the modern woman. Timeless elegance, exceptional quality." />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PRODUCT MODAL ═══ -->
+  <div class="modal-overlay" id="product-modal" role="dialog" aria-modal="true" aria-labelledby="product-modal-title">
+    <div class="modal modal-wide">
+      <h2 class="modal-title" id="product-modal-title">Add Product</h2>
+      <form id="product-form">
+        <input type="hidden" id="prod-id" />
+        <div class="modal-row">
+          <div class="modal-field">
+            <label class="modal-label" for="prod-name">Product Name</label>
+            <input class="modal-input" id="prod-name" type="text" required />
+          </div>
+          <div class="modal-field">
+            <label class="modal-label" for="prod-category">Category</label>
+            <select class="modal-select" id="prod-category" required></select>
+          </div>
+        </div>
+        <div class="modal-row">
+          <div class="modal-field">
+            <label class="modal-label" for="prod-price">Price ($)</label>
+            <input class="modal-input" id="prod-price" type="number" step="0.01" min="0" required />
+          </div>
+          <div class="modal-field">
+            <label class="modal-label" for="prod-badge">Badge</label>
+            <select class="modal-select" id="prod-badge">
+              <option value="">None</option>
+              <option value="Best Seller">Best Seller</option>
+              <option value="New">New</option>
+              <option value="Sale">Sale</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-field">
+          <label class="modal-label" for="prod-desc">Description</label>
+          <textarea class="modal-textarea" id="prod-desc" rows="3"></textarea>
+        </div>
+        <div class="modal-field">
+          <label class="modal-label">Product Images</label>
+          <div class="file-input-wrap">
+            <label class="file-input-label">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              Upload Images
+              <input type="file" accept="image/*" multiple id="prod-images-input" />
+            </label>
+            <span class="text-muted" style="font-size:0.78rem;color:var(--muted);">PNG, JPG, WebP</span>
+          </div>
+          <div class="image-preview-wrap" id="prod-images-preview"></div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn-modal btn-modal-cancel" id="product-modal-cancel" type="button">Cancel</button>
+          <button class="btn-modal btn-modal-primary" id="product-modal-submit" type="submit">Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ═══ BANNER MODAL ═══ -->
+  <div class="modal-overlay" id="banner-modal" role="dialog" aria-modal="true" aria-labelledby="banner-modal-title">
+    <div class="modal">
+      <h2 class="modal-title" id="banner-modal-title">Add Banner</h2>
+      <form id="banner-form">
+        <input type="hidden" id="banner-id" />
+        <div class="modal-field">
+          <label class="modal-label" for="banner-type">Placement</label>
+          <select class="modal-input" id="banner-type">
+            <option value="hero">Home Page Hero</option>
+            <option value="products-hero">Products Page Hero</option>
+            <option value="bloom">Bloom Carousel</option>
+          </select>
+        </div>
+        <div class="modal-field">
+          <label class="modal-label" for="banner-label">Label</label>
+          <input class="modal-input" id="banner-label" type="text" placeholder="e.g. Hero Slide 1" />
+        </div>
+        <div class="modal-field">
+          <label class="modal-label">Banner Image</label>
+          <div class="file-input-wrap">
+            <label class="file-input-label">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              Choose Image
+              <input type="file" accept="image/*" id="banner-image-input" />
+            </label>
+          </div>
+          <div class="image-preview-wrap" id="banner-image-preview"></div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn-modal btn-modal-cancel" id="banner-modal-cancel" type="button">Cancel</button>
+          <button class="btn-modal btn-modal-primary" id="banner-modal-submit" type="submit">Save Banner</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ═══ CATEGORY MODAL ═══ -->
+  <div class="modal-overlay" id="category-modal" role="dialog" aria-modal="true" aria-labelledby="category-modal-title">
+    <div class="modal">
+      <h2 class="modal-title" id="category-modal-title">Add Category</h2>
+      <form id="category-form">
+        <input type="hidden" id="cat-id" />
+        <div class="modal-field">
+          <label class="modal-label" for="cat-name">Category Name</label>
+          <input class="modal-input" id="cat-name" type="text" required />
+        </div>
+        <div class="modal-actions">
+          <button class="btn-modal btn-modal-cancel" id="category-modal-cancel" type="button">Cancel</button>
+          <button class="btn-modal btn-modal-primary" id="category-modal-submit" type="submit">Save Category</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module">
+    import { auth, db, isFirebaseAvailable } from './src/firebase.js'
+    import { signInWithEmailAndPassword, onAuthStateChanged, signOut as authSignOut } from 'firebase/auth'
+    import { getDocs, collection, query, orderBy, doc, getDoc, setDoc } from 'firebase/firestore'
+    import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebase/storage'
+    import { storage } from './src/firebase.js'
+    import { getProducts, addProduct, updateProduct, deleteProduct as deleteProductService } from './src/services/productService.js'
+    import { getOrders as fetchOrders, updateOrderStatus } from './src/services/orderService.js'
+    import { getCategories, addCategory, updateCategory, deleteCategory as deleteCategoryService } from './src/services/categoryService.js'
+    import { getBanners, addBanner, updateBanner, deleteBanner as deleteBannerService } from './src/services/bannerService.js'
+    import { getSettings, saveSettings } from './src/services/settingsService.js'
+    import { deleteImage, readFileAsDataURL, uploadToImgBB } from './src/services/uploadService.js'
+    import { isAdmin } from './src/services/authService.js'
+
+    if (!isFirebaseAvailable) {
+      document.getElementById('login-view').innerHTML =
+        '<div class="login-card" style="text-align:center;max-width:480px;">' +
+          '<img class="login-logo" src="./src/assets/Blome_Bag_logo-removebg-preview.png" alt="Blome" style="height:70px;margin:0 auto 1.5rem;" />' +
+          '<h1 class="login-heading" style="margin-bottom:0.5rem;">Firebase Not Configured</h1>' +
+          '<p style="color:var(--muted);line-height:1.6;margin-bottom:1rem;">' +
+            'The admin dashboard requires Firebase.<br />' +
+            'Create a <code>.env</code> file in the project root with your Firebase config, then restart the dev server.' +
+          '</p>' +
+          '<pre style="background:var(--ivory);padding:1rem;border-radius:8px;text-align:left;font-size:0.78rem;line-height:1.5;overflow-x:auto;border:1px solid var(--warm-gray);">' +
+            'VITE_FIREBASE_API_KEY=your_key\nVITE_FIREBASE_AUTH_DOMAIN=your_domain\nVITE_FIREBASE_PROJECT_ID=your_id\nVITE_FIREBASE_STORAGE_BUCKET=your_bucket\nVITE_FIREBASE_MESSAGING_SENDER_ID=your_sender\nVITE_FIREBASE_APP_ID=your_app_id' +
+          '</pre>' +
+          '<a href="/" style="display:inline-block;margin-top:1.2rem;color:var(--charcoal);font-weight:600;">&larr; Back to site</a>' +
+        '</div>'
+      throw new Error('Firebase not configured — admin unavailable')
+    }
+
+    // ─── Data ───
+    let products = []
+    let banners = []
+    let categories = []
+    let allOrders = []
+
+    const formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })
+
+    // ─── DOM refs ───
+    const $ = id => document.getElementById(id)
+    const toast = $('toast')
+
+    function showToast(msg) {
+      toast.textContent = msg; toast.classList.add('show')
+      clearTimeout(toast._hide); toast._hide = setTimeout(() => toast.classList.remove('show'), 2800)
+    }
+
+    function showLoading(el, show) {
+      if (!el) return
+      if (show) {
+        el.dataset.origText = el.textContent
+        el.textContent = 'Loading...'
+        el.disabled = true
+      } else {
+        el.textContent = el.dataset.origText || el.textContent
+        el.disabled = false
+      }
+    }
+
+    // ─── Auth ───
+    const loginView = $('login-view')
+    const adminWrap = $('admin-wrap')
+    let currentUser = null
+
+    function showDashboard() {
+      loginView.style.display = 'none'
+      adminWrap.classList.add('active')
+      loadAllData()
+    }
+
+    function showLogin() {
+      loginView.style.display = 'flex'
+      adminWrap.classList.remove('active')
+    }
+
+    $('login-form').addEventListener('submit', async function(e) {
+      e.preventDefault()
+      const email = $('login-email').value.trim()
+      const pass = $('login-password').value.trim()
+      $('login-error').classList.remove('visible')
+      const btn = this.querySelector('button[type="submit"]')
+      showLoading(btn, true)
+      try {
+        await signInWithEmailAndPassword(auth, email, pass)
+      } catch (err) {
+        $('login-error').textContent = err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential'
+          ? 'Invalid email or password.'
+          : err.code === 'auth/too-many-requests'
+          ? 'Too many attempts. Try again later.'
+          : 'Login failed. Try again.'
+        $('login-error').classList.add('visible')
+        showLoading(btn, false)
+      }
+    })
+
+    $('logout-btn').addEventListener('click', async function() {
+      await authSignOut(auth)
+      showLogin()
+      $('login-email').value = ''
+      $('login-password').value = ''
+      $('login-error').classList.remove('visible')
+    })
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const admin = await isAdmin(user.uid)
+        if (admin) {
+          currentUser = user
+          showDashboard()
+        } else {
+          await authSignOut(auth)
+          $('login-error').textContent = 'You do not have admin access.'
+          $('login-error').classList.add('visible')
+          showLogin()
+        }
+      } else {
+        currentUser = null
+        showLogin()
+      }
+    })
+
+    // ─── Sidebar Navigation ───
+    const sidebarItems = document.querySelectorAll('.admin-sidebar-item')
+    const panes = {}
+    document.querySelectorAll('.admin-pane').forEach(p => { panes[p.id.replace('pane-', '')] = p })
+
+    sidebarItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const pane = item.dataset.pane
+        sidebarItems.forEach(si => si.classList.remove('active'))
+        item.classList.add('active')
+        Object.values(panes).forEach(p => p.classList.remove('active'))
+        if (panes[pane]) panes[pane].classList.add('active')
+        $('admin-sidebar').classList.remove('mobile-open')
+      })
+    })
+
+    $('mobile-sidebar-toggle').addEventListener('click', () => {
+      $('admin-sidebar').classList.toggle('mobile-open')
+    })
+
+    // ─── Data Loading ───
+    async function loadAllData() {
+      try {
+        products = await getProducts()
+        banners = await getBanners()
+        categories = await getCategories()
+        allOrders = await fetchOrders()
+
+        const hasProductsHero = banners.some(b => b.type === 'products-hero')
+        if (!hasProductsHero) {
+          const defaults = [
+            './src/assets/Bag1.png',
+            './src/assets/Bag2.png',
+            './src/assets/Bag3.png',
+            './src/assets/Bag4.png',
+            './src/assets/Bag5.png',
+            './src/assets/Bag6.png',
+            './src/assets/Bag7.png',
+            './src/assets/Bag8.png'
+          ]
+          for (const img of defaults) {
+            await addBanner({ type: 'products-hero', image: img, label: '' })
+          }
+          banners = await getBanners()
+        }
+
+        const settings = await getSettings()
+        if (settings) populateSettings(settings)
+
+        renderAll()
+      } catch (err) {
+        showToast('Failed to load data: ' + err.message, 'error')
+      }
+    }
+
+    // ─── Render Functions ───
+
+    function renderDashboard() {
+      const totalProducts = products.length
+      const totalOrders = allOrders.length
+      const totalRevenue = allOrders.reduce((s, o) => s + o.total || 0, 0)
+      $('dash-total-products').textContent = totalProducts
+      $('dash-total-orders').textContent = totalOrders
+      $('dash-total-revenue').textContent = '$' + totalRevenue.toLocaleString()
+      $('dash-total-categories').textContent = categories.length
+
+      $('dash-orders-body').innerHTML = allOrders.slice(0, 5).map(o => {
+        const pm = o.paymentMethod || ''
+        const ps = o.paymentStatus || ''
+        const pmLabel = pm === 'jazzcash' ? 'JazzCash' : pm === 'easypaisa' ? 'EasyPaisa' : pm === 'card' ? 'Card' : '-'
+        const psClass = ps === 'Paid' ? 'status-delivered' : ps === 'Pending' ? 'status-processing' : ''
+        return '<tr>' +
+          `<td style="font-weight:600;">${o.id}</td>` +
+          `<td>${o.customer || '-'}</td>` +
+          `<td>${o.items || '-'}</td>` +
+          `<td>$${(o.total || 0).toLocaleString()}</td>` +
+          `<td style="font-size:0.78rem;">` +
+            `<span style="font-weight:600;">${pmLabel}</span>` +
+            (ps ? `<span class="status-badge ${psClass}" style="font-size:0.65rem;padding:2px 8px;margin-left:4px;">${ps}</span>` : '') +
+          `</td>` +
+          `<td><span class="status-badge status-${(o.status||'pending').toLowerCase()}">${o.status || 'Pending'}</span></td>` +
+          `<td style="font-size:0.78rem;white-space:nowrap;">${o.date ? new Date(o.date).toLocaleDateString() : '-'}</td>` +
+        '</tr>'
+      }).join('')
+    }
+
+    function renderProducts() {
+      $('products-body').innerHTML = products.map(p =>
+        '<tr>' +
+          `<td><img src="${p.images && p.images[0] ? p.images[0] : ''}" alt="${p.name}" loading="lazy" style="width:40px;height:40px;object-fit:cover;border-radius:6px;" onerror="this.style.display='none'" /></td>` +
+          `<td><strong>${p.name}</strong></td>` +
+          `<td>${p.category}</td>` +
+          `<td>${formatter.format(p.price)}</td>` +
+          `<td>${p.badge ? '<span style="background:var(--charcoal);color:white;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:600;">' + p.badge + '</span>' : '-'}</td>` +
+          `<td class="col-actions">` +
+            `<button class="btn-outline btn-sm prod-edit" data-id="${p.id}" type="button">Edit</button>` +
+            `<button class="btn-sm btn-danger prod-delete" data-id="${p.id}" type="button">Delete</button>` +
+          `</td>` +
+        '</tr>'
+      ).join('')
+
+      document.querySelectorAll('.prod-edit').forEach(btn => {
+        btn.addEventListener('click', () => openProductModal(btn.dataset.id))
+      })
+      document.querySelectorAll('.prod-delete').forEach(btn => {
+        btn.addEventListener('click', () => deleteProduct(btn.dataset.id))
+      })
+    }
+
+    function renderBanners() {
+      const heroBanners = banners.filter(b => b.type === 'hero')
+      const productsHero = banners.filter(b => b.type === 'products-hero')
+      const bloom = banners.filter(b => b.type === 'bloom')
+
+      function renderRows(list, emptyMsg) {
+        if (!list.length) {
+          return `<tr><td colspan="4" style="text-align:center;padding:2rem 1rem;color:var(--muted);font-size:0.85rem;">${emptyMsg}</td></tr>`
+        }
+        return list.map(b =>
+          '<tr>' +
+            `<td><img src="${b.image}" alt="${b.label}" style="width:80px;height:40px;object-fit:cover;border-radius:6px;" onerror="this.style.display='none'" /></td>` +
+            `<td style="font-size:0.8rem;">${b.image.split('/').pop()}</td>` +
+            `<td>${b.label || '-'}</td>` +
+            `<td class="col-actions">` +
+              `<button class="btn-outline btn-sm banner-edit" data-id="${b.id}" type="button">Edit</button>` +
+              `<button class="btn-sm btn-danger banner-delete" data-id="${b.id}" type="button">Delete</button>` +
+            `</td>` +
+          '</tr>'
+        ).join('')
+      }
+
+      $('banners-body').innerHTML = renderRows(heroBanners, 'No hero slides yet. Click "Add" to create one.')
+      $('products-hero-body').innerHTML = renderRows(productsHero, 'No products hero images yet. Click "Add" to upload product images.')
+      $('bloom-banners-body').innerHTML = renderRows(bloom, 'No bloom carousel images yet. Click "Add" to add one.')
+
+      document.querySelectorAll('.banner-edit').forEach(btn => {
+        btn.addEventListener('click', () => openBannerModal(btn.dataset.id))
+      })
+      document.querySelectorAll('.banner-delete').forEach(btn => {
+        btn.addEventListener('click', () => deleteBanner(btn.dataset.id))
+      })
+    }
+
+    function renderCategories() {
+      $('categories-body').innerHTML = categories.map(c => {
+        const count = products.filter(p => p.category === c.name).length
+        return '<tr>' +
+          `<td><strong>${c.name}</strong></td>` +
+          `<td>${count} product${count !== 1 ? 's' : ''}</td>` +
+          `<td class="col-actions">` +
+            `<button class="btn-outline btn-sm cat-edit" data-id="${c.id}" type="button">Edit</button>` +
+            `<button class="btn-sm btn-danger cat-delete" data-id="${c.id}" type="button">Delete</button>` +
+          `</td>` +
+        '</tr>'
+      }).join('')
+
+      document.querySelectorAll('.cat-edit').forEach(btn => {
+        btn.addEventListener('click', () => openCategoryModal(btn.dataset.id))
+      })
+      document.querySelectorAll('.cat-delete').forEach(btn => {
+        btn.addEventListener('click', () => deleteCategory(btn.dataset.id))
+      })
+    }
+
+    function renderSections() {
+      const sectionsData = [
+        { id: 'hero', name: 'Hero Carousel', desc: 'Full-width hero slideshow with Ken Burns effect', visible: true },
+        { id: 'benefits', name: 'Benefits Strip', desc: 'Free shipping, returns, leather, gift wrapping', visible: true },
+        { id: 'categories', name: 'Category Grid', desc: 'Product category grid (Totes, Crossbody, etc.)', visible: true },
+        { id: 'featured', name: 'Featured Products', desc: 'Featured product cards grid', visible: true },
+        { id: 'promo', name: 'Promotional Banner', desc: 'Full-width promotional banner section', visible: true },
+        { id: 'bloom', name: 'Bloom Showcase', desc: 'Beautiful carousel showcase', visible: true },
+        { id: 'newsletter', name: 'Newsletter Signup', desc: 'Email signup form section', visible: true }
+      ]
+
+      $('sections-list').innerHTML = sectionsData.map(s => `
+        <div class="section-item">
+          <div class="section-item-info">
+            <div class="section-item-name">${s.name}</div>
+            <div class="section-item-desc">${s.desc}</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" ${s.visible ? 'checked' : ''} data-section="${s.id}" />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      `).join('')
+
+      $('sections-list').querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener('change', function() {
+          showToast(`Section "${this.dataset.section}" ${this.checked ? 'enabled' : 'disabled'}`)
+        })
+      })
+    }
+
+    function renderOrders() {
+      if (allOrders.length === 0) {
+        $('orders-body').innerHTML = '<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--muted);">No orders found</td></tr>'
+        return
+      }
+      $('orders-body').innerHTML = allOrders.map(o => {
+        const pm = o.paymentMethod || ''
+        const ps = o.paymentStatus || ''
+        const pmLabel = pm === 'jazzcash' ? 'JazzCash' : pm === 'easypaisa' ? 'EasyPaisa' : pm === 'card' ? 'Card' : '-'
+        const hasScreenshot = !!(o.paymentScreenshot && o.paymentScreenshot.length > 100)
+        const psClass = ps === 'Paid' ? 'status-delivered' : ps === 'Pending' ? 'status-processing' : ''
+        return '<tr>' +
+          `<td style="font-weight:600;">${o.id}</td>` +
+          `<td>${o.customer || '-'}</td>` +
+          `<td>${o.items || '-'}</td>` +
+          `<td>$${(o.total || 0).toLocaleString()}</td>` +
+          `<td style="font-size:0.78rem;">` +
+            `<div style="font-weight:600;">${pmLabel}</div>` +
+            `<span class="status-badge ${psClass}" style="font-size:0.65rem;padding:2px 8px;margin-top:4px;display:inline-block;">${ps || '-'}</span>` +
+            (hasScreenshot
+              ? `<button class="btn-outline btn-sm view-screenshot" data-id="${o.id}" type="button" style="display:block;margin-top:6px;">View Slip</button>`
+              : '') +
+          `</td>` +
+          `<td><span class="status-badge status-${(o.status||'pending').toLowerCase()}">${o.status || 'Pending'}</span></td>` +
+          `<td style="font-size:0.78rem;white-space:nowrap;">${o.date ? new Date(o.date).toLocaleDateString() : '-'}</td>` +
+          `<td class="col-actions">` +
+            `<select class="modal-select order-status" data-order="${o.id}" style="width:auto;padding:4px 24px 4px 8px;font-size:0.75rem;min-width:0;">` +
+              `<option value="Awaiting Payment" ${o.status === 'Awaiting Payment' ? 'selected' : ''}>Awaiting Payment</option>` +
+              `<option value="Processing" ${o.status === 'Processing' ? 'selected' : ''}>Processing</option>` +
+              `<option value="Shipped" ${o.status === 'Shipped' ? 'selected' : ''}>Shipped</option>` +
+              `<option value="Delivered" ${o.status === 'Delivered' ? 'selected' : ''}>Delivered</option>` +
+              `<option value="Cancelled" ${o.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>` +
+            `</select>` +
+          `</td>` +
+        '</tr>'
+      }).join('')
+
+      document.querySelectorAll('.order-status').forEach(sel => {
+        sel.addEventListener('change', async function() {
+          const orderId = this.dataset.order
+          try {
+            await updateOrderStatus(orderId, this.value)
+            showToast(`Order ${orderId} status updated to ${this.value}`)
+            allOrders = await fetchOrders()
+            renderAll()
+          } catch (err) {
+            showToast('Failed to update order status', 'error')
+          }
+        })
+      })
+
+      document.querySelectorAll('.view-screenshot').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const orderId = btn.dataset.id
+          const order = allOrders.find(o => o.id === orderId)
+          if (order && order.paymentScreenshot) {
+            openScreenshotModal(order.paymentScreenshot, order)
+          }
+        })
+      })
+    }
+
+    // ─── Screenshot Modal ───
+    let screenshotModal = null
+
+    function openScreenshotModal(screenshotData, order) {
+      if (!screenshotModal) {
+        screenshotModal = document.createElement('div')
+        screenshotModal.className = 'modal-overlay'
+        screenshotModal.id = 'screenshot-modal'
+        screenshotModal.setAttribute('role', 'dialog')
+        screenshotModal.setAttribute('aria-modal', 'true')
+        screenshotModal.style.cssText = 'display:flex;align-items:center;justify-content:center;z-index:9999;'
+        screenshotModal.innerHTML =
+          '<div class="modal" style="max-width:500px;padding:24px;text-align:center;">' +
+            '<h2 class="modal-title" style="margin-bottom:6px;">Payment Screenshot</h2>' +
+            '<p style="font-size:0.82rem;color:var(--muted);margin-bottom:16px;" id="ss-order-info"></p>' +
+            '<div style="max-height:480px;overflow-y:auto;border-radius:8px;border:1px solid var(--warm-gray);">' +
+              '<img id="ss-image" src="" alt="Payment screenshot" style="width:100%;height:auto;display:block;" />' +
+            '</div>' +
+            '<div style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">' +
+              '<button class="btn-lime btn-sm" id="ss-mark-paid" type="button" style="border-radius:8px;">Mark as Paid</button>' +
+              '<button class="btn-outline btn-sm" id="ss-close" type="button">Close</button>' +
+            '</div>' +
+          '</div>'
+        document.body.appendChild(screenshotModal)
+
+        screenshotModal.querySelector('#ss-close').addEventListener('click', () => {
+          screenshotModal.style.display = 'none'
+        })
+        screenshotModal.addEventListener('click', (e) => {
+          if (e.target === screenshotModal) screenshotModal.style.display = 'none'
+        })
+        screenshotModal.querySelector('#ss-mark-paid').addEventListener('click', async () => {
+          const id = screenshotModal.dataset.orderId
+          try {
+            await updateOrderStatus(id, 'Processing')
+            if (isFirebaseAvailable) {
+              const oRef = doc(db, 'orders', id)
+              await setDoc(oRef, { paymentStatus: 'Paid', status: 'Processing' }, { merge: true })
+            }
+            showToast('Order marked as paid')
+            screenshotModal.style.display = 'none'
+            allOrders = await fetchOrders()
+            renderAll()
+          } catch (err) {
+            showToast('Failed to update', 'error')
+          }
+        })
+      }
+
+      screenshotModal.dataset.orderId = order.id
+      screenshotModal.querySelector('#ss-image').src = screenshotData
+      screenshotModal.querySelector('#ss-order-info').textContent =
+        `Order ${order.id} — ${order.customer || 'Customer'} — $${(order.total || 0).toLocaleString()}`
+      screenshotModal.style.display = 'flex'
+    }
+
+    function renderAll() {
+      renderDashboard()
+      renderProducts()
+      renderBanners()
+      renderCategories()
+      renderSections()
+      renderOrders()
+      populateCategorySelect()
+    }
+
+    // ─── Product CRUD ───
+    function populateCategorySelect() {
+      const sel = $('prod-category')
+      sel.innerHTML = categories.map(c => `<option value="${c.name}">${c.name}</option>`).join('')
+    }
+
+    let editingProductId = null
+    let productImages = []
+
+    function openProductModal(id) {
+      editingProductId = id
+      const modal = $('product-modal')
+      if (id) {
+        const p = products.find(x => x.id === id)
+        if (!p) return
+        $('product-modal-title').textContent = 'Edit Product'
+        $('product-modal-submit').textContent = 'Save Changes'
+        $('prod-id').value = p.id
+        $('prod-name').value = p.name
+        $('prod-category').value = p.category
+        $('prod-price').value = p.price
+        $('prod-badge').value = p.badge || ''
+        $('prod-desc').value = p.description || ''
+        productImages = p.images && p.images.length ? [...p.images] : []
+      } else {
+        $('product-modal-title').textContent = 'Add Product'
+        $('product-modal-submit').textContent = 'Add Product'
+        $('product-form').reset()
+        $('prod-id').value = ''
+        productImages = []
+      }
+      renderImagePreviews('prod-images-preview', productImages)
+      modal.classList.add('open')
+      $('prod-name').focus()
+    }
+
+    function closeProductModal() {
+      $('product-modal').classList.remove('open')
+      editingProductId = null
+      productImages = []
+      imageUploadPromises = []
+    }
+
+    $('add-product-btn').addEventListener('click', () => openProductModal(null))
+    $('product-modal-cancel').addEventListener('click', closeProductModal)
+    $('product-modal').addEventListener('click', function(e) { if (e.target === this) closeProductModal() })
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        if ($('product-modal').classList.contains('open')) closeProductModal()
+        if ($('banner-modal').classList.contains('open')) closeBannerModal()
+        if ($('category-modal').classList.contains('open')) closeCategoryModal()
+      }
+    })
+
+    // Image upload with ImgBB
+    let imageUploadPromises = []
+
+    $('prod-images-input').addEventListener('change', async function() {
+      const files = Array.from(this.files)
+      this.value = ''
+
+      for (const file of files) {
+        let dataUrl
+        try {
+          dataUrl = await readFileAsDataURL(file)
+        } catch (e) {
+          showToast('Failed to read file: ' + e.message, 'error')
+          continue
+        }
+
+        productImages.push(dataUrl)
+        renderImagePreviews('prod-images-preview', productImages)
+
+        const uploadPromise = uploadToImgBB(dataUrl)
+          .then(url => {
+            const idx = productImages.findIndex(img => img === dataUrl)
+            if (idx !== -1) {
+              productImages[idx] = url
+              renderImagePreviews('prod-images-preview', productImages)
+            }
+          })
+          .catch(err => {
+            showToast('Failed to upload image: ' + err.message, 'error')
+          })
+        imageUploadPromises.push(uploadPromise)
+      }
+    })
+
+    function renderImagePreviews(containerId, images) {
+      const container = $(containerId)
+      container.innerHTML = images.map((img, i) =>
+        '<div class="image-preview-item">' +
+          `<img src="${img}" alt="Preview ${i + 1}" loading="lazy" onerror="this.style.display='none'" />` +
+          `<button class="remove-img" data-index="${i}" type="button">&times;</button>` +
+        '</div>'
+      ).join('')
+      container.querySelectorAll('.remove-img').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const idx = parseInt(this.dataset.index)
+          const removed = productImages[idx]
+          productImages.splice(idx, 1)
+          renderImagePreviews(containerId, productImages)
+          if (removed && removed.startsWith('http')) {
+            deleteImage(removed)
+          }
+        })
+      })
+    }
+
+    $('product-form').addEventListener('submit', async function(e) {
+      e.preventDefault()
+      const name = $('prod-name').value.trim()
+      const category = $('prod-category').value
+      const price = parseFloat($('prod-price').value)
+      const badge = $('prod-badge').value
+      const desc = $('prod-desc').value.trim()
+      if (!name || !category || isNaN(price) || price < 0) return
+
+      if (imageUploadPromises.length) {
+        await Promise.allSettled(imageUploadPromises)
+        imageUploadPromises = []
+      }
+
+      const data = { name, category, price, badge: badge || '', description: desc }
+      const cleanImages = productImages.filter(img => !img.startsWith('data:'))
+      if (cleanImages.length) data.images = cleanImages
+      if (!data.images || !data.images.length) data.images = ['./src/assets/Bag1.png']
+
+      const btn = this.querySelector('button[type="submit"]')
+      showLoading(btn, true)
+
+      try {
+        if (editingProductId) {
+          await updateProduct(editingProductId, data)
+          showToast('Product updated')
+        } else {
+          await addProduct(data)
+          showToast('Product added')
+        }
+        closeProductModal()
+        products = await getProducts()
+        imageUploadPromises = []
+        renderAll()
+      } catch (err) {
+        showToast('Failed to save product: ' + err.message, 'error')
+      } finally {
+        showLoading(btn, false)
+      }
+    })
+
+    async function deleteProduct(id) {
+      if (!confirm('Delete this product?')) return
+      const p = products.find(x => x.id === id)
+      if (p && p.images) {
+        for (const img of p.images) {
+          if (img.startsWith('http')) await deleteImage(img)
+        }
+      }
+      try {
+        await deleteProductService(id)
+        products = await getProducts()
+        renderAll()
+        showToast('Product deleted')
+      } catch (err) {
+        showToast('Failed to delete product', 'error')
+      }
+    }
+
+    // ─── Image compression helper ───
+    function compressImage(dataUrl, maxWidth = 1200, quality = 0.7) {
+      return new Promise((resolve) => {
+        const img = new Image()
+        img.onload = () => {
+          const canvas = document.createElement('canvas')
+          let w = img.width, h = img.height
+          if (w > maxWidth) { h = h * maxWidth / w; w = maxWidth }
+          canvas.width = w; canvas.height = h
+          const ctx = canvas.getContext('2d')
+          ctx.drawImage(img, 0, 0, w, h)
+          resolve(canvas.toDataURL('image/webp', quality))
+        }
+        img.src = dataUrl
+      })
+    }
+
+    // ─── Banner CRUD ───
+    let editingBannerId = null
+    let currentBannerUpload = null
+
+    function openBannerModal(id, presetType) {
+      editingBannerId = id
+      currentBannerUpload = null
+      const modal = $('banner-modal')
+      if (id) {
+        const b = banners.find(x => x.id === id)
+        if (!b) return
+        $('banner-modal-title').textContent = 'Edit Banner'
+        $('banner-modal-submit').textContent = 'Save Changes'
+        $('banner-id').value = b.id
+        $('banner-type').value = b.type
+        $('banner-label').value = b.label || ''
+        if (b.image) {
+          $('banner-image-preview').innerHTML =
+            '<div class="image-preview-item">' +
+              `<img src="${b.image}" alt="Current banner" />` +
+            '</div>'
+        }
+      } else {
+        $('banner-modal-title').textContent = 'Add Banner'
+        $('banner-modal-submit').textContent = 'Add Banner'
+        $('banner-form').reset()
+        $('banner-id').value = ''
+        $('banner-type').value = presetType || 'hero'
+        $('banner-image-preview').innerHTML = ''
+      }
+      modal.classList.add('open')
+      $('banner-label').focus()
+    }
+
+    function closeBannerModal() {
+      $('banner-modal').classList.remove('open')
+      editingBannerId = null
+      currentBannerUpload = null
+      $('banner-image-preview').innerHTML = ''
+    }
+
+    $('add-hero-btn').addEventListener('click', () => openBannerModal(null, 'hero'))
+    $('add-products-hero-btn').addEventListener('click', () => openBannerModal(null, 'products-hero'))
+    $('add-bloom-btn').addEventListener('click', () => openBannerModal(null, 'bloom'))
+    $('banner-modal-cancel').addEventListener('click', closeBannerModal)
+    $('banner-modal').addEventListener('click', function(e) { if (e.target === this) closeBannerModal() })
+
+    $('banner-image-input').addEventListener('change', async function() {
+      if (this.files && this.files[0]) {
+        const file = this.files[0]
+        let dataUrl
+        try {
+          dataUrl = await readFileAsDataURL(file)
+        } catch (e) {
+          showToast('Failed to read file: ' + e.message, 'error')
+          return
+        }
+
+        const compressed = await compressImage(dataUrl)
+        $('banner-image-preview').innerHTML =
+          '<div class="image-preview-item">' +
+            `<img src="${compressed}" alt="Banner preview" />` +
+          '</div>'
+
+        currentBannerUpload = uploadToImgBB(compressed)
+          .then(url => {
+            $('banner-image-preview').innerHTML =
+              '<div class="image-preview-item" data-url="' + url + '">' +
+                `<img src="${url}" alt="Banner preview" />` +
+              '</div>'
+            return url
+          })
+      }
+    })
+
+    $('banner-form').addEventListener('submit', async function(e) {
+      e.preventDefault()
+      const label = $('banner-label').value.trim()
+      const type = $('banner-type').value || 'hero'
+      let image = ''
+      const previewImg = $('banner-image-preview').querySelector('img')
+      if (previewImg) image = previewImg.src
+
+      const btn = this.querySelector('button[type="submit"]')
+      showLoading(btn, true)
+
+      try {
+        if (currentBannerUpload && image && image.startsWith('data:')) {
+          btn.textContent = 'Uploading image...'
+          image = await currentBannerUpload
+          currentBannerUpload = null
+        }
+
+        if (editingBannerId) {
+          await updateBanner(editingBannerId, { label, image })
+          showToast('Banner updated')
+        } else {
+          await addBanner({ type, image: image || './src/assets/Bloom1.png', label })
+          showToast('Banner added')
+        }
+        closeBannerModal()
+        banners = await getBanners()
+        renderAll()
+      } catch (err) {
+        showToast('Failed to save banner: ' + err.message, 'error')
+      } finally {
+        showLoading(btn, false)
+      }
+    })
+
+    async function deleteBanner(id) {
+      if (!confirm('Delete this banner?')) return
+      const b = banners.find(x => x.id === id)
+      try {
+        await deleteBannerService(id)
+        if (b && b.image && b.image.startsWith('http')) await deleteImage(b.image)
+        banners = await getBanners()
+        renderAll()
+        showToast('Banner deleted')
+      } catch (err) {
+        showToast('Failed to delete banner', 'error')
+      }
+    }
+
+    // ─── Category CRUD ───
+    let editingCategoryId = null
+
+    function openCategoryModal(id) {
+      editingCategoryId = id
+      const modal = $('category-modal')
+      if (id) {
+        const c = categories.find(x => x.id === id)
+        if (!c) return
+        $('category-modal-title').textContent = 'Edit Category'
+        $('category-modal-submit').textContent = 'Save Changes'
+        $('cat-id').value = c.id
+        $('cat-name').value = c.name
+      } else {
+        $('category-modal-title').textContent = 'Add Category'
+        $('category-modal-submit').textContent = 'Add Category'
+        $('category-form').reset()
+        $('cat-id').value = ''
+      }
+      modal.classList.add('open')
+      $('cat-name').focus()
+    }
+
+    function closeCategoryModal() {
+      $('category-modal').classList.remove('open')
+      editingCategoryId = null
+    }
+
+    $('add-category-btn').addEventListener('click', () => openCategoryModal(null))
+    $('category-modal-cancel').addEventListener('click', closeCategoryModal)
+    $('category-modal').addEventListener('click', function(e) { if (e.target === this) closeCategoryModal() })
+
+    $('category-form').addEventListener('submit', async function(e) {
+      e.preventDefault()
+      const name = $('cat-name').value.trim()
+      if (!name) return
+
+      try {
+        if (editingCategoryId) {
+          await updateCategory(editingCategoryId, name)
+          showToast('Category updated')
+        } else {
+          await addCategory(name)
+          showToast('Category added')
+        }
+        closeCategoryModal()
+        categories = await getCategories()
+        renderAll()
+      } catch (err) {
+        showToast('Failed to save category: ' + err.message, 'error')
+      }
+    })
+
+    async function deleteCategory(id) {
+      const c = categories.find(x => x.id === id)
+      if (!c) return
+      const count = products.filter(p => p.category === c.name).length
+      if (count > 0 && !confirm(`Delete "${c.name}"? ${count} product(s) will be affected.`)) return
+      try {
+        await deleteCategoryService(id)
+        categories = await getCategories()
+        renderAll()
+        showToast('Category deleted')
+      } catch (err) {
+        showToast('Failed to delete category', 'error')
+      }
+    }
+
+    // ─── Settings ───
+    function populateSettings(s) {
+      if (s.siteName) $('set-site-name').value = s.siteName
+      if (s.tagline) $('set-tagline').value = s.tagline
+      if (s.announceText) $('set-announce-text').value = s.announceText
+      if (s.email) $('set-email').value = s.email
+      if (s.phone) $('set-phone').value = s.phone
+      if (s.address) $('set-address').value = s.address
+      if (s.newsletterTitle) $('set-newsletter-title').value = s.newsletterTitle
+      if (s.newsletterText) $('set-newsletter-text').value = s.newsletterText
+      if (s.freeShipping) $('set-free-shipping').value = s.freeShipping
+      if (s.returnDays) $('set-return-days').value = s.returnDays
+      if (s.footerText) $('set-footer-text').value = s.footerText
+      if (s.footerDesc) $('set-footer-desc').value = s.footerDesc
+    }
+
+    $('save-settings-btn').addEventListener('click', async function() {
+      const settings = {
+        siteName: $('set-site-name').value,
+        tagline: $('set-tagline').value,
+        announceText: $('set-announce-text').value,
+        email: $('set-email').value,
+        phone: $('set-phone').value,
+        address: $('set-address').value,
+        newsletterTitle: $('set-newsletter-title').value,
+        newsletterText: $('set-newsletter-text').value,
+        freeShipping: $('set-free-shipping').value,
+        returnDays: $('set-return-days').value,
+        footerText: $('set-footer-text').value,
+        footerDesc: $('set-footer-desc').value
+      }
+      try {
+        await saveSettings(settings)
+        showToast('Settings saved successfully')
+      } catch (err) {
+        showToast('Failed to save settings: ' + err.message, 'error')
+      }
+    })
+  </script>
+  </main>
+</body>
+</html>

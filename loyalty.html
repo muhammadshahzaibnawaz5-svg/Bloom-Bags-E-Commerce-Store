@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loyalty Program — Blome</title>
+  <meta name="description" content="Join the Blome loyalty program and earn rewards on every purchase. Exclusive perks, early access to new collections, and special member-only pricing." />
+  <meta name="keywords" content="Blome loyalty program, handbag rewards, VIP handbag club, loyalty points luxury bags" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://blomebags.com/loyalty.html" />
+  <meta property="og:title" content="Loyalty Program — Blome" />
+  <meta property="og:description" content="Join the Blome loyalty program and earn rewards on every purchase. Exclusive perks, early access to new collections, and special member-only pricing." />
+  <meta property="og:url" content="https://blomebags.com/loyalty.html" />
+  <meta property="og:image" content="https://blomebags.com/src/assets/Blome_Bag_logo-removebg-preview.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Blome" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Loyalty Program — Blome" />
+  <meta name="twitter:description" content="Join the Blome loyalty program and earn rewards on every purchase. Exclusive perks, early access to new collections, and special member-only pricing." />
+  <meta name="twitter:image" content="https://blomebags.com/src/assets/Blome_Bag_logo-removebg-preview.png" />
+  <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+  <link rel="alternate icon" href="/favicon/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/src/style.css" />
+  <style>
+    [data-anim] { opacity: 0; transform: translateY(22px); }
+    [data-anim].anim-fade-up { opacity: 1; transform: translateY(0); }
+
+    .tier-card {
+      background: white;
+      border: 1px solid var(--warm-gray);
+      border-radius: 20px;
+      padding: 32px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .tier-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.07);
+      transform: translateY(-4px);
+    }
+    .tier-card.featured {
+      border-color: var(--gold);
+      border-width: 2px;
+      background: linear-gradient(180deg, #FDFBF8 0%, white 100%);
+    }
+    .tier-card.featured::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: 14px; right: -30px;
+      background: var(--gold);
+      color: white;
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 36px;
+      transform: rotate(45deg);
+    }
+    .tier-icon {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .tier-name {
+      font-family: Brigila, var(--font-display), serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+    .tier-points {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .tier-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .tier-perks {
+      list-style: none;
+      text-align: left;
+    }
+    .tier-perks li {
+      font-size: 0.82rem;
+      color: var(--charcoal);
+      padding: 6px 0;
+      padding-left: 1.5rem;
+      position: relative;
+      border-bottom: 1px solid var(--warm-gray);
+    }
+    .tier-perks li:last-child { border-bottom: none; }
+    .tier-perks li::before {
+      content: '\2713';
+      position: absolute;
+      left: 2px;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .step-card {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 20px;
+      background: white;
+      border: 1px solid var(--warm-gray);
+      border-radius: 14px;
+      transition: box-shadow 0.3s;
+    }
+    .step-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+    .step-number {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--lime);
+      color: var(--charcoal);
+      display: flex;
+      align-items: center; justify-content: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--warm-gray);
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      text-align: left;
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--muted); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .faq-answer.open {
+      max-height: 300px;
+      padding-bottom: 16px;
+    }
+    .faq-answer p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .faq-chevron {
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+    .faq-chevron.open { transform: rotate(180deg); }
+
+    @media (prefers-reduced-motion: reduce) {
+      [data-anim] { opacity: 1; transform: none; }
+      .faq-answer { transition: none; }
+      .faq-chevron { transition: none; }
+    }
+
+    .animated-button {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 16px 36px;
+      border: 4px solid transparent;
+      font-size: 16px;
+      background-color: inherit;
+      border-radius: 100px;
+      font-weight: 600;
+      color: var(--lime);
+      box-shadow: 0 0 0 2px var(--lime);
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      text-decoration: none;
+      font-family: var(--font-body);
+    }
+    .animated-button svg { position: absolute; width: 24px; fill: var(--lime); z-index: 9; transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
+    .animated-button .arr-1 { right: 16px; }
+    .animated-button .arr-2 { left: -25%; }
+    .animated-button .circle {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px; height: 20px;
+      background-color: var(--lime);
+      border-radius: 50%;
+      opacity: 0;
+      transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .animated-button .text {
+      position: relative;
+      z-index: 1;
+      transform: translateX(-12px);
+      transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .animated-button:hover {
+      box-shadow: 0 0 0 12px transparent;
+      color: var(--charcoal);
+      border-radius: 12px;
+    }
+    .animated-button:hover .arr-1 { right: -25%; }
+    .animated-button:hover .arr-2 { left: 16px; }
+    .animated-button:hover .text { transform: translateX(12px); }
+    .animated-button:hover svg { fill: var(--charcoal); }
+    .animated-button:active { scale: 0.95; box-shadow: 0 0 0 4px var(--lime); }
+    .animated-button:hover .circle { width: 220px; height: 220px; opacity: 1; }
+  @media (max-width: 767px) {
+    .tier-card { padding: 24px 18px; }
+    .tier-card.featured::before { font-size: 0.5rem; padding: 3px 30px; top: 12px; right: -28px; }
+    .tier-name { font-size: 1.25rem; }
+    .tier-points { font-size: 0.82rem; }
+    .tier-desc { font-size: 0.8rem; }
+    .tier-perks li { font-size: 0.78rem; }
+    .step-card { padding: 16px; }
+    .step-number { width: 36px; height: 36px; font-size: 0.78rem; }
+    .step-title { font-size: 0.85rem; }
+    .step-desc { font-size: 0.78rem; }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .tier-card { padding: 28px 20px; }
+    .tier-name { font-size: 1.35rem; }
+  }
+
+  @media (max-width: 374px) {
+    .loyalty-hero h1 { font-size: clamp(1.5rem, 7vw, 2rem); }
+    .loyalty-hero p { font-size: 0.82rem; }
+    .tier-card { padding: 18px 14px; }
+    .tier-card.featured::before { font-size: 0.45rem; padding: 2px 24px; right: -24px; }
+    .tier-icon { width: 44px; height: 44px; }
+    .tier-name { font-size: 1.1rem; }
+    .tier-desc { font-size: 0.76rem; }
+    .tier-perks li { font-size: 0.74rem; padding-left: 1.25rem; }
+    .step-card { padding: 12px; gap: 10px; }
+    .step-number { width: 30px; height: 30px; font-size: 0.72rem; }
+    .step-title { font-size: 0.8rem; }
+  }
+
+  @media (min-width: 1536px) {
+    .tier-card { padding: 36px 28px; }
+    .tier-name { font-size: 1.65rem; }
+  }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+  <div id="toast" class="toast"></div>
+
+  <header id="navbar" class="fixed top-0 left-0 w-full z-50">
+    <div class="announce-bar">
+      ✦&nbsp; <strong>Free shipping</strong>&nbsp;on orders over $200 &nbsp;·&nbsp; <strong>30-day</strong>&nbsp;easy returns &nbsp;·&nbsp; Complimentary <strong>gift wrapping</strong>&nbsp; ✦
+    </div>
+    <div class="nav-glass" id="nav-main">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between" style="height:var(--nav-h);">
+          <a href="/" style="display:flex;align-items:center;text-decoration:none;">
+            <img src="./src/assets/Blome_Bag_logo-removebg-preview.png" alt="Blome Bag" style="height:60px;width:auto;flex-shrink:0;" />
+          </a>
+          <nav class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">Home</a>
+            <div class="nav-dropdown-group">
+              <a href="/product-listing.html" class="nav-link" aria-haspopup="true">Products</a>
+              <div class="nav-dropdown" role="menu">
+                <a href="/product-listing.html?category=Tote" class="nav-dropdown-link" role="menuitem">Totes</a>
+                <a href="/product-listing.html?category=Crossbody" class="nav-dropdown-link" role="menuitem">Crossbody</a>
+                <a href="/product-listing.html?category=Clutch" class="nav-dropdown-link" role="menuitem">Clutches</a>
+                <a href="/product-listing.html?category=Shoulder" class="nav-dropdown-link" role="menuitem">Shoulder</a>
+                <a href="/product-listing.html?category=Bucket" class="nav-dropdown-link" role="menuitem">Bucket</a>
+                <div class="nav-dropdown-divider" role="separator"></div>
+                <a href="/about.html" class="nav-dropdown-link" role="menuitem">About Us</a>
+                <a href="/product-listing.html" class="nav-dropdown-link" role="menuitem">View All</a>
+              </div>
+            </div>
+            <a href="/contact.html" class="nav-link">Contact Us</a>
+          </nav>
+          <div class="flex items-center gap-10">
+            <a href="/cart.html" class="nav-icon-btn relative" aria-label="Cart">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+              <span class="cart-badge" id="cart-count">0</span>
+            </a>
+            <button class="nav-icon-btn md:hidden" id="menu-btn" aria-label="Toggle menu">
+              <svg id="icon-open" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+              </svg>
+              <svg id="icon-close" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden" style="background:white;border-bottom:1px solid var(--warm-gray);padding:0.75rem 1.5rem 1.25rem;">
+      <a href="/" class="mobile-nav-link">Home</a>
+      <a href="/product-listing.html" class="mobile-nav-link">Products</a>
+      <div class="mobile-sub-links">
+        <a href="/product-listing.html?category=Tote" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">Totes</a>
+        <a href="/product-listing.html?category=Crossbody" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">Crossbody</a>
+        <a href="/product-listing.html?category=Clutch" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">Clutches</a>
+        <a href="/product-listing.html?category=Shoulder" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">Shoulder</a>
+        <a href="/product-listing.html?category=Bucket" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">Bucket</a>
+        <a href="/about.html" class="mobile-nav-link" style="padding-left:1.5rem;font-size:0.8rem;">About Us</a>
+      </div>
+      <a href="/contact.html" class="mobile-nav-link">Contact Us</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <section style="position:relative;background:linear-gradient(165deg, #F0EBE4 0%, var(--ivory) 40%, #FCFAF7 100%);border-top:1px solid var(--warm-gray);overflow:hidden;min-height:clamp(200px,34vh,340px);display:flex;align-items:center;" data-anim>
+      <div style="position:absolute;top:-100px;right:-60px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle, rgba(212,168,83,0.12) 0%, transparent 70%);pointer-events:none;" aria-hidden="true"></div>
+      <div style="position:absolute;bottom:-80px;left:-40px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle, rgba(200,226,122,0.10) 0%, transparent 70%);pointer-events:none;" aria-hidden="true"></div>
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full" style="padding:clamp(2.5rem,5vh,4rem) 0;">
+        <div style="max-width:640px;">
+          <span style="display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:0.60rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;" data-anim>
+            <span style="display:inline-block;width:28px;height:2px;background:var(--gold);border-radius:1px;"></span>
+            Rewards
+          </span>
+          <h1 style="font-family:Brigila,var(--font-display),serif;font-size:clamp(2rem,5vw,3.6rem);font-weight:500;color:var(--charcoal);line-height:0.95;letter-spacing:-0.01em;margin-bottom:0.6rem;" data-anim>
+            The Blome Club
+          </h1>
+          <div style="width:48px;height:2.5px;background:var(--gold);border-radius:2px;margin-bottom:0.8rem;" aria-hidden="true" data-anim></div>
+          <p style="font-family:var(--font-body);font-size:clamp(0.88rem,1.1vw,0.95rem);color:var(--muted);line-height:1.7;max-width:500px;" data-anim>
+            Earn points with every purchase and unlock exclusive perks reserved for our most cherished customers.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding:3rem 0;">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10" data-anim>
+          <h2 style="font-family:var(--font-display);font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:var(--charcoal);margin-bottom:0.5rem;">Choose Your Tier</h2>
+          <p style="font-size:0.88rem;color:var(--muted);">The more you shop, the more you unlock.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          <div class="tier-card" data-anim>
+            <div class="tier-icon" style="background:var(--ivory);">
+              <svg width="26" height="26" fill="none" stroke="var(--muted)" stroke-width="1.8" viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="6"/><path d="M12 22v-8"/><path d="M8 14h8"/>
+              </svg>
+            </div>
+            <p class="tier-name">Ivory</p>
+            <p class="tier-points">0–999 points</p>
+            <p class="tier-desc">Every journey begins with a single step. Welcome to the club.</p>
+            <ul class="tier-perks">
+              <li>10 points per $1 spent</li>
+              <li>Free standard shipping</li>
+              <li>Early access to seasonal sales</li>
+              <li>Birthday bonus (50 points)</li>
+            </ul>
+          </div>
+          <div class="tier-card featured" data-anim>
+            <div class="tier-icon" style="background:#F5F0E6;">
+              <svg width="26" height="26" fill="none" stroke="var(--gold)" stroke-width="1.8" viewBox="0 0 24 24">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+            <p class="tier-name">Gold</p>
+            <p class="tier-points">1,000–4,999 points</p>
+            <p class="tier-desc">The sweet spot. Our most popular tier with elevated rewards.</p>
+            <ul class="tier-perks">
+              <li>15 points per $1 spent</li>
+              <li>Free express shipping</li>
+              <li>Exclusive Gold-only product drops</li>
+              <li>Complimentary gift wrapping</li>
+              <li>Birthday bonus (150 points)</li>
+            </ul>
+          </div>
+          <div class="tier-card" data-anim>
+            <div class="tier-icon" style="background:#1C1C1C;">
+              <svg width="26" height="26" fill="none" stroke="var(--gold-light)" stroke-width="1.8" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
+            <p class="tier-name">Platinum</p>
+            <p class="tier-points">5,000+ points</p>
+            <p class="tier-desc">Our most exclusive tier for true Blome connoisseurs.</p>
+            <ul class="tier-perks">
+              <li>20 points per $1 spent</li>
+              <li>Free express shipping + overnight upgrade</li>
+              <li>Private appointments with our design team</li>
+              <li>Annual member gift (curated edit)</li>
+              <li>Double points on birthday month</li>
+              <li>Priority customer service line</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:white;border-top:1px solid var(--warm-gray);border-bottom:1px solid var(--warm-gray);padding:3.5rem 0;">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10" data-anim>
+          <h2 style="font-family:var(--font-display);font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:var(--charcoal);margin-bottom:0.5rem;">How It Works</h2>
+          <p style="font-size:0.88rem;color:var(--muted);">Earning and redeeming is effortless.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" data-anim>
+          <div class="step-card">
+            <span class="step-number">1</span>
+            <div>
+              <p style="font-weight:700;font-size:0.92rem;color:var(--charcoal);margin-bottom:4px;">Join Free</p>
+              <p style="font-size:0.82rem;color:var(--muted);line-height:1.6;">Create a Blome account to automatically enroll in The Blome Club. No fees, no hoops.</p>
+            </div>
+          </div>
+          <div class="step-card">
+            <span class="step-number">2</span>
+            <div>
+              <p style="font-weight:700;font-size:0.92rem;color:var(--charcoal);margin-bottom:4px;">Shop &amp; Earn</p>
+              <p style="font-size:0.82rem;color:var(--muted);line-height:1.6;">Earn points on every purchase. Points are credited within 24 hours of order delivery.</p>
+            </div>
+          </div>
+          <div class="step-card">
+            <span class="step-number">3</span>
+            <div>
+              <p style="font-weight:700;font-size:0.92rem;color:var(--charcoal);margin-bottom:4px;">Climb the Tiers</p>
+              <p style="font-size:0.82rem;color:var(--muted);line-height:1.6;">Accumulate points within a calendar year to reach Gold or Platinum and unlock ever-greater rewards.</p>
+            </div>
+          </div>
+          <div class="step-card">
+            <span class="step-number">4</span>
+            <div>
+              <p style="font-weight:700;font-size:0.92rem;color:var(--charcoal);margin-bottom:4px;">Redeem Rewards</p>
+              <p style="font-size:0.82rem;color:var(--muted);line-height:1.6;">Use points at checkout. 100 points = $5 off. Redeem anytime, no minimum spend.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding:3.5rem 0;">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-8" data-anim>
+          <h2 style="font-family:var(--font-display);font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:800;color:var(--charcoal);margin-bottom:0.5rem;">Frequently Asked Questions</h2>
+        </div>
+        <div style="background:white;border:1px solid var(--warm-gray);border-radius:16px;padding:0 24px;" data-anim>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              How do I join The Blome Club?
+              <svg class="faq-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><p>Simply create a Blome account, and you are automatically enrolled at the Ivory tier. There is no membership fee or application process.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              How are points calculated?
+              <svg class="faq-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><p>Points are based on the subtotal of your order (excluding taxes, shipping, and discounts). Ivory members earn 10 points per $1, Gold earns 15, and Platinum earns 20.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Do my points expire?
+              <svg class="faq-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><p>Points are valid for 12 months from the date they are earned. Tier status resets annually on January 1 based on the previous year's points.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Can I redeem points with other promotions?
+              <svg class="faq-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><p>Yes! Points can be combined with sale items and promotional discounts. However, points cannot be redeemed on gift card purchases or previous orders.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Can I gift or transfer my points?
+              <svg class="faq-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><p>Points are non-transferable and can only be used by the account that earned them. However, you can purchase a <a href="/gift-cards.html" style="color:var(--charcoal);font-weight:600;text-decoration:underline;">Blome Gift Card</a> for someone special.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:var(--charcoal);padding:3.5rem 0;text-align:center;">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8" data-anim>
+        <h2 style="font-family:Brigila,var(--font-display),serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:500;color:white;line-height:1.08;margin-bottom:0.75rem;">Ready to Start Earning?</h2>
+        <p style="font-size:0.9rem;color:rgba(255,255,255,0.7);margin-bottom:1.5rem;max-width:450px;margin-left:auto;margin-right:auto;">Join thousands of Blome members who shop smarter, earn faster, and carry better.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="/account.html" class="btn-lime" style="padding:14px 32px;font-size:0.9rem;text-decoration:none;">Create Free Account</a>
+          <a href="/product-listing.html" class="animated-button">
+            <svg class="arr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M16.004 9.414l-7.293 7.293-1.414-1.414L14.59 8H7.004V6h11v11h-2V9.414z"/></svg>
+            <span class="text">Start Shopping</span>
+            <span class="circle"></span>
+            <svg class="arr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M16.004 9.414l-7.293 7.293-1.414-1.414L14.59 8H7.004V6h11v11h-2V9.414z"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="background:white;border-top:1px solid var(--warm-gray);">
+    <div class="max-w-7xl mx-auto" style="padding:3rem clamp(1.5rem, 5vw, 4rem);">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-12 mb-12">
+        <div class="col-span-2 md:col-span-1">
+          <div class="flex items-center mb-4">
+            <img src="./src/assets/Blome_Bag_logo-removebg-preview.png" alt="Blome Bag" style="height:60px;width:auto;flex-shrink:0;" />
+          </div>
+          <p style="font-family:var(--font-body);font-size:0.85rem;color:var(--muted);line-height:1.72;max-width:210px;">Premium leather handbags crafted for the modern woman. Timeless elegance, exceptional quality.</p>
+          <div class="flex gap-2.5 mt-5">
+            <a href="#" class="social-btn" aria-label="Instagram"><svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17" cy="7" r="1.5" fill="var(--charcoal)"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Pinterest"><svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24"><path d="M8 12.5a4.5 4.5 0 109 0 4.5 4.5 0 00-9 0z"/><path d="M12 2a10 10 0 00-3.3 19.4c-.1-.9-.2-2.3 0-3.3l1.6-7"/><path d="M14 13.5l-1-5.5"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Facebook"><svg width="15" height="15" fill="none" stroke="var(--charcoal)" stroke-width="2" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">Shop</p>
+          <ul style="list-style:none;">
+            <li><a href="/product-listing.html" class="footer-link">All Bags</a></li>
+            <li><a href="/product-listing.html?category=Tote" class="footer-link">Totes</a></li>
+            <li><a href="/product-listing.html?category=Crossbody" class="footer-link">Crossbody</a></li>
+            <li><a href="/product-listing.html?category=Clutch" class="footer-link">Clutches</a></li>
+            <li><a href="/product-listing.html?category=Sale" class="footer-link">Sale</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Support</p>
+          <ul style="list-style:none;">
+            <li><a href="/contact.html" class="footer-link">Contact Us</a></li>
+            <li><a href="/shipping-returns.html" class="footer-link">Shipping &amp; Returns</a></li>
+            <li><a href="/account.html" class="footer-link">My Account</a></li>
+            <li><a href="/gift-cards.html" class="footer-link">Gift Cards</a></li>
+            <li><a href="/loyalty.html" class="footer-link">Loyalty Program</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Company</p>
+          <ul style="list-style:none;">
+            <li><a href="/about.html" class="footer-link">About Us</a></li>
+            <li><a href="/contact.html" class="footer-link">Contact</a></li>
+            <li><a href="/shipping-returns.html#privacy" class="footer-link">Privacy Policy</a></li>
+            <li><a href="/shipping-returns.html#terms" class="footer-link">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" style="border-top:1px solid var(--warm-gray);">
+        <div class="flex items-center gap-4">
+          <p style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">&copy; 2025 Blome. All rights reserved.</p>
+          <div class="flex items-center gap-2" aria-label="Accepted payment methods">
+            <span style="font-size:0.7rem;font-weight:800;color:#0d2a7a;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;">VISA</span>
+            <span style="font-size:0.7rem;font-weight:800;color:transparent;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;position:relative;min-width:40px;display:inline-flex;align-items:center;justify-content:center;">MC</span>
+            <span style="font-size:0.7rem;font-weight:800;color:#fff;background:#1474bc;border:1px solid #1474bc;border-radius:4px;padding:2px 6px;">AMEX</span>
+            <span style="font-size:0.7rem;font-weight:800;color:#063d8f;background:#fff;border:1px solid #e1e1e1;border-radius:4px;padding:2px 6px;">PayPal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav-main').classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
+    let menuOpen = false;
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('hidden', !menuOpen);
+      if (iconOpen) iconOpen.style.display = menuOpen ? 'none' : 'block';
+      if (iconClose) iconClose.style.display = menuOpen ? 'block' : 'none';
+    });
+
+    function getCart() { try { return JSON.parse(localStorage.getItem('blome_cart') || '[]'); } catch { return []; } }
+    function updateBadge() {
+      const n = getCart().reduce((s, i) => s + (i.qty || 1), 0);
+      const el = document.getElementById('cart-count');
+      if (el) el.textContent = n;
+    }
+    updateBadge();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('anim-fade-up'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('[data-anim]').forEach(el => observer.observe(el));
+
+    /* FAQ Accordion */
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const answer = btn.nextElementSibling;
+        const chevron = btn.querySelector('.faq-chevron');
+        const isOpen = answer.classList.contains('open');
+        document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+        document.querySelectorAll('.faq-chevron').forEach(c => c.classList.remove('open'));
+        document.querySelectorAll('.faq-question').forEach(q => q.setAttribute('aria-expanded', 'false'));
+        if (!isOpen) {
+          answer.classList.add('open');
+          chevron.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
